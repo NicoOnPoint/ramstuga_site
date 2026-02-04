@@ -682,8 +682,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 /* Vaste floating contactknop rechtsonder */
 .floating-contact{
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
   z-index: 99999;
   display: flex;
   flex-direction: column;
@@ -707,7 +707,10 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 }
 
 @media (max-width: 900px){
-  .floating-contact{ right: 12px; bottom: 12px; }
+  .floating-contact{
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
   .floating-contact .btn{ padding: 10px 12px; }
 }
 
@@ -805,19 +808,19 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   }
 
   .floating-contact{
+    left: 8px;
     right: 8px;
-    bottom: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom));
     gap: 6px;
-  }
-
-  .floating-contact{
-    display: none;
+    align-items: stretch;
   }
 
   .floating-contact .btn{
     padding: 8px 10px;
     font-size: 12px;
     border-radius: 10px;
+    width: 100%;
+    justify-content: center;
   }
 
   .shop-top-actions{
