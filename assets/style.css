@@ -324,17 +324,6 @@ nav a:hover{
     bottom: -80px; /* frames verder naar beneden op klein scherm */
     top: auto;
     width: min(420px, 92vw);
-
-@media (max-width: 420px){
-  .about-title{
-    font-size: clamp(42px, 12vw, 64px);
-  }
-
-  .about-subtitle{
-    font-size: 16px;
-    width: min(340px, 92%);
-  }
-}
     height: 260px;
   }
 
@@ -778,6 +767,82 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   nav ul.open{ display:flex; }
 }
 
+@media (max-width: 420px){
+  body{ background-attachment: scroll; }
+
+  .site-header{ padding: 12px; }
+  header .nav{ padding: 10px 0; gap: 8px; }
+  .site-logo{ height: 48px; }
+  .brand-text{ font-size: 14px; }
+
+  nav ul{
+    left: 4vw;
+    right: 4vw;
+    min-width: unset;
+  }
+
+  nav a{
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .nav-cart{
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .cart-count{
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
+
+  .btn{
+    padding: 9px 12px;
+    font-size: 13px;
+    border-radius: 14px;
+  }
+
+  .floating-contact{
+    right: 8px;
+    bottom: 8px;
+    gap: 6px;
+  }
+
+  .floating-contact .btn{
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .shop-top-actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .shop-top-actions .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .product-actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .product-actions .btn{
+    width: 100%;
+  }
+
+  .cart-item{ grid-template-columns: 1fr; }
+  .cart-item-end{ align-items: flex-start; }
+  .cart-qty{ width: 60px; }
+
+  .shop-help-media{ height: 150px; }
+  .pay-badge{ max-width: 100%; }
+}
+
 /* ========== FLOAT + PARALLAX (frames) ========== */
 @keyframes floaty {
   0%   { transform: translateY(calc(var(--scrollY, 0px))) rotate(var(--rot)); }
@@ -1118,6 +1183,33 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     transform: translateY(-102px);
     font-size: 11px;
     letter-spacing: .1em;
+  }
+}
+
+@media (max-width: 360px){
+  .about-hero{
+    padding: 110px 0 110px;
+  }
+
+  .about-hero h1{
+    font-size: clamp(30px, 10vw, 46px);
+  }
+
+  .about-subtitle{
+    font-size: 14px;
+    width: min(300px, 92%);
+  }
+
+  .about-plaque{
+    width: 125%;
+    height: clamp(140px, 28vw, 200px);
+  }
+
+  .plaque-brandline{
+    right: 16%;
+    transform: translateY(-92px);
+    font-size: 10px;
+    letter-spacing: .08em;
   }
 }
 
@@ -1644,6 +1736,31 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
   .plaque-line.subtle{
     font-size: 11px;
+  }
+}
+
+@media (max-width: 360px){
+  .footer-plaque{
+    width: 98vw;
+    aspect-ratio: 3 / 1;
+  }
+
+  .plaque-content{
+    padding: 10px 12px;
+    transform: translateY(18px);
+  }
+
+  .plaque-brand{
+    font-size: 18px;
+    letter-spacing: .06em;
+  }
+
+  .plaque-line{
+    font-size: 11px;
+  }
+
+  .plaque-line.subtle{
+    font-size: 10px;
   }
 }
 
