@@ -517,6 +517,42 @@
   }
 })();
 
+/* ===== FLOATING CONTACT MENU (TOGGLE) ===== */
+document.addEventListener("DOMContentLoaded", () => {
+  const floats = document.querySelectorAll(".floating-contact");
+  if (!floats.length) return;
+
+  floats.forEach((wrap, idx) => {
+    if (wrap.querySelector(".contact-toggle")) return;
+
+    const links = Array.from(wrap.querySelectorAll("a"));
+    if (!links.length) return;
+
+    const actions = document.createElement("div");
+    actions.className = "contact-actions";
+    const actionsId = `contactActions-${idx + 1}`;
+    actions.id = actionsId;
+
+    links.forEach((link) => actions.appendChild(link));
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "btn contact-toggle";
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-controls", actionsId);
+    toggle.setAttribute("aria-label", "Contactmenu");
+    toggle.textContent = "Contact";
+
+    wrap.appendChild(actions);
+    wrap.appendChild(toggle);
+
+    toggle.addEventListener("click", () => {
+      const open = wrap.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+});
+
 /* ===== LIGHTBOX GALLERY (SAFE) ===== */
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");

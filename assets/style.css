@@ -690,6 +690,26 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   gap: 10px;
   align-items: flex-end;
 }
+.floating-contact .contact-actions{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity .2s ease, transform .2s ease, max-height .2s ease;
+}
+.floating-contact.open .contact-actions{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  max-height: 320px;
+}
+.floating-contact .contact-toggle{
+  box-shadow: 0 14px 34px rgba(0,0,0,.30);
+}
 .floating-contact .btn{
   padding: 12px 14px;
   font-size: 15px;
