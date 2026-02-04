@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="2UIIHORHjkxL9QhuB3L2xs6My-mrajRxU3icgTAwJ1I">
+  <title>Shop – RAMSTUGA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <link rel="icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+</head>
+
+<body class="page-shop">
+
+<header class="site-header">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" alt="RAMSTUGA logo" class="site-logo">
+      <span class="brand-text">RAMSTUGA</span>
+    </a>
+
+    <nav class="site-nav">
+      <ul id="siteMenu">
+        <li><a href="index.html">Hem</a></li>
+        <li><a href="about.html">Om oss</a></li>
+        <li><a href="maatwerk.html">Måttbeställt</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="shop.html" aria-current="page">Shop</a></li>
+
+        <li class="lang-switch" aria-label="Språk">
+          <a href="shop.html" data-lang="sv">SV</a>
+          <span>•</span>
+          <a href="en/shop.html" data-lang="en">EN</a>
+          <span>•</span>
+          <a href="nl/shop.html" data-lang="nl">NL</a>
+        </li>
+
+        <li class="nav-cart-item">
+          <a href="#checkout" class="nav-cart" aria-label="Varukorg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6h15l-2 9H7L6 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M6 6 5 3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="9" cy="20" r="1" fill="currentColor"/>
+              <circle cx="18" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <div class="about-plaque" aria-hidden="true"></div>
+      <div class="plaque-brandline">
+        <img src="assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
+        <span class="plaque-brandtext">RAMSTUGA</span>
+      </div>
+      <h1 class="about-title type-title" data-text="Shop"></h1>
+      <p class="about-subtitle type-title-late" data-text="Standardmått kan beställas direkt. Betala via PayPal (även med kort).">
+        Standardmått kan beställas direkt. Betala via PayPal (även med kort).
+      </p>
+
+    </div>
+  </section>
+
+  <section class="about-story">
+    <div class="container" style="width:min(1100px,92vw);">
+
+      <div class="shop-layout">
+
+        <!-- LINKS: PRODUCTEN -->
+        <section>
+          <div class="section-title" style="margin-bottom:14px;">
+            <h2>Standardmått</h2>
+            <div class="subtle">Lägg i varukorg, betala, mejla din beställning.</div>
+          </div>
+
+          <div class="card pad">
+            <div class="shop-top-actions">
+              <a class="btn" href="portfolio.html">Se exempel</a>
+              <a class="btn primary" href="maatwerk.html">Måttbeställt (offert)</a>
+              <a class="btn" href="#pay">Gå till betalning</a>
+            </div>
+
+            <div class="shop-divider"></div>
+
+            <div id="productGrid" class="shop-grid" aria-live="polite"></div>
+
+            <p class="fineprint" style="margin-top:12px;">
+              Tips: håll sortimentet av standardmått litet (4–8 produkter). Måttbeställt går via offert.
+            </p>
+          </div>
+
+          <div class="card pad" style="margin-top:16px;">
+            <div class="section-title" style="margin-bottom:14px;">
+              <h2>Hjälp att välja</h2>
+              <div class="subtle">Mätning & finish.</div>
+            </div>
+
+            <div class="shop-help-grid">
+              <article class="card">
+                <div class="shop-help-media">
+                  <img src="images/measure-guide-cm.png" alt="Meetgids: hoe meet je je foto of opening?" loading="lazy">
+                </div>
+                <div class="pad">
+                  <div class="kicker">Steg 1</div>
+                  <h3>Mät ditt format</h3>
+                  <p>Mät din bild (eller önskat öppningsmått). Osäker? Välj måttbeställt.</p>
+                  <div class="meta">
+                    <a class="btn" href="maatwerk.html">Måttbeställt (offert)</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card">
+                <div class="shop-help-media">
+                  <img src="images/finishes.png" alt="Afwerkingen: licht, donker, verweerd grijs" loading="lazy">
+                </div>
+                <div class="pad">
+                  <div class="kicker">Steg 2</div>
+                  <h3>Välj finish</h3>
+                  <p>Ljus för skandinaviskt, mörk för lyx, grå väderbiten för rustikt.</p>
+                  <div class="meta">
+                    <span class="tag">Ljus</span>
+                    <span class="tag">Mörk</span>
+                    <span class="tag">Grå</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card">
+                <div class="shop-help-media">
+                  <img src="images/wood-detail.png" alt="Detail van houtnerf en hoeken van de lijst" loading="lazy">
+                </div>
+                <div class="pad">
+                  <div class="kicker">Steg 3</div>
+                  <h3>Se exempel</h3>
+                  <p>Se riktiga foton av trä, hörn och finish.</p>
+                  <div class="meta">
+                    <a class="btn primary" href="portfolio.html">Portfolio</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- RECHTS: WINKELWAGEN + BETALEN -->
+        <aside id="checkout">
+          <div class="section-title" style="margin-bottom:14px;">
+            <h2>Varukorg</h2>
+            <div class="subtle">Betala via PayPal (även med kort), mejla din order.</div>
+          </div>
+
+          <div class="card pad">
+            <div id="cartEmpty" class="subtle" style="display:none;">Din varukorg är tom.</div>
+            <div id="cartList" class="cart-list"></div>
+
+            <div class="cart-summary">
+                <div class="cart-row">
+                  <span class="subtle">Delsumma</span>
+                  <strong id="cartSubtotal">€ 0,00</strong>
+                </div>
+                <div class="cart-row">
+                  <span class="subtle">Frakt</span>
+                  <strong id="cartShipping">€ 0,00</strong>
+                </div>
+                <div class="cart-row" style="margin-top:8px; font-size:16px;">
+                  <span class="subtle">Totalt</span>
+                  <strong id="cartTotal">€ 0,00</strong>
+                </div>
+            </div>
+
+            <div class="form-actions" style="justify-content: space-between; gap:10px; margin-top:12px;">
+              <button class="btn" type="button" id="clearCartBtn">Töm</button>
+              <a class="btn primary" href="#pay">Gå till betalning</a>
+            </div>
+
+            <p class="fineprint" style="margin-top:10px;">
+              Måttbeställda produkter är offert och betalas först efter vår bekräftelse.
+            </p>
+          </div>
+
+            <div class="card pad" style="margin-top:14px;">
+              <div class="section-title" style="margin-bottom:10px;">
+                <h3>Kontakt</h3>
+                <div class="subtle">Direktkontakt via telefon/ SMS eller WhatsApp</div>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn" href="tel:+46707106182" aria-label="Ring Nico">Ring oss</a>
+                <a class="btn" href="sms:+46707106182?body=Hej%2C%20jag%20vill%20ha%20mer%20information%20om%20ramar" aria-label="Skicka SMS">SMS oss</a>
+                <a class="btn" href="mailto:info@ramstuga.se" aria-label="E-post">E-post</a>
+                <a class="btn" href="https://wa.me/46707106182?text=Hej%2C%20jag%20vill%20ha%20mer%20information" target="_blank" rel="noopener" aria-label="WhatsApp Nico">WhatsApp</a>
+              </div>
+            </div>
+
+          <div class="card pad" id="pay" style="margin-top:16px;">
+            <div class="section-title" style="margin-bottom:10px;">
+              <h2>Betalning</h2>
+              <div class="subtle">PayPal (även med kort).</div>
+            </div>
+
+            <div class="pay-grid">
+              <div class="pay-method">
+                <div class="kicker"></div>
+                <img
+                src="images/payments-paypal-visa-mastercard.png"
+                alt="Betalen met PayPal, Visa en Mastercard (geen PayPal-account nodig)"
+                class="pay-badge"
+/>
+
+<p class="subtle">
+  Inget PayPal-konto behövs — betala enkelt med kort.
+</p>
+
+                <p class="subtle" style="margin-top:6px;">
+                  Att betala: <strong id="payAmount">€ 0,00</strong>
+                </p>
+                <p class="fineprint" style="margin-top:6px;">
+                  Obs: Ange rätt belopp inklusive frakt samt din orderreferens vid betalning.
+                </p>
+
+                <a class="btn primary" href="#" id="paypalLink" target="_blank" rel="noopener">Betala med PayPal</a>
+                <p class="fineprint"> Du kan betala med PayPal-saldo, bank eller kort (även utan PayPal-konto).</p>
+              </div>
+
+              
+
+            <div class="shop-divider"></div>
+
+            <p class="fineprint">
+              Använd som referens: <strong>RAMSTUGA + ditt namn, leveransadress och betalreferens</strong>
+
+            <div class="form-actions" style="justify-content: space-between; margin-top:12px;">
+              <button class="btn" type="button" id="copyRefBtn">Kopiera orderreferens</button>
+              <button class="btn primary" type="button" id="paidMailBtn">Jag har betalat → mejla beställning</button>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-plaque" role="contentinfo" aria-label="Kontaktuppgifter">
+      <div class="plaque-content">
+        <p class="plaque-brand"></p>
+        <p class="plaque-line">
+          <strong>E-post:</strong> <a href="mailto:info@ramstuga.se">info@ramstuga.se</a>
+        </p>
+        <p class="plaque-line"><strong>Namn:</strong> Nico &amp; Barbara</p>
+        <p class="plaque-line subtle">Handgjort för ditt hem</p>
+      </div>
+    </div>
+    <p class="footer-credit">© Webdesign by <a href="https://www.nico-on-point-webdesign.com" target="_blank" rel="noopener">www.nico-on-point-webdesign.com</a></p>
+    <div class="contact-buttons">
+      <a class="btn" href="tel:+46707106182">Ring</a>
+      <a class="btn" href="sms:+46707106182?body=Hallo%2C%20ik%20wil%20meer%20informatie%20over%20lijsten">SMS</a>
+      <a class="btn" href="https://wa.me/46707106182?text=Hej%2C%20jag%20vill%20ha%20mer%20information" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <p class="footer-copy">© <span id="year"></span> RAMSTUGA</p>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Stäng">×</button>
+  <button class="lightbox-prev" aria-label="Föregående">‹</button>
+  <img id="lightbox-img" alt="">
+  <button class="lightbox-next" aria-label="Nästa">›</button>
+</div>
+
+<script src="assets/script.js" defer></script>
+
+<!-- Floating contact (fixed) -->
+<div class="floating-contact" aria-hidden="false">
+  <a class="btn" href="tel:+46707106182" aria-label="Ring Nico">📞 Ring</a>
+  <a class="btn secondary" href="sms:+46707106182?body=Hej%2C%20jag%20vill%20ha%20mer%20information%20om%20ramar" aria-label="SMS Nico">✉️ SMS</a>
+  <a class="btn" href="https://wa.me/46707106182?text=Hej%2C%20jag%20vill%20ha%20mer%20information" target="_blank" rel="noopener" aria-label="WhatsApp Nico">💬 WhatsApp</a>
+</div>
+
+</body>
+</html>

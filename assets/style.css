@@ -1,0 +1,1806 @@
+:root{
+  --mist: #8E8F92;
+  --blue: #6D8798;
+  --green: #7D8A78;
+  --sand: #D8CFBF;
+  --offwhite: #F4F1EC;
+  --ink: #1F1E1C;
+
+  --cardShadow: 0 10px 30px rgba(0,0,0,.18);
+  --radius: 18px;
+
+  --fontTitle: "Modern No. 20", "Iowan Old Style", "Georgia", serif;
+  --fontBody: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --fontScript: "Brush Script MT", "Segoe Script", "Snell Roundhand", cursive;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height:100%; }
+
+body{
+  margin:0;
+  color: var(--ink);
+  font-family: var(--fontBody);
+  line-height: 1.55;
+
+  /* Doorlopende houten achtergrond (ENIGE plek waar het staat) */
+  /* cache-bust toegevoegd zodat vervangingen in /images/ direct zichtbaar worden */
+  background-image: url("../images/Wooden-wall.jpg?v=2");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  position: relative;
+  overflow-x: hidden;
+}
+
+a{ color: inherit; }
+img{ max-width:100%; display:block; }
+
+/* Lightbox-enabled images: subtle hover effect */
+.gallery img,
+.shop-help-media img,
+.product-media img,
+.shop-hero-plaque img,
+.shop-hero-media img{
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+
+.gallery img:hover,
+.shop-help-media img:hover,
+.product-media img:hover,
+.shop-hero-plaque img:hover,
+.shop-hero-media img:hover{
+  transform: scale(1.02);
+  filter: brightness(1.04);
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+}
+
+/* About frame uses precise transforms; no hover effect */
+.about-frame img{
+  transition: filter .25s ease;
+}
+
+.about-frame img:hover{
+  filter: brightness(1.14);
+}
+
+.container{
+  width: min(1100px, 92vw);
+  margin-inline: auto;
+}
+
+/* Header */
+header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  background: rgba(244,241,236,.75);
+  border-bottom: 1px solid rgba(31,30,28,.10);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  text-decoration:none;
+}
+
+.brand-badge{
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(141,143,146,.35), rgba(109,135,152,.25));
+  border: 1px solid rgba(31,30,28,.12);
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+  display:grid;
+  place-items:center;
+  font-family: var(--fontTitle);
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.brand-title{
+  display:flex;
+  flex-direction: column;
+}
+
+.brand-title strong{
+  font-family: var(--fontTitle);
+  font-size: 18px;
+  letter-spacing: .2px;
+  line-height: 1.1;
+}
+
+.brand-title span{
+  font-size: 12px;
+  opacity: .75;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap: 14px;
+  margin:0;
+  padding:0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+nav a{
+  text-decoration:none;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: .2s ease;
+  font-size: 14px;
+  opacity: .9;
+  white-space: nowrap;
+}
+
+nav a:hover{
+  border-color: rgba(31,30,28,.14);
+  background: rgba(244,241,236,.70);
+  transform: translateY(-1px);
+}
+
+.lang-switch{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-switch span{
+  opacity: .5;
+  font-size: 12px;
+}
+
+.lang-switch a{
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  border-radius: 16px;
+  padding: 10px 14px;
+  border: 1px solid rgba(31,30,28,.14);
+  background: rgba(244,241,236,.78);
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  text-decoration:none;
+  font-size: 14px;
+  transition: .2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn:hover{ transform: translateY(-1px); }
+
+.btn.primary{
+  background: linear-gradient(145deg, rgba(109,135,152,.35), rgba(141,143,146,.25));
+  border-color: rgba(31,30,28,.12);
+}
+
+/* ========== HOME (STACKED) ========== */
+.home { padding: 0; }
+
+/* BLOK 1: HOUT HERO (TRANSPARANT, want body heeft de achtergrond) */
+.hero-wood{
+  background: transparent;
+  min-height: 720px;
+  position: relative;
+  overflow: visible; /* frames mogen onder de hero uitsteken */
+  padding-bottom: 140px; /* minder ruimte nodig nu frames aan de onderkant zijn verankerd */
+}
+
+.hero-wood-inner{
+  position: relative;  /* anker voor absolute items */
+  min-height: 720px;
+  padding: 34px 0;
+}
+
+/* RAMSTUGA linksboven */
+.hero-brand{
+  position:absolute;
+  left: 0;
+  top: 18px;
+  font-family: var(--fontTitle);
+  letter-spacing: .12em;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+/* Schuine headline (parallax-ready via CSS vars) */
+.hero-wood-title{
+  position:absolute;
+  left: 0;
+  top: 240px; /* iets lager geplaatst voor meer ruimte boven */
+  margin: 0;
+
+  font-family: var(--fontTitle);
+  font-weight: 700;
+  /* iets kleinere hero-kop om overlap met frames te voorkomen */
+  font-size: clamp(48px, 7.5vw, 120px);
+  line-height: 1.02;
+  letter-spacing: .02em;
+
+  /* wit voor maximale helderheid */
+  color: #ffffff;
+
+  text-shadow:
+    0 8px 28px rgba(0,0,0,.75),
+    0 36px 92px rgba(0,0,0,.60);
+
+  /* parallax vars */
+  --titleY: 0px;
+  --titleRot: -14deg;
+
+  z-index: 10; /* zorg dat de titel boven de frames ligt */
+
+  will-change: transform;
+  transform: translateY(var(--titleY)) rotate(var(--titleRot));
+  transform-origin: left top;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Frames container */
+.hero-frames{
+  position:absolute;
+  left: 50%;
+  bottom: -120px; /* verankerd onder de hero zodat frames niet worden afgesneden */
+  top: auto;
+  transform: translateX(-50%);
+  width: min(760px, 92vw);
+  height: 420px;
+  pointer-events:none;
+  z-index: 1; /* frames iets onder de titel */
+  animation: frames-in 900ms ease-out both;
+}
+
+/* Responsive tweaks for hero on smaller screens */
+@media (max-width: 700px) {
+  .hero-wood-title{
+    left: 0;
+    top: 190px; /* iets minder downshift voor medium mobiel */
+    font-size: clamp(36px, 10.5vw, 72px);
+  }
+
+  .hero-frames{
+    bottom: -100px; /* anchored lager op medium schermen */
+    top: auto;
+    width: min(560px, 92vw);
+    height: 360px;
+  }
+
+  .frame-blue{
+    height: 320px;
+    right: -10px;
+    top: 10px;
+  }
+
+  .frame-grey{
+    right: 140px;
+    top: 210px;
+    height: 240px;
+  }
+
+  .hero-wood{
+    padding-bottom: 160px; /* minder ruimte nodig door bottom-anchoring */
+  }
+
+  .hero-wood-inner{
+    min-height: 620px;
+    padding: 24px 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-wood-title{
+    left: 0;
+    top: 140px; /* wat hoger zodat kop niet te veel ruimte inneemt */
+    font-size: clamp(26px, 10.5vw, 52px);
+  }
+
+  .hero-frames{
+    bottom: -80px; /* frames verder naar beneden op klein scherm */
+    top: auto;
+    width: min(420px, 92vw);
+
+@media (max-width: 420px){
+  .about-title{
+    font-size: clamp(42px, 12vw, 64px);
+  }
+
+  .about-subtitle{
+    font-size: 16px;
+    width: min(340px, 92%);
+  }
+}
+    height: 260px;
+  }
+
+  .frame-blue{
+    height: 240px;
+    right: -8px;
+    top: 18px;
+  }
+
+  .frame-grey{
+    right: 110px;
+    top: 210px;
+    height: 180px;
+  }
+
+  .hero-wood{
+    padding-bottom: 140px; /* voldoende ruimte voor frames op klein scherm */
+  }
+
+  .hero-wood-inner{
+    min-height: 520px;
+    padding: 20px 0;
+  }
+}
+
+/* Frame basis (parallax vars) */
+.frame{
+  position:absolute;
+  width: auto;
+  filter: drop-shadow(0 30px 46px rgba(0,0,0,.45));
+
+  --scrollY: 0px;
+  --rot: 0deg;
+
+  will-change: transform;
+}
+
+@keyframes frames-in{
+  0%{
+    opacity: 0;
+    transform: translateX(-50%) translateX(-120px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(-50%) translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-frames{
+    animation: none;
+  }
+}
+
+/* Positions + sizes (geen transform hier! rotatie komt uit --rot) */
+.frame-blue{
+  right: -20px;
+  top: 20px; /* lager geplaatst */
+  height: 420px;
+  --rot: 10deg;
+}
+
+.frame-grey{
+  right: 360px;
+  top: 260px; /* lager geplaatst */
+  height: 300px;
+  --rot: -8deg;
+}
+
+/* Winkelwagen — altijd zichtbaar */
+.hero-cart{
+  position:absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+
+  background: rgba(0,0,0,.55);
+  color: #ffffff;
+
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.15);
+
+  text-decoration:none;
+}
+
+.hero-cart:hover{
+  transform: translateY(-2px);
+  background: rgba(0,0,0,.65);
+}
+
+/* BLOK 2: LINNEN/CREAM STORY */
+.story{
+  position: relative;
+  margin-top: 220px;
+  padding: 110px 0 140px;
+  background-color: rgba(244,241,236,.96);
+  background-image:
+    linear-gradient(rgba(244,241,236,.82), rgba(244,241,236,.82)),
+    url("../images/Wooden-wall.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: soft-light;
+  border-top: none;
+}
+
+.story-inner{
+  display:flex;
+  justify-content:center;
+}
+
+.story-text{
+  width: min(980px, 92vw);
+}
+
+.story-text h2{
+  margin: 0 0 22px;
+  font-family: var(--fontTitle);
+  font-size: 48px;
+  line-height: 1.05;
+}
+
+.story-text p{
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0 0 18px;
+  opacity: .9;
+  max-width: 60ch;
+}
+
+.story-actions{
+  margin-top: 18px;
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.story-actions .btn{
+  font-size: 16px;
+  padding: 14px 20px;
+}
+
+/* Sections (overig) */
+section{ padding: 26px 0; }
+
+.section-title{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 14px;
+}
+
+/* Shop + Maatwerk: make helper subtitle more readable */
+.page-shop .section-title .subtle,
+.maatwerk .section-title .subtle,
+.page-shop .subtle,
+.maatwerk .subtle{
+  font-size: 16px;
+  opacity: .85;
+}
+
+h2{
+  margin:0;
+  font-family: var(--fontTitle);
+  font-size: 26px;
+  letter-spacing: .2px;
+}
+
+.subtle{ opacity: .72; font-size: 13px; }
+
+.grid-3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card{
+  border-radius: var(--radius);
+  background: rgba(244,241,236,.86);
+  border: 1px solid rgba(31,30,28,.12);
+  box-shadow: var(--cardShadow);
+  overflow:hidden;
+}
+
+.pad{ padding: 18px; }
+
+.kicker{
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin-bottom: 6px;
+}
+
+.card h3{
+  margin: 0 0 8px;
+  font-family: var(--fontTitle);
+  font-size: 18px;
+}
+
+.card p{
+  margin: 0;
+  opacity: .88;
+  font-size: 14px;
+}
+
+.meta{
+  margin-top: 14px;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag{
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(31,30,28,.12);
+  background: rgba(244,241,236,.60);
+}
+
+/* Portfolio gallery */
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+}
+
+.shot{
+  grid-column: span 4;
+  border-radius: var(--radius);
+  overflow:hidden;
+  border: 1px solid rgba(31,30,28,.12);
+  background: rgba(244,241,236,.70);
+  box-shadow: 0 14px 30px rgba(0,0,0,.16);
+  position: relative;
+}
+
+.shot img{
+  width:100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.label{
+  position:absolute;
+  left: 12px;
+  bottom: 12px;
+  background: rgba(244,241,236,.86);
+  border: 1px solid rgba(31,30,28,.12);
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 13px;
+  opacity: .92;
+  box-shadow: 0 10px 20px rgba(0,0,0,.10);
+}
+
+/* Form */
+form{ display:grid; gap: 12px; }
+
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+label{
+  display:grid;
+  gap: 6px;
+  font-size: 13px;
+  opacity: .9;
+}
+
+input, textarea, select{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(31,30,28,.18);
+  background: rgba(244,241,236,.82);
+  font-family: var(--fontBody);
+  font-size: 14px;
+  outline: none;
+}
+
+textarea{ min-height: 110px; resize: vertical; }
+
+.form-actions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items:center;
+}
+
+.intro{ margin:0 0 14px; opacity:.88; }
+
+.fineprint{
+  font-size: 13px;
+  opacity: .8;
+  margin: 10px 0 0;
+}
+
+/* Footer */
+footer{ padding: 30px 0 40px; opacity: .9; }
+
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.footer-title{
+  margin:0 0 8px;
+  font-family: var(--fontTitle);
+}
+
+.footer-lead{ margin:0; opacity:.88; }
+.footer-contact{ margin:0 0 10px; opacity:.88; }
+
+/* Contact buttons in footer (grote, zichtbare actieknoppen) */
+.contact-buttons{
+  /* verborgen: we vervangen inline contact-buttons door een vaste floating knop */
+  display: none;
+}
+.contact-buttons .btn{
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(109,135,152,1), rgba(141,143,146,1));
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 10px 26px rgba(0,0,0,.20);
+}
+.contact-buttons .btn:hover{
+  transform: translateY(-2px);
+}
+
+/* Small icons before links (no external assets) */
+.contact-buttons a[href^="tel:"]::before{ content: "📞 "; }
+.contact-buttons a[href^="sms:"]::before{ content: "📩 "; }
+.contact-buttons a[href^="mailto:"]::before{ content: "✉️ "; }
+.contact-buttons a[href*="wa.me"]::before{ content: "💬 "; }
+
+/* Vaste floating contactknop rechtsonder */
+.floating-contact{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+.floating-contact .btn{
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(109,135,152,1), rgba(141,143,146,1));
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 12px 30px rgba(0,0,0,.28);
+}
+.floating-contact .btn.secondary{
+  background: rgba(244,241,236,.98);
+  color: var(--ink);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+@media (max-width: 900px){
+  .floating-contact{ right: 12px; bottom: 12px; }
+  .floating-contact .btn{ padding: 10px 12px; }
+}
+
+/* Positioneer contact-knoppen rechtsonder binnen tekstblokken */
+.card.pad,
+.story-text,
+.about-text,
+.about-hero-inner{
+  position: relative;
+}
+.card.pad .contact-buttons,
+.story-text .contact-buttons,
+.about-text .contact-buttons,
+.about-hero-inner .contact-buttons{
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  margin: 0;
+}
+
+@media (max-width: 900px){
+  .card.pad .contact-buttons,
+  .story-text .contact-buttons,
+  .about-text .contact-buttons,
+  .about-hero-inner .contact-buttons{
+    position: static;
+    margin-top: 12px;
+  }
+}
+
+/* ========== NAV TOGGLE ========== */
+.nav-toggle{
+  display:none;
+  border:1px solid rgba(31,30,28,.18);
+  background: rgba(244,241,236,.78);
+  border-radius: 14px;
+  padding: 10px 12px;
+  cursor:pointer;
+}
+
+@media (max-width: 560px){
+  .nav-toggle{ display:inline-flex; }
+  nav ul{
+    display:none;
+    position:absolute;
+    right: 4vw;
+    top: 60px;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(244,241,236,.95);
+    border: 1px solid rgba(31,30,28,.12);
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.18);
+    min-width: 220px;
+  }
+  nav ul.open{ display:flex; }
+}
+
+/* ========== FLOAT + PARALLAX (frames) ========== */
+@keyframes floaty {
+  0%   { transform: translateY(calc(var(--scrollY, 0px))) rotate(var(--rot)); }
+  50%  { transform: translateY(calc(var(--scrollY, 0px) - 10px)) rotate(var(--rot)); }
+  100% { transform: translateY(calc(var(--scrollY, 0px))) rotate(var(--rot)); }
+}
+
+.frame{
+  animation: floaty 10s ease-in-out infinite;
+}
+
+.frame-blue{
+  animation-duration: 9.5s;
+  animation-delay: -1.2s;
+}
+
+.frame-grey{
+  animation-duration: 11s;
+  animation-delay: -3.4s;
+}
+
+/* Reduced motion respecteren */
+@media (prefers-reduced-motion: reduce){
+  .frame{
+    animation: none !important;
+    transform: rotate(var(--rot)) !important;
+  }
+  .hero-wood-title{
+    transform: rotate(-14deg) !important;
+  }
+}
+
+/* ========== RESPONSIVE / MOBILE PERFECT ========== */
+@media (max-width: 900px){
+  .grid-3{ grid-template-columns: 1fr; }
+  .shot{ grid-column: span 6; }
+  .form-grid{ grid-template-columns: 1fr; }
+  .footer-grid{ grid-template-columns: 1fr; }
+
+  .hero-wood{ min-height: 760px; }
+  .hero-wood-inner{ min-height: 760px; }
+
+  .hero-wood-title{
+    top: 110px;
+    font-size: clamp(52px, 8vw, 76px);
+    --titleRot: -12deg;
+  }
+
+  .hero-frames{
+    top: 58%;
+    height: 360px;
+  }
+
+  .frame-blue{
+    right: -10px;
+    top: 40px;
+    height: 360px;
+  }
+
+  .frame-grey{
+    right: 260px;
+    top: 260px;
+    height: 260px;
+  }
+
+  .story{
+    margin-top: 180px;
+    padding: 90px 0 120px;
+  }
+
+  .story-text{
+    width: min(900px, 92vw);
+  }
+
+  .story-text h2{ font-size: 42px; }
+  .story-text p{ font-size: 18px; }
+}
+
+@media (max-width: 600px){
+  header .nav{
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .hero-wood{
+    min-height: 820px;
+  }
+
+  .hero-wood-inner{
+    min-height: 820px;
+  }
+
+  .hero-wood-title{
+    left: 12px;
+    top: 92px;
+    font-size: clamp(44px, 11vw, 64px);
+    --titleRot: -10deg;
+    text-shadow:
+      0 8px 18px rgba(0,0,0,.55),
+      0 26px 56px rgba(0,0,0,.40);
+  }
+
+  .hero-brand{
+    left: 12px;
+    top: 14px;
+  }
+
+  .hero-frames{
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 420px;
+  }
+
+  .frame-blue{
+    right: 6px;
+    top: 40px;
+    height: 320px;
+  }
+
+  .frame-grey{
+    right: 170px;
+    top: 240px;
+    height: 220px;
+  }
+
+  .hero-cart{
+    width: 68px;
+    height: 68px;
+    left: 16px;
+    bottom: 20px;
+  }
+
+  .story{
+    margin-top: 210px;
+    padding: 84px 0 110px;
+  }
+
+  .story-text{
+    width: min(720px, 92vw);
+  }
+
+  .story-text h2{ font-size: 38px; }
+
+  .story-text p{
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 62ch;
+  }
+
+  .story-actions .btn{
+    width: 100%;
+    justify-content: center;
+    padding: 16px 18px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 420px){
+  .hero-wood{ min-height: 840px; }
+  .hero-wood-inner{ min-height: 840px; }
+
+  .hero-wood-title{
+    font-size: clamp(40px, 12vw, 58px);
+    --titleRot: -9deg;
+  }
+
+  .frame-blue{
+    height: 290px;
+    top: 60px;
+  }
+
+  .frame-grey{
+    height: 200px;
+    right: 145px;
+    top: 270px;
+  }
+
+  .story-text h2{ font-size: 34px; }
+  .story-text p{ font-size: 17px; }
+}
+/* ========== ABOUT PAGE ========== */
+
+.about-hero{
+  padding: 140px 0 140px; /* zelfde hoogte/ruimte als homepage */
+}
+
+/* Maatwerk header breder */
+.maatwerk .about-hero{
+  padding: 140px 0 140px;
+}
+
+.about-hero h1{
+  font-family: var(--fontTitle);
+  font-size: clamp(42px, 6vw, 72px);
+  margin: 0 0 12px;
+}
+.about-hero-inner{
+  position: relative;
+}
+
+.about-hero-inner::before{
+  content:"";
+  position:absolute;
+  inset: -140px -60px -90px -60px;
+  /*    ↑ top   ↑ right ↓ bottom ↑ left */
+  /* donkere waas verwijderd zodat de achtergrondfoto helder blijft */
+  background: none;
+  filter: none;
+  z-index: -1; /* ensure plaque and text sit above this pseudo-layer */
+  border-radius: 32px;
+}
+
+/* Simple decorative plaque directly behind the hero text (ENLARGED, vertically and horizontally centered) */
+.about-plaque{
+  position: absolute;
+  left: 50%;
+  top: 50%; /* vertically centered */
+  transform: translate(-50%, -50%); /* center both axes */
+  width: min(1200px, 100%); /* adjusted for perfect horizontal centering */
+  height: clamp(180px, 20vw, 320px); /* larger vertical presence */
+  background-image: url("../images/header-plaque.png");
+  background-size: cover; /* fill the area */
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  filter: brightness(0.78);
+  z-index: 0; /* behind .about-title which has z-index:1 */
+  pointer-events: none;
+  animation: plaque-in-centered 900ms ease-out both;
+}
+
+/* Shop uses a shop-hero-plaque element — mirror about-plaque behavior so the image sits behind the heading */
+.shop-hero-plaque{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(1300px, 110%);
+  height: clamp(180px, 20vw, 320px);
+  z-index: 0;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  animation: plaque-in-centered 900ms ease-out both;
+}
+
+.shop-hero-plaque img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.78);
+}
+@media (max-width: 600px){
+  .about-plaque{
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: clamp(140px, 28vw, 240px);
+    background-size: cover;
+  }
+}
+
+.about-title,
+.about-subtitle{
+  position: relative;
+  z-index: 1;
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 3px 12px rgba(0,0,0,.45);
+}
+
+.plaque-brandline{
+  position: absolute;
+  right: 8%;
+  left: auto;
+  top: 50%;
+  transform: translateY(-130px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+  color: #2a1f14;
+  font-family: var(--fontTitle);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.plaque-logo{
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.plaque-brandtext{
+  white-space: nowrap;
+}
+
+@media (max-width: 600px){
+  .plaque-brandline{
+    right: 6%;
+    transform: translateY(-110px);
+    font-size: 12px;
+    letter-spacing: .12em;
+  }
+
+  .plaque-logo{
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.about-intro{
+  font-size: 18px;
+  max-width: 50ch;
+  opacity: .85;
+}
+
+.about-story{
+  background-color: rgba(244,241,236,.96);
+  background-image:
+    linear-gradient(rgba(244,241,236,.82), rgba(244,241,236,.82)),
+    url("../images/Wooden-wall.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: soft-light;
+  padding: 120px 0;
+}
+
+.about-grid{
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-image img{
+  width: 100%;
+  border-radius: 22px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.25);
+}
+
+.about-text h2{
+  font-family: var(--fontTitle);
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.about-text h3{
+  font-family: var(--fontTitle);
+  font-size: 26px;
+  margin: 30px 0 10px;
+}
+
+.about-text p{
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 62ch;
+}
+
+.about-values{
+  font-size: 17px;
+  opacity: .9;
+}
+
+/* Mobiel */
+@media (max-width: 800px){
+  .about-grid{
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-hero{
+    padding: 110px 0 60px;
+  }
+}
+/* ===== ABOUT TITLE — ZOALS HOME ===== */
+
+.about-title{
+  font-family: var(--fontTitle);
+  font-weight: 700;
+  /* iets groter zodat hero-tekst meer impact heeft */
+  font-size: clamp(72px, 9vw, 120px);
+  line-height: 1.05;
+  letter-spacing: .02em;
+
+  /* wit voor titel */
+  color: #ffffff;
+  margin: 0 0 12px;
+
+  transform: translateX(140px) rotate(-12deg); /* naar rechts verplaatst */
+  transform-origin: left top;
+
+  text-shadow:
+    0 10px 36px rgba(0,0,0,.78),
+    0 44px 110px rgba(0,0,0,.55);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+} 
+
+.about-subtitle{
+  margin-top: 18px;
+  margin-left: 0;
+
+  font-size: 20px;
+  max-width: 60ch;
+  width: min(780px, 92%);
+
+  color: #000; /* zwart voor subtitel, gecentreerd in plaque */
+  text-align: left;
+
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); /* horizontaal gecentreerd t.o.v. plaque */
+  z-index: 2; /* boven de plaque */
+
+  /* subtiele tekstschaduw om contrast te behouden op lichte/donkere delen */
+  text-shadow: 0 2px 6px rgba(0,0,0,.18);
+} 
+
+/* Mobiel */
+@media (max-width: 600px){
+  .about-title{
+    font-size: clamp(56px, 12vw, 84px);
+    transform: translateX(48px) rotate(-8deg); /* geringer verschuiven en iets minder rotatie */
+  }
+
+  .about-subtitle{
+    font-size: 18px;
+    transform: translateX(-50%);
+  }
+}
+.nav-cart-item{
+  display: flex;
+  align-items: center;
+}
+
+.nav-cart{
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(244,241,236,.8);
+  border: 1px solid rgba(31,30,28,.15);
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+
+  transition: .2s ease;
+  text-decoration: none;
+}
+
+.nav-cart:hover{
+  transform: translateY(-1px);
+  background: rgba(244,241,236,.95);
+}
+.cart-count{
+  position: absolute;
+  top: -6px;
+  right: -6px;
+
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+
+  background: #1F1E1C;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== FOTO IN HOUTEN LIJST (ECHT IN HET GAT) ===== */
+.about-frame{
+  position: relative;
+  width: 100%;
+  max-width: 560px;      /* totale compositie */
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+}
+
+/* FOTO ACHTER DE LIJST */
+.frame-back{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transform: translateX(-50px) translateY(24px);
+  z-index: 0;
+
+  border-radius: 6px;
+  box-shadow: 0 22px 50px rgba(0,0,0,.28);
+}
+
+/* FOTO IN DE OPENING */
+.frame-photo{
+  position: absolute;
+  inset: 16%;            /* bepaalt dikte van de lijst */
+  width: 68%;
+  height: 68%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* DE LIJST (ECHT GROTER DAN DE FOTO) */
+.frame-img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  transform: scale(1.7) translate(-35px, 14px);
+  /*              ↑ groter      ← links   ↓ naar beneden */
+
+  transform-origin: center;
+  pointer-events: none;
+  filter: drop-shadow(0 24px 46px rgba(0,0,0,.35));
+}
+
+/* Mobiel */
+@media (max-width: 600px){
+  .about-frame{
+    max-width: 420px;
+  }
+
+  .frame-back{
+    transform: translateX(-30px) translateY(16px);
+  }
+}
+
+/* ===== FOOTER ===== */
+
+.site-footer{
+  padding: 80px 0 40px;
+  background: transparent;
+}
+
+.footer-inner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-credit{
+  margin: -6px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+  background: rgba(0,0,0,.38);
+  padding: 6px 14px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.footer-credit a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(255,255,255,.85);
+}
+
+.footer-credit a:hover{
+  opacity: .85;
+}
+
+@media (max-width: 700px){
+  .footer-credit{
+    font-size: 15px;
+    padding: 6px 12px;
+  }
+}
+
+/* ===== NAAMPLAATJE ===== */
+
+.footer-plaque{
+  width: min(2000px, 98vw);  /* ⬅️ fors breder */
+  aspect-ratio: 4.5 / 1;     /* ⬅️ LANG naamplaatje */
+
+  background-image: url("../images/wood-plaque.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  filter: drop-shadow(0 22px 48px rgba(0,0,0,.4));
+  animation: plaque-in 900ms ease-out both;
+}
+
+@keyframes plaque-in-centered{
+  0%{
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(-48px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(-50%, -50%) translateX(0);
+  }
+}
+
+@keyframes plaque-in{
+  0%{
+    opacity: 0;
+    transform: translateX(-36px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .about-plaque,
+  .shop-hero-plaque,
+  .footer-plaque{
+    animation: none;
+  }
+}
+
+/* Tekst op het plaatje */
+.plaque-content{
+  text-align: center;
+  padding: 20px 24px;
+  color: #2a1f14;                   /* donker houtkleur */
+  font-family: var(--fontBody);
+  transform: translateY(24px); /* ⬅️ DIT is de sleutel */
+}
+
+.plaque-brand{
+  font-family: var(--fontTitle);
+  font-size: 28px;
+  letter-spacing: .08em;
+  margin: 0 0 6px;
+}
+
+.plaque-line{
+  margin: 4px 0;
+  font-size: 15px;
+}
+
+.plaque-line a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(0,0,0,.35);
+}
+
+.plaque-line a:hover{
+  opacity: .8;
+}
+
+.plaque-line.subtle{
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: .75;
+  font-style: italic;
+}
+
+/* Copyright */
+.footer-copy{
+  font-size: 13px;
+  opacity: .75;
+}
+.plaque-brand{
+  font-family: var(--fontTitle);
+  font-size: 38px;
+  letter-spacing: .14em;
+  font-weight: 800;                 /* ⬅️ DIT ontbrak */
+  margin: 0 0 6px;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.25),
+    0 2px 6px rgba(0,0,0,.3);
+}
+
+.plaque-line{
+  margin: 4px 0;
+  font-size: 17px;
+  font-weight: 800;                 /* ⬅️ DIT toevoegen */
+  color: #17110b;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.18);
+}
+
+.plaque-line.subtle{
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  opacity: .85;
+  font-style: italic;
+}
+
+@media (max-width: 700px){
+  .footer-plaque{
+    width: 96vw;
+    aspect-ratio: 4.8 / 1;
+  }
+
+  .plaque-brand{
+    font-size: 26px;
+    letter-spacing: .12em;
+  }
+}
+/* ========== FOOTER — MOBILE ========== */
+@media (max-width: 700px){
+  .site-footer{
+    padding: 60px 0 28px;
+  }
+
+  .footer-plaque{
+    width: 96vw;
+    aspect-ratio: 3.6 / 1;          /* ⬅️ minder langgerekt op mobiel */
+    filter: drop-shadow(0 16px 34px rgba(0,0,0,.35));
+  }
+
+  .plaque-content{
+    padding: 14px 14px;
+    transform: translateY(22px);     /* ⬅️ tekst iets lager */
+  }
+
+  .plaque-brand{
+    font-size: 22px;
+    letter-spacing: .10em;
+    font-weight: 800;
+    margin: 0 0 6px;
+    line-height: 1.05;
+  }
+
+  .plaque-line{
+    font-size: 13px;
+    font-weight: 600;
+    margin: 3px 0;
+    line-height: 1.25;
+  }
+
+  .plaque-line.subtle{
+    font-size: 12px;
+    margin-top: 8px;
+    opacity: .85;
+  }
+
+  .footer-copy{
+    font-size: 12px;
+    opacity: .75;
+  }
+}
+
+/* Extra klein (telefoon smal) */
+@media (max-width: 420px){
+  .footer-plaque{
+    width: 98vw;
+    aspect-ratio: 3.2 / 1;          /* ⬅️ nog compacter */
+  }
+
+  .plaque-content{
+    transform: translateY(21px);
+  }
+
+  .plaque-brand{
+    font-size: 20px;
+    letter-spacing: .08em;
+  }
+
+  .plaque-line{
+    font-size: 12px;
+  }
+
+  .plaque-line.subtle{
+    font-size: 11px;
+  }
+}
+
+.site-header {
+  padding: 20px;
+}
+
+.site-logo {
+  height: 60px;   /* pas aan naar smaak */
+  width: auto;
+  display: block;
+}
+
+/* ===== SHOP: layout, cards, QR checkout ===== */
+.shop-layout{
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap: 16px;
+  align-items:start;
+}
+
+/* Zorg dat de standaard `section` padding niet de kolomuitlijning in de shop breekt */
+.shop-layout section,
+.shop-layout aside{
+  padding: 0;
+}
+
+.shop-top-actions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items:center;
+}
+
+.shop-divider{
+  margin: 14px 0;
+  height: 1px;
+  background: rgba(31,30,28,.10);
+}
+
+/* Hero image */
+.shop-hero-media{
+  margin-top: 22px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,.25);
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+.shop-hero-media img{
+  width: 100%;
+  height: clamp(220px, 32vw, 360px);
+  object-fit: cover;
+  display:block;
+}
+
+/* Products */
+.shop-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.product-media{
+  border-radius: 18px;
+  overflow:hidden;
+}
+
+.product-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Cart */
+.cart-list{ display:flex; flex-direction:column; gap: 12px; }
+
+.cart-item{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(244,241,236,.60);
+  border: 1px solid rgba(31,30,28,.10);
+}
+
+.cart-item-end{
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+  align-items:flex-end;
+}
+
+.cart-qty{ width: 72px; }
+
+.cart-summary{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(31,30,28,.10);
+}
+
+.cart-row{ display:flex; justify-content:space-between; gap: 12px; }
+
+/* Payment QR */
+.pay-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pay-method{ display:grid; gap: 10px; }
+
+
+/* Help block */
+.shop-help-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.shop-help-media{ height: 180px; overflow:hidden; }
+
+.shop-help-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+@media (max-width: 980px){
+  .shop-layout{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px){
+  .shop-help-grid{ grid-template-columns: 1fr; }
+  .shop-grid{ grid-template-columns: 1fr; }
+  .pay-grid{ grid-template-columns: 1fr; }
+}
+/* Shop hero: altijd nette crop + geen rare uitlijning */
+.page-shop .shop-hero-media img{
+  object-position: center 25%; /* schuift focus iets omhoog (lijsten) */
+}
+
+/* LIGHTBOX */
+#lightbox{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.85);
+  z-index: 9999;
+  padding: 24px;
+}
+
+#lightbox.open{ display: flex; }
+
+#lightbox img{
+  max-width: min(1100px, 92vw);
+  max-height: 86vh;
+  border-radius: 14px;
+  box-shadow: 0 30px 70px rgba(0,0,0,.55);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next{
+  position: absolute;
+  border: 0;
+  background: rgba(244,241,236,.85);
+  color: #1F1E1C;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 28px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 14px 30px rgba(0,0,0,.25);
+}
+
+.lightbox-close{ top: 18px; right: 18px; font-size: 30px; }
+.lightbox-prev{ left: 18px; top: 50%; transform: translateY(-50%); }
+.lightbox-next{ right: 18px; top: 50%; transform: translateY(-50%); }
+
+/* ===== LIGHTBOX FIX: buttons always visible ===== */
+#lightbox img{ position: relative; z-index: 1; }
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next{ z-index: 2; }
+/* Lightbox controls bovenop de afbeelding */
+#lightbox { z-index: 9999; }
+#lightbox img { position: relative; z-index: 1; }
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next { position: absolute; z-index: 2; }
+
+.pay-icons{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  padding:10px 12px;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:12px;
+  background:rgba(255,255,255,.6);
+}
+
+.pay-badge{
+  width:100%;
+  max-width:500px;
+  height:auto;
+  display:block;
+  margin:0px 0 0px;
+  opacity:.9;
+}
+.pay-card > *{
+  max-width:420px;
+}
+/* PayPal-only: geen lege tweede kolom in Betalen */
+.pay-grid{
+  grid-template-columns: 1fr !important;
+}
+.form-actions{
+  justify-content: flex-start !important;
+}
+
+
+
+
+
+
+
+

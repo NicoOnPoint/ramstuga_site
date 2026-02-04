@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="2UIIHORHjkxL9QhuB3L2xs6My-mrajRxU3icgTAwJ1I">
+  <title>Portfolio – RAMSTUGA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/style.css">
+
+  <link rel="icon" href="../assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+</head>
+
+<body class="page-portfolio">
+
+<header class="site-header">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img src="../assets/logo.png" alt="RAMSTUGA logo" class="site-logo">
+      <span class="brand-text">RAMSTUGA</span>
+    </a>
+
+    <nav class="site-nav">
+      <ul id="siteMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="maatwerk.html">Maatwerk</a></li>
+        <li><a href="portfolio.html" aria-current="page">Portfolio</a></li>
+        <li><a href="shop.html">Shop</a></li>
+
+        <li class="lang-switch" aria-label="Taal">
+          <a href="../portfolio.html" data-lang="sv">SV</a>
+          <span>•</span>
+          <a href="../en/portfolio.html" data-lang="en">EN</a>
+          <span>•</span>
+          <a href="portfolio.html" data-lang="nl">NL</a>
+        </li>
+
+        <li class="nav-cart-item">
+          <a href="shop.html#checkout" class="nav-cart" aria-label="Winkelwagen">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6h15l-2 9H7L6 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M6 6 5 3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="9" cy="20" r="1" fill="currentColor"/>
+              <circle cx="18" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    </nav>
+
+  </div>
+</header>
+
+<main class="portfolio">
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <div class="about-plaque" aria-hidden="true"></div>
+      <div class="plaque-brandline">
+        <img src="../assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
+        <span class="plaque-brandtext">RAMSTUGA</span>
+      </div>
+      <h1 class="about-title type-title" data-text="Portfolio"></h1>
+      <p class="about-subtitle type-title-late" data-text="Echte voorbeelden van hout, hoeken en afwerking. Klik om te vergroten.">
+        Echte voorbeelden van hout, hoeken en afwerking. Klik om te vergroten.
+      </p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="about-story">
+    <div class="container" style="width:min(1100px,92vw);">
+
+      <div class="section-title" style="margin-bottom:14px;">
+        <h2>Voorbeelden</h2>
+        <div class="subtle">Hier wat voorbeelden van ons werk. Natuurlijk is er veel meer. Onze creativiteit heeft geen beperkingen.</div>
+      </div>
+
+      <div class="gallery" aria-live="polite">
+        <!-- Gebruik js-lightbox zodat je bestaande lightbox-script direct werkt -->
+        <a class="shot js-lightbox" href="../images/portfolio/lijstverbinding.jpeg" aria-label="Open foto 1">
+          <img src="../images/portfolio/lijstverbinding.jpeg" alt="Houten lijst – detail en afwerking" loading="lazy">
+          <span class="label">Detail</span>
+        </a>
+
+        <a class="shot js-lightbox" href="../images/portfolio/voorbeeld-1.jpeg" aria-label="Open foto 2">
+          <img src="../images/portfolio/voorbeeld-1.jpeg" alt="Houten lijst – hoekverbinding" loading="lazy">
+          <span class="label">Hoek-voorbeeld</span>
+        </a>
+
+        <a class="shot js-lightbox" href="../images/portfolio/aan-de-muur.jpeg" aria-label="Open foto 3">
+          <img src="../images/portfolio/aan-de-muur.jpeg" alt="Houten lijst – in interieur" loading="lazy">
+          <span class="label">Interieur</span>
+        </a>
+
+        <a class="shot js-lightbox" href="../images/portfolio/afwerking-1.png" aria-label="Open foto 4">
+          <img src="../images/portfolio/afwerking-1.png" alt="Afwerking – licht, donker en grijs" loading="lazy">
+          <span class="label">Hoekverbinding</span>
+        </a>
+
+        <a class="shot js-lightbox" href="../images/portfolio/afwerking-2.png" aria-label="Open foto 5">
+          <img src="../images/portfolio/afwerking-2.png" alt="Houtnerf – gerecycled hout" loading="lazy">
+          <span class="label">Hoekvebinding</span>
+        </a>
+
+        <a class="shot js-lightbox" href="../images/portfolio/sfeervol-grijs.png" aria-label="Open foto 6">
+          <img src="../images/portfolio/sfeervol-grijs.png" alt="Lijst – rustiek karakter" loading="lazy">
+          <span class="label">Sfeervol grijs</span>
+        </a>
+
+        <!-- Tijdelijke fallbacks: deze bestaan al in je project -->
+        <a class="shot js-lightbox" href="../images/finishes.png" aria-label="Open afwerkingen">
+          <img src="../images/finishes.png" alt="Afwerkingen: licht, donker, verweerd grijs" loading="lazy">
+          <span class="label">Afwerkingen</span>
+        </a>
+
+        <a class="shot js-lightbox" href="../images/wood-detail.png" aria-label="Open houtdetail">
+          <img src="../images/wood-detail.png" alt="Detail van houtnerf en hoeken van de lijst" loading="lazy">
+          <span class="label">Houtdetail</span>
+        </a>
+
+        <a class="shot js-lightbox" href="../images/shop-hero.png" aria-label="Open sfeerfoto">
+          <img src="../images/shop-hero.png" alt="Sfeerfoto RAMSTUGA" loading="lazy">
+          <span class="label">Sfeer</span>
+        </a>
+      </div>
+
+      <div class="card pad" style="margin-top:16px;">
+        <div class="section-title" style="margin-bottom:10px;">
+          <h2>Wil je iets soortgelijks?</h2>
+          <div class="subtle">Standaardmaten of maatwerk.</div>
+        </div>
+
+        <p class="intro">
+          Zie je een stijl of afwerking die je aanspreekt? Bestel direct een standaardmaat of vraag een offerte aan voor maatwerk.
+        </p>
+
+        <div class="form-actions">
+          <a class="btn primary" href="shop.html">Naar de shop</a>
+          <a class="btn" href="maatwerk.html">Maatwerk (offerte)</a>
+        </div>
+        <div class="contact-buttons">
+          <a class="btn" href="tel:+46707106182">Bel</a>
+          <a class="btn" href="sms:+46707106182?body=Hallo%2C%20ik%20wil%20meer%20informatie%20over%20lijsten">SMS</a>
+          <a class="btn" href="https://wa.me/46707106182?text=Hallo%2C%20ik%20wil%20meer%20informatie" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-plaque" role="contentinfo" aria-label="Contactgegevens">
+      <div class="plaque-content">
+        <p class="plaque-brand"></p>
+
+        <p class="plaque-line">
+          <strong>E-mail:</strong>
+          <a href="mailto:info@ramstuga.se">info@ramstuga.se</a>
+        </p>
+
+        <p class="plaque-line">
+          <strong>Naam:</strong> Nico &amp; Barbara
+        </p>
+
+        <p class="plaque-line subtle">
+          Handgemaakt voor jouw huis
+        </p>
+      </div>
+    </div>
+
+    <p class="footer-credit">© Webdesign by <a href="https://www.nico-on-point-webdesign.com" target="_blank" rel="noopener">www.nico-on-point-webdesign.com</a></p>
+
+    <div class="contact-buttons">
+      <a class="btn" href="tel:+46707106182">Bel</a>
+      <a class="btn" href="sms:+46707106182?body=Hallo%2C%20ik%20wil%20meer%20informatie%20over%20lijsten">SMS</a>
+      <a class="btn" href="https://wa.me/46707106182?text=Hallo%2C%20ik%20wil%20meer%20informatie" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <p class="footer-copy">© <span id="year"></span> RAMSTUGA</p>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Sluiten">×</button>
+  <button class="lightbox-prev" aria-label="Vorige">‹</button>
+  <img id="lightbox-img" alt="">
+  <button class="lightbox-next" aria-label="Volgende">›</button>
+</div>
+
+<script src="../assets/script.js" defer></script>
+
+<!-- Floating contact (fixed) -->
+<div class="floating-contact" aria-hidden="false">
+  <a class="btn" href="tel:+46707106182" aria-label="Bel Nico">📞 Bel</a>
+  <a class="btn secondary" href="sms:+46707106182?body=Hallo%2C%20ik%20wil%20meer%20informatie%20over%20lijsten" aria-label="SMS Nico">✉️ SMS</a>
+  <a class="btn" href="https://wa.me/46707106182?text=Hallo%2C%20ik%20wil%20meer%20informatie" target="_blank" rel="noopener" aria-label="WhatsApp Nico">💬 WhatsApp</a>
+</div>
+
+</body>
+</html>

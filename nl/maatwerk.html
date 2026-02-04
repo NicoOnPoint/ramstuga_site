@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="2UIIHORHjkxL9QhuB3L2xs6My-mrajRxU3icgTAwJ1I">
+  <title>Maatwerk – RAMSTUGA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/style.css">
+
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+
+    <!-- LOGO + MERKNAAM -->
+    <a class="brand" href="index.html">
+      <img src="../assets/logo.png" alt="RAMSTUGA logo" class="site-logo">
+      <span class="brand-text">RAMSTUGA</span>
+    </a>
+
+    <nav class="site-nav">
+      <ul id="siteMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="maatwerk.html">Maatwerk</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="shop.html">Shop</a></li>
+
+        <li class="lang-switch" aria-label="Taal">
+          <a href="../maatwerk.html" data-lang="sv">SV</a>
+          <span>•</span>
+          <a href="../en/maatwerk.html" data-lang="en">EN</a>
+          <span>•</span>
+          <a href="maatwerk.html" data-lang="nl">NL</a>
+        </li>
+
+        <!-- WINKELWAGEN -->
+        <li class="nav-cart-item">
+          <a href="shop.html" class="nav-cart" aria-label="Winkelwagen">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6h15l-2 9H7L6 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M6 6 5 3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="9" cy="20" r="1" fill="currentColor"/>
+              <circle cx="18" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+        ☰
+      </button>
+    </nav>
+
+  </div>
+</header>
+
+<main class="maatwerk">
+
+  <!-- HERO (zelfde houten background komt uit body) -->
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <div class="about-plaque" aria-hidden="true"></div>
+      <div class="plaque-brandline">
+        <img src="../assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
+        <span class="plaque-brandtext">RAMSTUGA</span>
+      </div>
+      <h1 class="about-title type-title" data-text="Maatwerk"></h1>
+      <p class="about-subtitle type-title-late" data-text="Laat een lijst maken die precies past — in maat, hout en uitstraling.">
+        Laat een lijst maken die precies past — in maat, hout en uitstraling.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORM BLOK (cream/linen stijl zoals story/about-story) -->
+  <section class="about-story">
+    <div class="container" style="width:min(1100px,92vw);">
+      <div class="section-title" style="margin-bottom:18px;">
+        <h2>Bestelling op maat</h2>
+        <div class="subtle">Vul zo veel mogelijk in — dan kunnen wij snel reageren.</div>
+      </div>
+
+      <div class="card pad" style="max-width: 980px; margin: 0 auto;">
+        <form id="customOrderForm">
+
+          <!-- AFMETINGEN -->
+          <div class="form-grid">
+            <label>
+              Breedte binnen (mm)
+              <input type="number" name="width_mm" min="1" required placeholder="Bijv. 300" />
+            </label>
+            <label>
+              Hoogte binnen (mm)
+              <input type="number" name="height_mm" min="1" required placeholder="Bijv. 400" />
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Dikte van de lijst (mm)
+              <select name="frame_thickness_mm" required>
+                <option value="25">25 mm</option>
+                <option value="35" selected>35 mm</option>
+                <option value="45">45 mm</option>
+                <option value="custom">Anders (schrijf bij wensen)</option>
+              </select>
+            </label>
+
+            <label>
+              Voor foto/kunst: zichtbaar venster (mm)
+              <input type="text" name="window_mm" placeholder="Bijv. 280x380 (optioneel)" />
+            </label>
+          </div>
+
+          <!-- HOUT / KLEUR -->
+          <div class="form-grid">
+            <label>
+              Houtsoort
+              <select name="wood_type" required>
+                <option value="gerecycled" selected>Gerecycled hout (rustiek)</option>
+                <option value="grenen">Grenen</option>
+                <option value="eiken">Eiken</option>
+                <option value="berk">Berk</option>
+                <option value="anders">Anders (schrijf bij wensen)</option>
+              </select>
+            </label>
+
+            <label>
+              Afwerking / kleur
+              <select name="finish" required>
+                <option value="naturel" selected>Naturel / matte olie</option>
+                <option value="licht">Licht (whitewash / licht olie)</option>
+                <option value="donker">Donker (walnoot look)</option>
+                <option value="grijs">Grijs verweerd</option>
+                <option value="kleur">Kleur (schrijf bij wensen)</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- ORIËNTATIE / GLAS / OPHANGING -->
+          <div class="form-grid">
+            <label>
+              Oriëntatie
+              <select name="orientation" required>
+                <option value="staand">Staand</option>
+                <option value="liggend">Liggend</option>
+                <option value="vierkant">Vierkant</option>
+              </select>
+            </label>
+
+            <label>
+              Glas / plexi
+              <select name="front" required>
+                <option value="geen" selected>Geen (open frame)</option>
+                <option value="glas">Glas</option>
+                <option value="plexi">Plexiglas</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Ophangsysteem
+              <select name="hanging" required>
+                <option value="standaard" selected>Standaard (beugel/haak)</option>
+                <option value="tandhanger">Tandhanger</option>
+                <option value="draad">Draad</option>
+                <option value="anders">Anders (schrijf bij wensen)</option>
+              </select>
+            </label>
+
+            <label>
+              Aantal
+              <input type="number" name="qty" min="1" value="1" required />
+            </label>
+          </div>
+
+          <!-- WENSEN -->
+          <label>
+            Specifieke wensen (kleurcode, voorbeeldlink, hoekafwerking, etc.)
+            <textarea name="notes" placeholder="Vertel ons wat je in gedachten hebt…"></textarea>
+          </label>
+
+          <!-- CONTACT -->
+          <div class="section-title" style="margin-top:16px;">
+            <h2>Contact</h2>
+            <div class="subtle">Voor offerte/afstemming</div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Naam
+              <input type="text" name="customer_name" required placeholder="Je naam" />
+            </label>
+            <label>
+              E-mail
+              <input type="email" name="customer_email" required placeholder="naam@mail.nl" />
+            </label>
+          </div>
+
+          <label>
+            Telefoon (optioneel)
+            <input type="tel" name="customer_phone" placeholder="+46 / +31 / ..." />
+          </label>
+
+          <!-- ACTIES -->
+          <div class="form-actions">
+            <button class="btn primary" type="submit">
+              Voeg toe aan winkelwagen
+            </button>
+
+            <button class="btn" type="button" id="mailBtn">
+              Verstuur als e-mail
+            </button>
+
+            <span class="subtle" id="statusMsg" aria-live="polite"></span>
+          </div>
+
+          <p class="fineprint">
+            * Maatwerk wordt meestal als offerte behandeld. Na ontvangst nemen we contact op voor prijs en levertijd.
+          </p>
+          <div class="contact-buttons">
+            <a class="btn" href="tel:+46707106182">Bel</a>
+            <a class="btn" href="sms:+46707106182?body=Hallo%2C%20ik%20wil%20meer%20informatie%20over%20lijsten">SMS</a>
+            <a class="btn" href="https://wa.me/46707106182?text=Hallo%2C%20ik%20wil%20meer%20informatie" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+
+    <div class="footer-plaque" role="contentinfo" aria-label="Contactgegevens">
+      <div class="plaque-content">
+        <p class="plaque-brand"></p>
+
+        <p class="plaque-line">
+          <strong>E-mail:</strong>
+          <a href="mailto:info@ramstuga.se">info@ramstuga.se</a>
+        </p>
+
+        <p class="plaque-line">
+          <strong>Naam:</strong> Nico &amp; Barbara
+        </p>
+
+        <p class="plaque-line subtle">
+          Handgemaakt voor jouw huis
+        </p>
+      </div>
+    </div>
+
+    <p class="footer-credit">© Webdesign by <a href="https://www.nico-on-point-webdesign.com" target="_blank" rel="noopener">www.nico-on-point-webdesign.com</a></p>
+
+    <div class="contact-buttons">
+      <a class="btn" href="tel:+46707106182">Bel</a>
+      <a class="btn" href="sms:+46707106182?body=Hallo%2C%20ik%20wil%20meer%20informatie%20over%20lijsten">SMS</a>
+      <a class="btn" href="https://wa.me/46707106182?text=Hallo%2C%20ik%20wil%20meer%20informatie" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <p class="footer-copy">© <span id="year"></span> RAMSTUGA</p>
+
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+
+<script>
+  // ---------- Helpers ----------
+  function getCart() {
+    try {
+      const raw = localStorage.getItem("ramstuga_cart") || "[]";
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function setCart(items) {
+    localStorage.setItem("ramstuga_cart", JSON.stringify(items));
+    updateCartBadge();
+  }
+
+  function updateCartBadge() {
+    const items = getCart();
+    const count = items.reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
+    const el = document.getElementById("cartCount");
+    if (el) el.textContent = String(count);
+  }
+
+  function formToObject(form) {
+    const data = new FormData(form);
+    const obj = {};
+    for (const [k, v] of data.entries()) obj[k] = String(v).trim();
+    return obj;
+  }
+
+  function buildSummary(o) {
+    return [
+      `Maatwerk lijst`,
+      ``,
+      `Maten: ${o.width_mm} x ${o.height_mm} mm`,
+      `Lijstdikte: ${o.frame_thickness_mm} mm`,
+      o.window_mm ? `Venster: ${o.window_mm}` : null,
+      `Hout: ${o.wood_type}`,
+      `Afwerking: ${o.finish}`,
+      `Oriëntatie: ${o.orientation}`,
+      `Glas/Plexi: ${o.front}`,
+      `Ophangsysteem: ${o.hanging}`,
+      `Aantal: ${o.qty}`,
+      ``,
+      `Wensen: ${o.notes || "-"}`,
+      ``,
+      `Contact: ${o.customer_name} (${o.customer_email}${o.customer_phone ? ", " + o.customer_phone : ""})`
+    ].filter(Boolean).join("\n");
+  }
+
+  // ---------- Init ----------
+  updateCartBadge();
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ---------- Form handlers ----------
+  const form = document.getElementById("customOrderForm");
+  const statusMsg = document.getElementById("statusMsg");
+  const mailBtn = document.getElementById("mailBtn");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const o = formToObject(form);
+
+    const cart = getCart();
+    cart.push({
+      id: "maatwerk-" + Date.now(),
+      type: "maatwerk",
+      title: "Maatwerk lijst",
+      qty: Number(o.qty) || 1,
+      price: 0, // offerte (later prijs)
+      meta: o,
+      summary: buildSummary(o)
+    });
+
+    setCart(cart);
+
+    if (statusMsg) statusMsg.textContent = "Toegevoegd aan winkelwagen ✅";
+    // Optioneel doorsturen:
+    // window.location.href = "shop.html";
+  });
+
+  mailBtn.addEventListener("click", () => {
+    const o = formToObject(form);
+    const subject = encodeURIComponent("Maatwerk aanvraag – RAMSTUGA");
+    const body = encodeURIComponent(buildSummary(o));
+    window.location.href = `mailto:info@ramstuga.se?subject=${subject}&body=${body}`;
+  });
+</script>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Sluiten">×</button>
+  <button class="lightbox-prev" aria-label="Vorige">‹</button>
+  <img id="lightbox-img" alt="">
+  <button class="lightbox-next" aria-label="Volgende">›</button>
+</div>
+<!-- Floating contact (fixed) -->
+<div class="floating-contact" aria-hidden="false">
+  <a class="btn" href="tel:+46707106182" aria-label="Bel Nico">📞 Bel</a>
+  <a class="btn secondary" href="sms:+46707106182?body=Hallo%2C%20ik%20wil%20meer%20informatie%20over%20lijsten" aria-label="SMS Nico">✉️ SMS</a>
+  <a class="btn" href="https://wa.me/46707106182?text=Hallo%2C%20ik%20wil%20meer%20informatie" target="_blank" rel="noopener" aria-label="WhatsApp Nico">💬 WhatsApp</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="2UIIHORHjkxL9QhuB3L2xs6My-mrajRxU3icgTAwJ1I">
+  <title>Shop – RAMSTUGA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/style.css">
+
+  <link rel="icon" href="../assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+</head>
+
+<body class="page-shop">
+
+<header class="site-header">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img src="../assets/logo.png" alt="RAMSTUGA logo" class="site-logo">
+      <span class="brand-text">RAMSTUGA</span>
+    </a>
+
+    <nav class="site-nav">
+      <ul id="siteMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="maatwerk.html">Custom</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="shop.html" aria-current="page">Shop</a></li>
+
+        <li class="lang-switch" aria-label="Language">
+          <a href="../shop.html" data-lang="sv">SV</a>
+          <span>•</span>
+          <a href="shop.html" data-lang="en">EN</a>
+          <span>•</span>
+          <a href="../nl/shop.html" data-lang="nl">NL</a>
+        </li>
+
+        <li class="nav-cart-item">
+          <a href="#checkout" class="nav-cart" aria-label="Cart">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6h15l-2 9H7L6 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M6 6 5 3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="9" cy="20" r="1" fill="currentColor"/>
+              <circle cx="18" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <div class="about-plaque" aria-hidden="true"></div>
+      <div class="plaque-brandline">
+        <img src="../assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
+        <span class="plaque-brandtext">RAMSTUGA</span>
+      </div>
+      <h1 class="about-title type-title" data-text="Shop"></h1>
+      <p class="about-subtitle type-title-late" data-text="Order standard sizes directly. Pay via PayPal (also with card).">
+        Order standard sizes directly. Pay via PayPal (also with card).
+      </p>
+
+    </div>
+  </section>
+
+  <section class="about-story">
+    <div class="container" style="width:min(1100px,92vw);">
+
+      <div class="shop-layout">
+
+        <!-- LINKS: PRODUCTEN -->
+        <section>
+          <div class="section-title" style="margin-bottom:14px;">
+            <h2>Standard sizes</h2>
+            <div class="subtle">Add to cart, pay, email your order.</div>
+          </div>
+
+          <div class="card pad">
+            <div class="shop-top-actions">
+              <a class="btn" href="portfolio.html">View examples</a>
+              <a class="btn primary" href="maatwerk.html">Custom (quote)</a>
+              <a class="btn" href="#pay">Go to payment</a>
+            </div>
+
+            <div class="shop-divider"></div>
+
+            <div id="productGrid" class="shop-grid" aria-live="polite"></div>
+
+            <p class="fineprint" style="margin-top:12px;">
+              Tip: keep your standard assortment small (4–8 products). Custom goes via quote.
+            </p>
+          </div>
+
+          <div class="card pad" style="margin-top:16px;">
+            <div class="section-title" style="margin-bottom:14px;">
+              <h2>Help choosing</h2>
+              <div class="subtle">Measurement & finish.</div>
+            </div>
+
+            <div class="shop-help-grid">
+              <article class="card">
+                <div class="shop-help-media">
+                  <img src="../images/measure-guide-cm.png" alt="Meetgids: hoe meet je je foto of opening?" loading="lazy">
+                </div>
+                <div class="pad">
+                  <div class="kicker">Step 1</div>
+                  <h3>Measure your size</h3>
+                  <p>Measure your photo (or desired opening). Unsure? Choose custom.</p>
+                  <div class="meta">
+                    <a class="btn" href="maatwerk.html">Custom (quote)</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card">
+                <div class="shop-help-media">
+                  <img src="../images/finishes.png" alt="Afwerkingen: licht, donker, verweerd grijs" loading="lazy">
+                </div>
+                <div class="pad">
+                  <div class="kicker">Step 2</div>
+                  <h3>Choose finish</h3>
+                  <p>Light for Scandinavian, dark for luxe, weathered gray for rustic.</p>
+                  <div class="meta">
+                    <span class="tag">Light</span>
+                    <span class="tag">Dark</span>
+                    <span class="tag">Gray</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card">
+                <div class="shop-help-media">
+                  <img src="../images/wood-detail.png" alt="Detail van houtnerf en hoeken van de lijst" loading="lazy">
+                </div>
+                <div class="pad">
+                  <div class="kicker">Step 3</div>
+                  <h3>View examples</h3>
+                  <p>See real photos of wood grain, corners, and finish.</p>
+                  <div class="meta">
+                    <a class="btn primary" href="portfolio.html">Portfolio</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- RECHTS: WINKELWAGEN + BETALEN -->
+        <aside id="checkout">
+          <div class="section-title" style="margin-bottom:14px;">
+            <h2>Cart</h2>
+            <div class="subtle">Pay via PayPal (also with card), email your order.</div>
+          </div>
+
+          <div class="card pad">
+            <div id="cartEmpty" class="subtle" style="display:none;">Your cart is empty.</div>
+            <div id="cartList" class="cart-list"></div>
+
+            <div class="cart-summary">
+                <div class="cart-row">
+                  <span class="subtle">Subtotal</span>
+                  <strong id="cartSubtotal">€ 0,00</strong>
+                </div>
+                <div class="cart-row">
+                  <span class="subtle">Shipping</span>
+                  <strong id="cartShipping">€ 0,00</strong>
+                </div>
+                <div class="cart-row" style="margin-top:8px; font-size:16px;">
+                  <span class="subtle">Total</span>
+                  <strong id="cartTotal">€ 0,00</strong>
+                </div>
+            </div>
+
+            <div class="form-actions" style="justify-content: space-between; gap:10px; margin-top:12px;">
+              <button class="btn" type="button" id="clearCartBtn">Clear</button>
+              <a class="btn primary" href="#pay">Go to payment</a>
+            </div>
+
+            <p class="fineprint" style="margin-top:10px;">
+              Custom items remain “quote” and are paid only after our confirmation.
+            </p>
+          </div>
+
+            <div class="card pad" style="margin-top:14px;">
+              <div class="section-title" style="margin-bottom:10px;">
+                <h3>Contact</h3>
+                <div class="subtle">Direct contact via phone/SMS or WhatsApp</div>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn" href="tel:+46707106182" aria-label="Call Nico">Call us</a>
+                <a class="btn" href="sms:+46707106182?body=Hi%2C%20I%20would%20like%20more%20information%20about%20frames" aria-label="Send SMS">SMS us</a>
+                <a class="btn" href="mailto:info@ramstuga.se" aria-label="Email">Email</a>
+                <a class="btn" href="https://wa.me/46707106182?text=Hi%2C%20I%20would%20like%20more%20information" target="_blank" rel="noopener" aria-label="WhatsApp Nico">WhatsApp</a>
+              </div>
+            </div>
+
+          <div class="card pad" id="pay" style="margin-top:16px;">
+            <div class="section-title" style="margin-bottom:10px;">
+              <h2>Payment</h2>
+              <div class="subtle">PayPal (also with card).</div>
+            </div>
+
+            <div class="pay-grid">
+              <div class="pay-method">
+                <div class="kicker"></div>
+                <img
+                src="../images/payments-paypal-visa-mastercard.png"
+                alt="Betalen met PayPal, Visa en Mastercard (geen PayPal-account nodig)"
+                class="pay-badge"
+/>
+
+<p class="subtle">
+  No PayPal account needed — pay easily with card.
+</p>
+
+                <p class="subtle" style="margin-top:6px;">
+                  Amount due: <strong id="payAmount">€ 0,00</strong>
+                </p>
+                <p class="fineprint" style="margin-top:6px;">
+                  Note: Please enter the correct amount including shipping along with your order reference.
+                </p>
+
+                <a class="btn primary" href="#" id="paypalLink" target="_blank" rel="noopener">Pay with PayPal</a>
+                <p class="fineprint"> You can pay with PayPal balance, bank, or card (also without a PayPal account).</p>
+              </div>
+
+              
+
+            <div class="shop-divider"></div>
+
+            <p class="fineprint">
+              Use as reference: <strong>RAMSTUGA + your name, shipping address, and payment reference</strong>
+
+            <div class="form-actions" style="justify-content: space-between; margin-top:12px;">
+              <button class="btn" type="button" id="copyRefBtn">Copy order reference</button>
+              <button class="btn primary" type="button" id="paidMailBtn">I paid → email order</button>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-plaque" role="contentinfo" aria-label="Contact details">
+      <div class="plaque-content">
+        <p class="plaque-brand"></p>
+        <p class="plaque-line">
+          <strong>Email:</strong> <a href="mailto:info@ramstuga.se">info@ramstuga.se</a>
+        </p>
+        <p class="plaque-line"><strong>Name:</strong> Nico &amp; Barbara</p>
+        <p class="plaque-line subtle">Handcrafted for your home</p>
+      </div>
+    </div>
+    <p class="footer-credit">© Webdesign by <a href="https://www.nico-on-point-webdesign.com" target="_blank" rel="noopener">www.nico-on-point-webdesign.com</a></p>
+    <div class="contact-buttons">
+      <a class="btn" href="tel:+46707106182">Call</a>
+      <a class="btn" href="sms:+46707106182?body=Hi%2C%20I%20would%20like%20more%20information%20about%20frames">SMS</a>
+      <a class="btn" href="https://wa.me/46707106182?text=Hi%2C%20I%20would%20like%20more%20information" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <p class="footer-copy">© <span id="year"></span> RAMSTUGA</p>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <button class="lightbox-prev" aria-label="Previous">‹</button>
+  <img id="lightbox-img" alt="">
+  <button class="lightbox-next" aria-label="Next">›</button>
+</div>
+
+<script src="../assets/script.js" defer></script>
+
+<!-- Floating contact (fixed) -->
+<div class="floating-contact" aria-hidden="false">
+  <a class="btn" href="tel:+46707106182" aria-label="Call Nico">📞 Call</a>
+  <a class="btn secondary" href="sms:+46707106182?body=Hi%2C%20I%20would%20like%20more%20information%20about%20frames" aria-label="SMS Nico">✉️ SMS</a>
+  <a class="btn" href="https://wa.me/46707106182?text=Hi%2C%20I%20would%20like%20more%20information" target="_blank" rel="noopener" aria-label="WhatsApp Nico">💬 WhatsApp</a>
+</div>
+
+</body>
+</html>
