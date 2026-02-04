@@ -971,6 +971,11 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   padding: 140px 0 140px;
 }
 
+/* Maatwerk: tekst iets lager op de plaque */
+.maatwerk .about-hero-inner{
+  padding-top: 16px;
+}
+
 .about-hero h1{
   font-family: var(--fontTitle);
   font-size: clamp(42px, 6vw, 72px);
@@ -1053,7 +1058,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
 .plaque-brandline{
   position: absolute;
-  right: 8%;
+  right: 16%;
   left: auto;
   top: 50%;
   transform: translateY(-130px);
@@ -1080,7 +1085,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
 @media (max-width: 600px){
   .plaque-brandline{
-    right: 6%;
+    right: 12%;
     transform: translateY(-110px);
     font-size: 12px;
     letter-spacing: .12em;
