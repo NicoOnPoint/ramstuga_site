@@ -694,6 +694,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: flex-end;
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
@@ -719,6 +720,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   color: #ffffff;
   border-color: transparent;
   box-shadow: 0 12px 30px rgba(0,0,0,.28);
+  width: auto;
+  max-width: min(240px, 92vw);
 }
 .floating-contact .btn.secondary{
   background: rgba(244,241,236,.98);
@@ -832,15 +835,16 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     right: 8px;
     bottom: max(8px, env(safe-area-inset-bottom));
     gap: 6px;
-    align-items: stretch;
+    align-items: flex-end;
   }
 
   .floating-contact .btn{
     padding: 8px 10px;
     font-size: 12px;
     border-radius: 10px;
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    max-width: min(220px, 92vw);
+    justify-content: flex-start;
   }
 
   .shop-top-actions{
