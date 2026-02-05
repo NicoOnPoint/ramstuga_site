@@ -17,17 +17,18 @@ Short, actionable guidance so an AI can be immediately productive in this codeba
 ## Architecture notes / why things are structured this way
 - Intentional simplicity: HTML + one JS bundle + static assets. No bundler or server runtime.
 - Page‑scoped behavior is guarded by body classes (e.g., `body.page-shop`) so shop logic only runs on shop pages.
-- Lightbox and floating contact widgets are safe‑initialized and no‑op if required DOM nodes are missing.
+- Widgets (lightbox, floating contact, hero effects) are safe‑initialized and no‑op if required DOM nodes are missing.
 
 ## Project‑specific conventions & patterns (examples)
 - Cart storage key: `ramstuga_cart` with migration from `ramhuset_cart` in `getCart()`/`setCart()` in [ramstuga_site/assets/script.js](ramstuga_site/assets/script.js).
 - Payment reference keys: `ramstuga_payref` and `ramstuga_payref_date` (migrate from `ramhuset_*`) created in `getOrCreatePaymentRef()` as `RAM-YYYYMMDD-####`.
-- Shop configuration lives inside `if (isShopPage) { ... }`: edit `PRODUCTS`, `SHIPPING_COST_EUR`, `PAYPAL_URL`, and `SEK_PER_EUR` there.
+- Shop configuration lives inside `if (isShopPage) { ... }`: edit `PRODUCTS`, `SHIPPING_COST_EUR`, `PAYPAL_URL`, `SWISH_INSTRUCTION`, and `SEK_PER_EUR` there.
 - Currency: derived from `<html lang>` (SV → SEK, EN/NL → EUR) with conversion via `SEK_PER_EUR` in `convertAmount()`.
-- PayPal link logic appends amount only for PayPal.me URLs; totals add fixed shipping when product items exist.
+- Totals add fixed shipping when product items exist; PayPal amount is shown in `#payAmount`.
 
 ## Integration points
-- PayPal checkout: `PAYPAL_URL` in [ramstuga_site/assets/script.js](ramstuga_site/assets/script.js).
+- PayPal checkout: `PAYPAL_URL` in [ramstuga_site/assets/script.js](ramstuga_site/assets/script.js) (currently a PayPal NCP payment link).
+- Swish instructions: `SWISH_INSTRUCTION` string near the shop config block.
 - Email order flow: `mailto:info@ramstuga.se` built in the `paidMailBtn` handler with cart line items.
 - Contact links are direct `tel:`, `sms:`, `wa.me`, and `mailto:` URLs in [ramstuga_site/shop.html](ramstuga_site/shop.html).
 
@@ -36,11 +37,12 @@ Short, actionable guidance so an AI can be immediately productive in this codeba
   - `cd ramstuga_site`
   - `python3 -m http.server 8000`
   - Open http://localhost:8000
-- Test shop flow on shop page: add products, verify `#cartCount`, and ensure PayPal link reflects the cart total.
+- Test shop flow on shop page: add products, verify `#cartCount`, and ensure totals + `#payAmount` update.
 
 ## Common edits and exact locations
 - Add/change products: edit `PRODUCTS` in [ramstuga_site/assets/script.js](ramstuga_site/assets/script.js).
-- Update payment or shipping: set `PAYPAL_URL` and `SHIPPING_COST_EUR` in the same block.
+- Update payment/shipping: set `PAYPAL_URL` and `SHIPPING_COST_EUR` in the same block.
+- Update Swish copy: edit `SWISH_INSTRUCTION` near the shop config block.
 - Update language routing: adjust `ramstuga_lang` logic near the top of [ramstuga_site/assets/script.js](ramstuga_site/assets/script.js).
 - Edit copy/layout: update the relevant HTML files under ramstuga_site/ and mirrored copies under /en/ and /nl/.
 

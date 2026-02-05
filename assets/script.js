@@ -156,7 +156,10 @@
   const typeTitles = document.querySelectorAll(".type-title[data-text]");
   const typeTitlesLate = document.querySelectorAll(".type-title-late[data-text]");
   const typeTitlesLate2 = document.querySelectorAll(".type-title-late2[data-text]");
-  if (typeTitles.length || typeTitlesLate.length || typeTitlesLate2.length) {
+  const typewriterExtras = document.querySelectorAll(
+    ".typewriter[data-text]:not(.type-title):not(.type-title-late):not(.type-title-late2)"
+  );
+  if (typeTitles.length || typeTitlesLate.length || typeTitlesLate2.length || typewriterExtras.length) {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const speed = 70;
     const escapeInline = (str) => String(str || "")
@@ -178,6 +181,7 @@
 
     const typeElement = (el, startDelay = 0) => {
       const fullText = el.getAttribute("data-text") || "";
+      el.setAttribute("dir", "ltr");
       reserveHeight(el, fullText);
       if (prefersReduced || !fullText) {
         el.innerHTML = fullText.split("\n").map(escapeInline).join("<br>");
@@ -216,8 +220,15 @@
     });
 
     const late2Delay = (longestLate || lateDelay) + 250;
+    let longestLate2 = 0;
     typeTitlesLate2.forEach((el, idx) => {
-      typeElement(el, late2Delay + idx * 60);
+      const endAt = typeElement(el, late2Delay + idx * 60);
+      longestLate2 = Math.max(longestLate2, endAt);
+    });
+
+    const extrasDelay = (longestLate2 || late2Delay) + 250;
+    typewriterExtras.forEach((el, idx) => {
+      typeElement(el, extrasDelay + idx * 60);
     });
   }
 
@@ -244,12 +255,29 @@
     const SWISH_INSTRUCTION = "Swish: lägg till din referens i meddelandet:"; // tekstje, optioneel
 
     // Standaard assortiment (pas aan / breid uit)
-    const PRODUCTS = [
-      { id: "std-30x40-licht",   title: "Standaardlijst Licht",   size: "30×40 cm", price: 49.00, img: "images/shop/lijst-licht.png",   note: "Scandinavisch licht." },
-      { id: "std-40x50-naturel", title: "Standaardlijst Naturel", size: "40×50 cm", price: 59.00, img: "images/shop/lijst-naturel.png", note: "Rustiek naturel." },
-      { id: "std-50x70-donker",  title: "Standaardlijst Donker",  size: "50×70 cm", price: 89.00, img: "images/shop/lijst-donker.png",  note: "Diep donker, luxe." },
-      { id: "std-40x40-grijs",   title: "Standaardlijst Grijs",   size: "40×40 cm", price: 64.00, img: "images/shop/lijst-grijs.png",   note: "Verweerd grijs." }
-    ];
+    const langKey = docLang.startsWith("en") ? "en" : docLang.startsWith("nl") ? "nl" : "sv";
+    const PRODUCT_CATALOG = {
+      nl: [
+        { id: "std-30x40-licht",   title: "Standaardlijst Licht",   size: "30×40 cm", price: 49.00, img: "images/shop/lijst-licht.png",   note: "Scandinavisch licht." },
+        { id: "std-40x50-naturel", title: "Standaardlijst Naturel", size: "40×50 cm", price: 59.00, img: "images/shop/lijst-naturel.png", note: "Rustiek naturel." },
+        { id: "std-50x70-donker",  title: "Standaardlijst Donker",  size: "50×70 cm", price: 89.00, img: "images/shop/lijst-donker.png",  note: "Diep donker, luxe." },
+        { id: "std-40x40-grijs",   title: "Standaardlijst Grijs",   size: "40×40 cm", price: 64.00, img: "images/shop/lijst-grijs.png",   note: "Verweerd grijs." }
+      ],
+      en: [
+        { id: "std-30x40-licht",   title: "Standard Frame Light",   size: "30×40 cm", price: 49.00, img: "images/shop/lijst-licht.png",   note: "Scandinavian light." },
+        { id: "std-40x50-naturel", title: "Standard Frame Natural", size: "40×50 cm", price: 59.00, img: "images/shop/lijst-naturel.png", note: "Rustic natural." },
+        { id: "std-50x70-donker",  title: "Standard Frame Dark",    size: "50×70 cm", price: 89.00, img: "images/shop/lijst-donker.png",  note: "Deep dark, luxury." },
+        { id: "std-40x40-grijs",   title: "Standard Frame Grey",    size: "40×40 cm", price: 64.00, img: "images/shop/lijst-grijs.png",   note: "Weathered grey." }
+      ],
+      sv: [
+        { id: "std-30x40-licht",   title: "Standardram Ljus",     size: "30×40 cm", price: 49.00, img: "images/shop/lijst-licht.png",   note: "Skandinaviskt ljus." },
+        { id: "std-40x50-naturel", title: "Standardram Naturell", size: "40×50 cm", price: 59.00, img: "images/shop/lijst-naturel.png", note: "Rustikt naturell." },
+        { id: "std-50x70-donker",  title: "Standardram Mörk",     size: "50×70 cm", price: 89.00, img: "images/shop/lijst-donker.png",  note: "Djup mörk, lyx." },
+        { id: "std-40x40-grijs",   title: "Standardram Grå",      size: "40×40 cm", price: 64.00, img: "images/shop/lijst-grijs.png",   note: "Väderbiten grå." }
+      ]
+    };
+    const PRODUCTS = PRODUCT_CATALOG[langKey] || PRODUCT_CATALOG.sv;
+    const ADD_LABEL = langKey === "en" ? "Add to cart" : langKey === "nl" ? "Voeg toe" : "Lägg till";
 
     // Vaste verzendkosten (per bestelling wanneer er standaardproducten in zitten)
     const SHIPPING_COST_EUR = 9.00;
@@ -327,7 +355,7 @@
             <p style="margin-top:10px;">${escapeHtml(p.note)}</p>
             <div class="product-actions">
               <strong>${moneyEUR(convertAmount(p.price, "EUR", currentCurrency))}</strong>
-              <button class="btn primary" type="button" data-add="${escapeHtml(p.id)}">Voeg toe</button>
+              <button class="btn primary" type="button" data-add="${escapeHtml(p.id)}">${ADD_LABEL}</button>
             </div>
           </div>
         </article>
