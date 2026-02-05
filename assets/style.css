@@ -1657,8 +1657,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
 @media (max-width: 600px){
   .footer-plaque{
-    width: min(3000px, 98vw);
-    aspect-ratio: 2.2 / 1;
+    width: 96vw;
+    aspect-ratio: 0.95 / 1;
   }
 }
 
