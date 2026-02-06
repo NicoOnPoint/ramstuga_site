@@ -1,0 +1,22 @@
+.mobile-plaque-only {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-plaque-only {
+    display: block;
+    width: 100vw;
+    aspect-ratio: 0.38 / 1;
+    background-image: url("../images/wood-plaque.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 32px 0 0 0;
+    height: auto;
+    min-height: 80px;
+    max-width: 100vw;
+    border: none;
+    box-shadow: 0 22px 48px rgba(0,0,0,.4);
+    animation: plaque-in 900ms ease-out both;
+  }
+}
