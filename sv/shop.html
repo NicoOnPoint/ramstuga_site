@@ -28,8 +28,27 @@
           <span>•</span>
           <a href="../nl/shop.html" data-lang="nl">NL</a>
         </li>
+          <!-- Cart icon moved outside nav for mobile -->
+          <a href="shop.html" class="nav-cart mobile-only" aria-label="Varukorg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6h15l-2 9H7L6 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M6 6 5 3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="9" cy="20" r="1" fill="currentColor"/>
+              <circle cx="18" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+          </a>
       </ul>
       <button class="nav-toggle" type="button" aria-label="Meny" aria-expanded="false">☰</button>
+        <a href="shop.html" class="nav-cart mobile-only" aria-label="Varukorg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6h15l-2 9H7L6 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M6 6 5 3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="9" cy="20" r="1" fill="currentColor"/>
+            <circle cx="18" cy="20" r="1" fill="currentColor"/>
+          </svg>
+          <span id="cartCount" class="cart-count">0</span>
+        </a>
     </nav>
   </div>
 </header>
@@ -37,9 +56,9 @@
   <section class="about-hero">
     <div class="container about-hero-inner">
       <div class="about-plaque" aria-hidden="true"></div>
-      <div class="plaque-brandline">
-        <img src="/assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
-        <span class="plaque-brandtext">RAMSTUGA</span>
+      <div class="plaque-brandline" style="position:absolute; top:18px; right:32px; display:flex; align-items:center; gap:6px; z-index:2;">
+        <img src="/assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo" style="height:28px; width:auto;">
+        <span class="plaque-brandtext" style="font-size:18px; letter-spacing:1px; color:#6d5c48; text-shadow:0 2px 8px #fff8,0 1px 0 #fff;">RAMSTUGA</span>
       </div>
       <h1 class="about-title type-title" data-text="Shop"></h1>
       <p class="about-subtitle type-title-late typewriter" data-text="Beställ standardstorlekar direkt. Betala via PayPal (även med kort).">

@@ -1,3 +1,137 @@
+/* Hide header plaque and make header texts white on mobile */
+@media (max-width: 900px) {
+  .about-plaque,
+  .plaque-brandline {
+    display: none !important;
+  }
+  .about-title.type-title,
+  .about-subtitle.type-title-late,
+  .about-title,
+  .about-subtitle,
+  .hero-wood-title.type-title,
+  .hero-brand,
+  .plaque-brandtext {
+    color: #fff !important;
+    text-shadow: 0 2px 8px #0008, 0 1px 0 #000;
+  }
+}
+/* Show cart icon outside nav only on mobile */
+.nav-cart.mobile-only {
+  display: none;
+}
+@media (max-width: 900px) {
+  .site-nav .nav-cart-item {
+    display: none;
+  }
+  .nav-toggle {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .nav-cart.mobile-only {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-left: 0;
+    margin-right: 8px;
+    position: static;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    z-index: 20;
+  }
+  .container.nav {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .site-nav {
+    flex: 1 1 auto;
+  }
+}
+@media (min-width: 900px) and (max-width: 1400px) {
+  .footer-plaque .plaque-line.subtle {
+    display: none !important;
+  }
+}
+/* --- HEADER: Verberg plaque en maak header-teksten wit op middenpagina's (laptop) --- */
+@media (min-width: 900px) and (max-width: 1400px) {
+  /* Verberg de plaque in de header op middenpagina's */
+  .page-about .about-plaque,
+  .page-maatwerk .about-plaque,
+  .page-portfolio .about-plaque,
+  .page-shop .about-plaque {
+    display: none !important;
+  }
+  /* Maak header-teksten wit */
+  .page-about .about-hero-inner h1,
+  .page-about .about-hero-inner p,
+  .page-about .about-hero-inner .plaque-brandline,
+  .page-about .about-hero-inner .plaque-brandtext,
+  .page-maatwerk .about-hero-inner h1,
+  .page-maatwerk .about-hero-inner p,
+  .page-maatwerk .about-hero-inner .plaque-brandline,
+  .page-maatwerk .about-hero-inner .plaque-brandtext,
+  .page-portfolio .about-hero-inner h1,
+  .page-portfolio .about-hero-inner p,
+  .page-portfolio .about-hero-inner .plaque-brandline,
+  .page-portfolio .about-hero-inner .plaque-brandtext,
+  .page-shop .about-hero-inner h1,
+  .page-shop .about-hero-inner p,
+  .page-shop .about-hero-inner .plaque-brandline,
+  .page-shop .about-hero-inner .plaque-brandtext {
+    color: #fff !important;
+    text-shadow: 0 4px 24px #000e, 0 2px 8px #000a, 0 1px 0 #0008;
+  }
+}
+/* --- HEADER-TEKSTEN OPTIMALISATIE VOOR LAPTOPS (900px-1400px) --- */
+@media (min-width: 900px) and (max-width: 1400px) {
+  .brand-badge {
+    width: 14px;
+    height: 14px;
+  }
+  .brand-title strong {
+    font-size: 8px;
+    letter-spacing: 0px;
+  }
+  .brand-title span {
+    font-size: 6px;
+  }
+  .brand-text {
+    font-size: 9px;
+    letter-spacing: 0px;
+  }
+  .nav {
+    gap: 0;
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 24px;
+  }
+  nav ul {
+    gap: 0;
+  }
+  nav a {
+    font-size: 8px;
+    padding: 1px 2px;
+    border-radius: 4px;
+  }
+  .lang-switch a {
+    font-size: 7px;
+    padding: 1px 2px;
+    border-radius: 4px;
+  }
+  .nav-cart {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+  .cart-count {
+    min-width: 7px;
+    height: 7px;
+    font-size: 5px;
+  }
+}
 @media (max-width: 700px) {
   .site-footer,
   .site-footer *,
