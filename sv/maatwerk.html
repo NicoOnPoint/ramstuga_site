@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   <title>Måttbeställt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" href="/assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
 </head>
 <body class="page-maatwerk">
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html">
-      <img src="../assets/logo.png" alt="RAMSTUGA logo" class="site-logo">
+      <img src="/assets/logo.png" alt="RAMSTUGA logo" class="site-logo">
       <span class="brand-text">RAMSTUGA</span>
     </a>
     <nav class="site-nav">
@@ -20,49 +24,85 @@
         <li><a href="maatwerk.html">Måttbeställt</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="shop.html">Shop</a></li>
+        <li><a href="retur.html">Returvillkor</a></li>
+        <li class="lang-switch" aria-label="Språk">
+          <a href="index.html" data-lang="sv">SV</a>
+          <span>•</span>
+          <a href="../en/maatwerk.html" data-lang="en">EN</a>
+          <span>•</span>
+          <a href="../nl/maatwerk.html" data-lang="nl">NL</a>
+        </li>
       </ul>
       <button class="nav-toggle" type="button" aria-label="Meny" aria-expanded="false">☰</button>
     </nav>
   </div>
 </header>
 <main>
-  <!-- HERO PLAQUE -->
-  <section class="maatwerk-hero">
-    <div class="container maatwerk-hero-inner">
+  <section class="about-hero">
+    <div class="container about-hero-inner">
       <div class="about-plaque" aria-hidden="true"></div>
       <div class="plaque-brandline">
-        <img src="../assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
+        <img src="/assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
         <span class="plaque-brandtext">RAMSTUGA</span>
       </div>
-      <h1 class="maatwerk-title type-title" data-text="Måttbeställt">Måttbeställt</h1>
+      <h1 class="about-title type-title" data-text="Måttbeställt"></h1>
+      <p class="about-subtitle type-title-late typewriter" data-text="Beställ en ram som passar perfekt i ditt hem.">
+        Beställ en ram som passar perfekt i ditt hem.
+      </p>
     </div>
   </section>
 
-  <section class="maatwerk-content">
-    <div class="container">
-      <h1>Måttbeställda ramar</h1>
-      <p>Beställ en ram i exakt de mått du behöver. Kontakta oss för en offert!</p>
-      <div class="shop-help-grid">
+  <section class="about-story">
+    <div class="container" style="width:min(1100px,92vw);">
+      <div class="section-title">
+        <h2>Hur fungerar måttbeställt?</h2>
+        <div class="subtle">Be om en offert så återkommer vi snabbt.</div>
+      </div>
+      <div class="shop-help-grid" style="margin-top:18px;">
         <article class="card">
           <div class="shop-help-media">
-            <img src="../images/finishes.png" alt="Ytbehandling: ljus, mörk, grå" loading="lazy">
+            <img src="/images/measure-guide-cm.png" alt="Mätguide" loading="lazy">
+          </div>
+          <div class="pad">
+            <div class="kicker">Steg 1</div>
+            <h3>Mät din storlek</h3>
+            <p>Mät fotot (eller öppningen). Notera önskad yttermått och djup.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="shop-help-media">
+            <img src="/images/finishes.png" alt="Ytbehandlingar" loading="lazy">
           </div>
           <div class="pad">
             <div class="kicker">Steg 2</div>
-            <h3>Afwerking</h3>
-            <p>Ljus för skandinaviskt, mörk för lyx, grå för rustikt.</p>
+            <h3>Välj ytbehandling</h3>
+            <p>Ljus, mörk eller vädergrå — eventuellt med specialbehandling.</p>
           </div>
         </article>
         <article class="card">
           <div class="shop-help-media">
-            <img src="../images/wood-detail.png" alt="Trädetalj och hörn" loading="lazy">
+            <img src="/images/wood-detail.png" alt="Trädetalj" loading="lazy">
           </div>
           <div class="pad">
             <div class="kicker">Steg 3</div>
-            <h3>Houtdetails</h3>
-            <p>Se riktiga bilder på trädetaljer, hörn och ytbehandling.</p>
+            <h3>Skicka din förfrågan</h3>
+            <p>Vi svarar snabbt med pris och planering. Sedan bygger vi din måttbeställda ram.</p>
           </div>
         </article>
+      </div>
+      <div class="card pad" style="margin-top:18px;">
+        <div class="section-title" style="margin-bottom:10px;">
+          <h2>Be om offert</h2>
+          <div class="subtle">Via e-post, telefon eller WhatsApp.</div>
+        </div>
+        <div class="form-actions" style="justify-content:flex-start; gap:10px;">
+          <a class="btn" href="tel:+46707106182">Ring oss</a>
+          <a class="btn" href="mailto:info@ramstuga.se">E-post</a>
+          <a class="btn" href="https://wa.me/46707106182?text=Hej%2C%20jag%20vill%20ha%20mer%20information%20om%20måttbeställda%20ramar" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <p class="fineprint" style="margin-top:10px;">
+          Ange gärna: önskat innermått, yttermått, djup och ytbehandling.
+        </p>
       </div>
     </div>
   </section>
@@ -86,6 +126,6 @@
     <p class="footer-copy">© <span id="year"></span> RAMSTUGA</p>
   </div>
 </footer>
-<script src="../assets/script.js" defer></script>
+<script src="/assets/script.js" defer></script>
 </body>
 </html>

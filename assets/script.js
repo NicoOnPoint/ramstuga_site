@@ -258,22 +258,22 @@
     const langKey = docLang.startsWith("en") ? "en" : docLang.startsWith("nl") ? "nl" : "sv";
     const PRODUCT_CATALOG = {
       nl: [
-        { id: "std-30x40-licht",   title: "Standaardlijst Licht",   size: "30×40 cm", price: 49.00, img: "images/shop/lijst-licht.png",   note: "Scandinavisch licht." },
-        { id: "std-40x50-naturel", title: "Standaardlijst Naturel", size: "40×50 cm", price: 59.00, img: "images/shop/lijst-naturel.png", note: "Rustiek naturel." },
-        { id: "std-50x70-donker",  title: "Standaardlijst Donker",  size: "50×70 cm", price: 89.00, img: "images/shop/lijst-donker.png",  note: "Diep donker, luxe." },
-        { id: "std-40x40-grijs",   title: "Standaardlijst Grijs",   size: "40×40 cm", price: 64.00, img: "images/shop/lijst-grijs.png",   note: "Verweerd grijs." }
+        { id: "std-30x40-licht",   title: "Standaardlijst Licht",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavisch licht." },
+        { id: "std-40x50-naturel", title: "Standaardlijst Naturel", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustiek naturel." },
+        { id: "std-50x70-donker",  title: "Standaardlijst Donker",  size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Diep donker, luxe." },
+        { id: "std-40x40-grijs",   title: "Standaardlijst Grijs",   size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Verweerd grijs." }
       ],
       en: [
-        { id: "std-30x40-licht",   title: "Standard Frame Light",   size: "30×40 cm", price: 49.00, img: "images/shop/lijst-licht.png",   note: "Scandinavian light." },
-        { id: "std-40x50-naturel", title: "Standard Frame Natural", size: "40×50 cm", price: 59.00, img: "images/shop/lijst-naturel.png", note: "Rustic natural." },
-        { id: "std-50x70-donker",  title: "Standard Frame Dark",    size: "50×70 cm", price: 89.00, img: "images/shop/lijst-donker.png",  note: "Deep dark, luxury." },
-        { id: "std-40x40-grijs",   title: "Standard Frame Grey",    size: "40×40 cm", price: 64.00, img: "images/shop/lijst-grijs.png",   note: "Weathered grey." }
+        { id: "std-30x40-licht",   title: "Standard Frame Light",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavian light." },
+        { id: "std-40x50-naturel", title: "Standard Frame Natural", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustic natural." },
+        { id: "std-50x70-donker",  title: "Standard Frame Dark",    size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Deep dark, luxury." },
+        { id: "std-40x40-grijs",   title: "Standard Frame Grey",    size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Weathered grey." }
       ],
       sv: [
-        { id: "std-30x40-licht",   title: "Standardram Ljus",     size: "30×40 cm", price: 49.00, img: "images/shop/lijst-licht.png",   note: "Skandinaviskt ljus." },
-        { id: "std-40x50-naturel", title: "Standardram Naturell", size: "40×50 cm", price: 59.00, img: "images/shop/lijst-naturel.png", note: "Rustikt naturell." },
-        { id: "std-50x70-donker",  title: "Standardram Mörk",     size: "50×70 cm", price: 89.00, img: "images/shop/lijst-donker.png",  note: "Djup mörk, lyx." },
-        { id: "std-40x40-grijs",   title: "Standardram Grå",      size: "40×40 cm", price: 64.00, img: "images/shop/lijst-grijs.png",   note: "Väderbiten grå." }
+        { id: "std-30x40-licht",   title: "Standardram Ljus",     size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Skandinaviskt ljus." },
+        { id: "std-40x50-naturel", title: "Standardram Naturell", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustikt naturell." },
+        { id: "std-50x70-donker",  title: "Standardram Mörk",     size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Djup mörk, lyx." },
+        { id: "std-40x40-grijs",   title: "Standardram Grå",      size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Väderbiten grå." }
       ]
     };
     const PRODUCTS = PRODUCT_CATALOG[langKey] || PRODUCT_CATALOG.sv;
@@ -459,7 +459,13 @@
       // PayPal.me ondersteunt een bedrag in de URL: /<bedrag>
       const amount = isPayPalMe && amountNum > 0 ? `/${amountNum.toFixed(2)}` : "";
       paypalLink.href = `${PAYPAL_URL}${amount}`;
-      paypalLink.textContent = "Betaal veilig (kaart / PayPal)";
+      if (langKey === "en") {
+        paypalLink.textContent = "Pay securely (card / PayPal)";
+      } else if (langKey === "sv") {
+        paypalLink.textContent = "Betala säkert (kort / PayPal)";
+      } else {
+        paypalLink.textContent = "Betaal veilig (kaart / PayPal)";
+      }
     }
     // Bestelreferentie hint (optioneel)
     const refHint = document.getElementById("swishHint");
