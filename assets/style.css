@@ -1,3 +1,29 @@
+@media (max-width: 700px){
+  .shop-help-grid .pad {
+    padding-top: 140px;
+  }
+}
+@media (max-width: 700px){
+  .shop-help-media {
+    height: 230px;
+  }
+}
+@media (max-width: 700px){
+  .shop-help-grid{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .maatwerk-content .container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px;
+  }
+  .maatwerk-content .container > * {
+    width: 100% !important;
+  }
+}
 
   .footer-credit {
     margin-top: 0 !important;
