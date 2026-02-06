@@ -1,4 +1,23 @@
 @media (max-width: 700px) {
+  .site-footer,
+  .site-footer *,
+  .footer-plaque .plaque-line,
+  .footer-plaque .plaque-line.subtle,
+  .footer-plaque .plaque-brand,
+  .footer-credit,
+  .footer-copy,
+  .footer-credit a,
+  .footer-copy a,
+  .footer-plaque a {
+    color: #fff !important;
+    fill: #fff !important;
+    border-color: #fff !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    background: none !important;
+  }
+}
+@media (max-width: 700px) {
   html, body {
     overflow-x: hidden !important;
   }
@@ -41,16 +60,6 @@
   .site-footer,
   .footer-plaque,
   .footer-plaque .plaque-content {
-    background: none !important;
-  }
-  .footer-plaque .plaque-line,
-  .footer-plaque .plaque-line.subtle,
-  .footer-plaque .plaque-brand,
-  .footer-copy,
-  .footer-credit,
-  .contact-buttons .btn {
-    color: #111 !important;
-    text-shadow: none !important;
     background: none !important;
   }
   .footer-plaque .plaque-content {
