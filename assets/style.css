@@ -4,15 +4,111 @@
   .plaque-brandline {
     display: none !important;
   }
-  .about-title.type-title,
-  .about-subtitle.type-title-late,
-  .about-title,
-  .about-subtitle,
-  .hero-wood-title.type-title,
-  .hero-brand,
-  .plaque-brandtext {
+  /* header text color reset: undo white */
+
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 30;
+  }
+  .nav-toggle-bar {
+    display: block;
+    width: 28px;
+    height: 4px;
+    margin: 4px 0;
+    background: #222;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  #siteMenu {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 2px 16px #0002;
+    border-radius: 0 0 12px 12px;
+    padding: 16px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 25;
+  }
+  #siteMenu.open {
+    display: flex;
+  }
+  .site-nav ul li {
+    margin: 8px 0;
+    text-align: center;
+  }
+  .site-nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .container.nav {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+  }
+  .nav-toggle {
+    order: 2;
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .nav-cart.mobile-only {
+    order: 1;
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    max-width: 40px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+  }
+  .about-hero-inner h1,
+  .about-hero-inner p,
+  .about-hero-inner .plaque-brandline,
+  .about-hero-inner .plaque-brandtext {
     color: #fff !important;
-    text-shadow: 0 2px 8px #0008, 0 1px 0 #000;
+    text-shadow: 0 4px 24px #000e, 0 2px 8px #000a, 0 1px 0 #0008;
+  }
+  .about-hero-inner .about-title.typewriter {
+    text-align: left;
+    margin-left: 0;
+    padding-left: 24px;
+    width: auto;
+    max-width: 90vw;
+  }
+  .section-title h2 + .subtle {
+    display: block;
+    margin-top: 4px;
+    margin-left: 0;
+    text-align: left;
+    font-size: 1em;
+  }
+  .about-hero-inner .about-title.typewriter {
+    text-align: left;
+    margin-left: 0;
+    padding-left: 24px;
+    width: auto;
+    max-width: 90vw;
   }
 }
 /* Show cart icon outside nav only on mobile */

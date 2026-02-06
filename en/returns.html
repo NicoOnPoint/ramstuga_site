@@ -16,6 +16,15 @@
       <img src="../assets/logo.png" alt="RAMSTUGA logo" class="site-logo">
       <span class="brand-text">RAMSTUGA</span>
     </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        ☰
+      </button>
+      <a class="nav-cart mobile-only" href="shop.html" aria-label="Cart">
+        <span class="cart-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.38-7.39H6"/></svg>
+        </span>
+        <span id="cartCount" class="cart-badge">0</span>
+      </a>
     <nav class="site-nav">
       <ul id="siteMenu">
         <li><a href="index.html">Home</a></li>
@@ -37,7 +46,9 @@
 <main>
   <section class="about-hero">
     <div class="container about-hero-inner">
-      <h1 class="about-title type-title">Return Policy</h1>
+      <h1 class="about-title type-title typewriter" dir="ltr"><span id="typewriter-header">Returns</span></h1>
+      
+      
     </div>
   </section>
   <section class="about-story">
@@ -72,5 +83,24 @@
   </div>
 </footer>
   <script src="/assets/script.js" defer></script>
+<script>
+// Typewriter effect for header
+document.addEventListener("DOMContentLoaded", function() {
+  var el = document.getElementById("typewriter-header");
+  if (!el) return;
+  var text = el.textContent;
+  el.textContent = "";
+  var i = 0;
+  var speed = 70;
+  function type() {
+    if (i < text.length) {
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+});
+</script>
 </body>
 </html>
