@@ -208,7 +208,7 @@
   );
   if (typeTitles.length || typeTitlesLate.length || typeTitlesLate2.length || typewriterExtras.length) {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const speed = 70;
+    const TYPE_SPEED = 90; // shared typing tempo for titles and typewriter text
     const escapeInline = (str) => String(str || "")
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
@@ -226,7 +226,7 @@
       el.style.minHeight = prevMin || el.style.minHeight;
     };
 
-    const typeElement = (el, startDelay = 0) => {
+    const typeElement = (el, startDelay = 0, speed = TYPE_SPEED) => {
       const fullText = el.getAttribute("data-text") || "";
       el.setAttribute("dir", "ltr");
       reserveHeight(el, fullText);
@@ -255,27 +255,27 @@
 
     let longest = 0;
     typeTitles.forEach((el, idx) => {
-      const endAt = typeElement(el, 150 + idx * 60);
+      const endAt = typeElement(el, 150 + idx * 60, TYPE_SPEED);
       longest = Math.max(longest, endAt);
     });
 
     const lateDelay = (longest || 0) + 250;
     let longestLate = 0;
     typeTitlesLate.forEach((el, idx) => {
-      const endAt = typeElement(el, lateDelay + idx * 60);
+      const endAt = typeElement(el, lateDelay + idx * 60, TYPE_SPEED);
       longestLate = Math.max(longestLate, endAt);
     });
 
     const late2Delay = (longestLate || lateDelay) + 250;
     let longestLate2 = 0;
     typeTitlesLate2.forEach((el, idx) => {
-      const endAt = typeElement(el, late2Delay + idx * 60);
+      const endAt = typeElement(el, late2Delay + idx * 60, TYPE_SPEED);
       longestLate2 = Math.max(longestLate2, endAt);
     });
 
     const extrasDelay = (longestLate2 || late2Delay) + 250;
     typewriterExtras.forEach((el, idx) => {
-      typeElement(el, extrasDelay + idx * 60);
+      typeElement(el, extrasDelay + idx * 60, TYPE_SPEED);
     });
   }
 
@@ -337,9 +337,7 @@
     };
 
     scheduleEvaluate();
-    setTimeout(scheduleEvaluate, 250);
-    setTimeout(scheduleEvaluate, 800);
-    setTimeout(scheduleEvaluate, 1400);
+    window.addEventListener("load", scheduleEvaluate);
 
     window.addEventListener("resize", scheduleEvaluate, { passive: true });
     window.addEventListener("orientationchange", scheduleEvaluate);
@@ -347,13 +345,6 @@
     const ro = new ResizeObserver(scheduleEvaluate);
     ro.observe(heroInner);
     ro.observe(plaque);
-    if (titleEl) ro.observe(titleEl);
-    if (subtitleEl) ro.observe(subtitleEl);
-    if (brandEl) ro.observe(brandEl);
-
-    const mo = new MutationObserver(scheduleEvaluate);
-    if (titleEl) mo.observe(titleEl, { childList: true, subtree: true, characterData: true });
-    if (subtitleEl) mo.observe(subtitleEl, { childList: true, subtree: true, characterData: true });
   }
 
   setupHeroPlaqueFitFallback();

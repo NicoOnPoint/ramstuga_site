@@ -1,5 +1,9 @@
 /* Hide header plaque and make header texts white on mobile */
 @media (max-width: 900px) {
+  .about-hero-inner::after {
+    display: none !important;
+  }
+
   .about-plaque,
   .plaque-brandline {
     display: none !important;
@@ -881,6 +885,11 @@ h2{
   left: 0;
 }
 
+/* Hero subtitle may also use .typewriter; never shift it horizontally */
+.about-subtitle.typewriter{
+  left: 0;
+}
+
 /* Automatic fallback when hero text does not fit inside plaque */
 .about-hero-inner.hero-plaque-fallback .about-plaque,
 .about-hero-inner.hero-plaque-fallback .shop-hero-plaque{
@@ -1136,6 +1145,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 .about-text,
 .about-hero-inner{
   position: relative;
+  --hero-plaque-max: 1380px; /* stel hier de maximale schaal van de header-plaque in */
+  --hero-plaque-min: 860px;
 }
 .card.pad .contact-buttons,
 .story-text .contact-buttons,
@@ -1565,40 +1576,29 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   border-radius: 32px;
 }
 
-/* Simple decorative plaque directly behind the hero text (ENLARGED, vertically and horizontally centered) */
-.about-plaque {
+/* Baked-in hero plaque: fixed-size background layer behind hero text */
+.about-hero-inner::after{
+  content: "";
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 100vw; /* full viewport width */
-  max-width: 100vw;
-  height: calc(100vw * 418 / 1152); /* maintain image aspect ratio */
-  max-height: 60vh; /* never taller than 60% of viewport height */
-  background-image: url("../images/header-plaque.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 1;
+  width: clamp(var(--hero-plaque-min), 86vw, var(--hero-plaque-max));
+  aspect-ratio: 1152 / 418;
+  background: url("../images/header-plaque.png") center / contain no-repeat;
   filter: brightness(0.78);
   z-index: 0;
   pointer-events: none;
-  animation: plaque-in-centered 900ms ease-out both;
+}
+
+/* Simple decorative plaque directly behind the hero text (ENLARGED, vertically and horizontally centered) */
+.about-plaque {
+  display: none !important;
 }
 
 /* Shop uses a shop-hero-plaque element — mirror about-plaque behavior so the image sits behind the heading */
 .shop-hero-plaque{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(1300px, 110%);
-  height: clamp(180px, 20vw, 320px);
-  z-index: 0;
-  pointer-events: none;
-  display: grid;
-  place-items: center;
-  animation: plaque-in-centered 900ms ease-out both;
+  display: none !important;
 }
 
 .shop-hero-plaque img{
@@ -1609,6 +1609,10 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   filter: brightness(0.78);
 }
 @media (max-width: 600px){
+  .about-hero-inner::after{
+    display: none;
+  }
+
   .about-plaque{
     top: 50%;
     transform: translate(-50%, -50%);
@@ -2950,5 +2954,112 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     text-align: center !important;
     left: auto !important;
     transform: none !important;
+  }
+}
+
+/* Desktop hero plaque layout:
+   1) white title above plaque
+   2) typewriter subtitle inside plaque
+   3) logo + RAMSTUGA top-right on plaque */
+@media (min-width: 901px){
+  body:not(.page-home) .about-hero-inner{
+    min-height: clamp(340px, 36vw, 500px);
+  }
+
+  body:not(.page-home) .about-hero-inner::after{
+    top: 62%;
+  }
+
+  body:not(.page-home) .about-title{
+    position: relative;
+    z-index: 3;
+    margin: 0 auto clamp(20px, 2.6vw, 34px) !important;
+    max-width: min(80vw, 980px);
+    text-align: center !important;
+    transform: rotate(-9deg) !important;
+    transform-origin: center !important;
+    color: #fff !important;
+  }
+
+  body:not(.page-home) .about-subtitle{
+    position: absolute;
+    z-index: 3;
+    top: 62%;
+    left: 50% !important;
+    transform: translate(-50%, -6%) !important;
+    width: min(66vw, 760px) !important;
+    max-width: 760px;
+    margin: 0 !important;
+    text-align: center !important;
+    color: #2a1f14 !important;
+    font-size: clamp(15px, 1.35vw, 20px);
+    line-height: 1.32;
+    text-shadow: 0 1px 3px rgba(0,0,0,.14);
+  }
+
+  body:not(.page-home) .plaque-brandline{
+    z-index: 4;
+    top: calc(62% - 92px);
+    left: 50%;
+    right: auto;
+    transform: translate(clamp(48px, 10vw, 140px), 0) !important;
+  }
+
+  /* Shop-only fine tuning */
+  body.page-shop .about-subtitle{
+    width: min(60vw, 620px) !important;
+    max-width: 620px;
+    font-size: clamp(13px, 1.2vw, 18px);
+    line-height: 1.26;
+  }
+
+  body.page-shop .plaque-brandline{
+    top: calc(62% - 86px);
+    transform: translate(clamp(8px, 5vw, 70px), 0) !important;
+  }
+}
+
+/* Narrow desktop / laptop: keep brandline and typing safely inside plaque */
+@media (min-width: 901px) and (max-width: 1200px){
+  body:not(.page-home) .about-hero-inner{
+    min-height: clamp(320px, 34vw, 430px);
+  }
+
+  body:not(.page-home) .about-hero-inner::after{
+    top: 64%;
+  }
+
+  body:not(.page-home) .about-subtitle{
+    top: 64%;
+    width: min(64vw, 640px) !important;
+    max-width: 640px;
+    font-size: clamp(13px, 1.18vw, 17px);
+    line-height: 1.28;
+    transform: translate(-50%, -8%) !important;
+  }
+
+  body:not(.page-home) .plaque-brandline{
+    top: calc(64% - 78px);
+    transform: translate(clamp(26px, 7vw, 82px), 0) !important;
+    font-size: 12px;
+    gap: 7px;
+  }
+
+  body:not(.page-home) .plaque-logo{
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Shop-only fine tuning (narrow desktop) */
+  body.page-shop .about-subtitle{
+    width: min(62vw, 560px) !important;
+    max-width: 560px;
+    font-size: clamp(12px, 1.05vw, 15px);
+    line-height: 1.24;
+  }
+
+  body.page-shop .plaque-brandline{
+    top: calc(64% - 72px);
+    transform: translate(clamp(4px, 3.5vw, 40px), 0) !important;
   }
 }
