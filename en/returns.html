@@ -53,7 +53,7 @@
         </li>
 
         <li class="lang-switch" aria-label="Language">
-          <a href="../sv/index.html" data-lang="sv">SV</a>
+          <a href="../sv/retur.html" data-lang="sv">SV</a>
           <span>•</span>
           <a href="returns.html" data-lang="en">EN</a>
           <span>•</span>
@@ -77,9 +77,15 @@
 <main>
   <section class="about-hero">
     <div class="container about-hero-inner">
-      <h1 class="about-title type-title typewriter" dir="ltr"><span id="typewriter-header">Returns</span></h1>
-      
-      
+      <div class="about-plaque" aria-hidden="true"></div>
+      <div class="plaque-brandline">
+        <img src="/assets/logo.png" alt="RAMSTUGA logo" class="plaque-logo">
+        <span class="plaque-brandtext">RAMSTUGA</span>
+      </div>
+      <h1 class="about-title type-title" data-text="Returns"></h1>
+      <p class="about-subtitle type-title-late typewriter" data-text="Clear and fair return policy.&#10;So you always know where you stand.">
+        Clear and fair return policy.<br>So you always know where you stand.
+      </p>
     </div>
   </section>
   <section class="about-story">
@@ -114,24 +120,5 @@
   </div>
 </footer>
   <script src="/assets/script.js" defer></script>
-<script>
-// Typewriter effect for header
-document.addEventListener("DOMContentLoaded", function() {
-  var el = document.getElementById("typewriter-header");
-  if (!el) return;
-  var text = el.textContent;
-  el.textContent = "";
-  var i = 0;
-  var speed = 70;
-  function type() {
-    if (i < text.length) {
-      el.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-  type();
-});
-</script>
 </body>
 </html>
