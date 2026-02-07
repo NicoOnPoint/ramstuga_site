@@ -3063,3 +3063,18 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     transform: translate(clamp(4px, 3.5vw, 40px), 0) !important;
   }
 }
+
+/* Large laptop range: keep shop plaque logo slightly more to the left */
+@media (min-width: 1201px) and (max-width: 1440px){
+  body.page-shop .plaque-brandline{
+    top: calc(62% - 84px);
+    transform: translate(clamp(20px, 4.5vw, 72px), 0) !important;
+  }
+
+  body.page-shop .about-subtitle{
+    width: min(62vw, 650px) !important;
+    max-width: 650px;
+    font-size: clamp(13px, 1.08vw, 16px);
+    line-height: 1.25;
+  }
+}
