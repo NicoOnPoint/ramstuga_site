@@ -56,6 +56,39 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   /* =========================
+     FOOTER CREDIT (GLOBAL)
+  ========================= */
+  function ensureFooterCredit() {
+    const footerInner = document.querySelector(".site-footer .footer-inner");
+    if (!footerInner) return;
+
+    // If a credit link already exists, just normalize class for styling.
+    const existingLink = footerInner.querySelector('a[href*="nico-on-point-webdesign.com"]');
+    if (existingLink) {
+      const p = existingLink.closest("p");
+      if (p) {
+        p.classList.add("footer-credit-webdesign");
+        p.innerHTML =
+          '&copy; Webdesign by: <a href="https://www.nico-on-point-webdesign.com" target="_blank" rel="noopener">www.nico-on-point-webdesign.com</a>';
+      }
+      return;
+    }
+
+    const credit = document.createElement("p");
+    credit.className = "footer-credit footer-credit-webdesign";
+    credit.innerHTML =
+      '&copy; Webdesign by: <a href="https://www.nico-on-point-webdesign.com" target="_blank" rel="noopener">www.nico-on-point-webdesign.com</a>';
+
+    const footerCopy = footerInner.querySelector(".footer-copy");
+    if (footerCopy) {
+      footerInner.insertBefore(credit, footerCopy);
+    } else {
+      footerInner.appendChild(credit);
+    }
+  }
+  ensureFooterCredit();
+
+  /* =========================
      CART BADGE (GLOBAL)
      - primary key renamed to ramstuga_cart with safe migration
   ========================= */
