@@ -2116,11 +2116,24 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   margin-top: 8px;
   margin-bottom: 6px;
   opacity: 1;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .site-footer .footer-credit-webdesign a{
   color: #fff !important;
   border-bottom-color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 700px){
+  .site-footer .footer-credit-webdesign{
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    opacity: .9;
+  }
 }
 
 .site-footer .footer-copy{
@@ -2778,7 +2791,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     padding: 0;
   }
 
-  .site-nav ul{
+  .site-nav #siteMenu{
     display: none;
     position: fixed;
     left: 8px;
@@ -2790,6 +2803,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     max-height: calc(100dvh - 86px);
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
     flex-direction: column;
     gap: 6px;
     padding: 12px;
@@ -2800,15 +2815,15 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     z-index: 30;
   }
 
-  .site-nav ul.open{
+  .site-nav #siteMenu.open{
     display: flex;
   }
 
-  .site-nav ul li{
+  .site-nav #siteMenu li{
     width: 100%;
   }
 
-  .site-nav ul li a{
+  .site-nav #siteMenu li a{
     display: block;
     width: 100%;
     box-sizing: border-box;
@@ -2816,7 +2831,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     overflow-wrap: anywhere;
   }
 
-  .site-nav ul .lang-switch{
+  .site-nav #siteMenu .lang-switch{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

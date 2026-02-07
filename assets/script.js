@@ -47,6 +47,18 @@
         toggle.setAttribute("aria-expanded", "false");
       }
     });
+
+    document.addEventListener("click", (e) => {
+      const isOpen = menu.classList.contains("open");
+      if (!isOpen) return;
+      const target = e.target;
+      const clickInsideMenu = menu.contains(target);
+      const clickOnToggle = toggle.contains(target);
+      if (!clickInsideMenu && !clickOnToggle) {
+        menu.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
   }
 
   /* =========================
