@@ -36,7 +36,7 @@
               <circle cx="9" cy="20" r="1" fill="currentColor"/>
               <circle cx="18" cy="20" r="1" fill="currentColor"/>
             </svg>
-            <span id="cartCount" class="cart-count">0</span>
+            <span data-cart-count="true" class="cart-count">0</span>
           </a>
       </ul>
       <button class="nav-toggle" type="button" aria-label="Meny" aria-expanded="false">☰</button>
@@ -47,7 +47,7 @@
             <circle cx="9" cy="20" r="1" fill="currentColor"/>
             <circle cx="18" cy="20" r="1" fill="currentColor"/>
           </svg>
-          <span id="cartCount" class="cart-count">0</span>
+          <span data-cart-count="true" class="cart-count">0</span>
         </a>
     </nav>
   </div>
@@ -206,9 +206,11 @@
                 <a class="btn primary" href="#" id="paypalLink" target="_blank" rel="noopener">Betala med PayPal</a>
                 <p class="fineprint"> Du kan betala med PayPal-saldo, bank eller kort (även utan PayPal-konto).</p>
               </div>
+            </div>
             <div class="shop-divider"></div>
             <p class="fineprint">
               Använd som referens: <strong>RAMSTUGA + ditt namn, leveransadress och betalningsreferens</strong>
+            </p>
             <div class="form-actions" style="justify-content: space-between; margin-top:12px;">
               <button class="btn" type="button" id="copyRefBtn">Kopiera orderreferens</button>
               <button class="btn primary" type="button" id="paidMailBtn">Jag har betalat → maila order</button>
@@ -229,8 +231,6 @@
         <p class="plaque-line subtle">Handgjort för ditt hem</p>
       </div>
     </div>
-    <!-- ...footer-credit borttagen... -->
-    </p>
     <div class="contact-buttons">
       <a class="btn" href="tel:+46707106182">Ring</a>
       <a class="btn" href="sms:+46707106182?body=Hej%2C%20jag%20vill%20ha%20mer%20information%20om%20ramar">SMS</a>

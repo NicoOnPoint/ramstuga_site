@@ -48,7 +48,7 @@
               <circle cx="9" cy="20" r="1" fill="currentColor"/>
               <circle cx="18" cy="20" r="1" fill="currentColor"/>
             </svg>
-            <span id="cartCount" class="cart-count">0</span>
+            <span data-cart-count="true" class="cart-count">0</span>
           </a>
         </li>
       </ul>
@@ -61,7 +61,7 @@
             <circle cx="9" cy="20" r="1" fill="currentColor"/>
             <circle cx="18" cy="20" r="1" fill="currentColor"/>
           </svg>
-          <span id="cartCount" class="cart-count">0</span>
+          <span data-cart-count="true" class="cart-count">0</span>
         </a>
     </nav>
 
@@ -94,8 +94,7 @@
         <section>
           <div class="section-title" style="margin-bottom:14px;">
             <h2>Standard sizes</h2>
-          </h2>
-          <div class="subtle" style="display:block;margin-top:4px;">Add to cart, pay, email your order.</div>
+            <div class="subtle" style="display:block;margin-top:4px;">Add to cart, pay, email your order.</div>
           </div>
 
           <div class="card pad">
@@ -248,13 +247,13 @@
                 <a class="btn primary" href="#" id="paypalLink" target="_blank" rel="noopener">Pay with PayPal</a>
                 <p class="fineprint"> You can pay with PayPal balance, bank, or card (also without a PayPal account).</p>
               </div>
-
-              
+            </div>
 
             <div class="shop-divider"></div>
 
             <p class="fineprint">
               Use as reference: <strong>RAMSTUGA + your name, shipping address, and payment reference</strong>
+            </p>
 
             <div class="form-actions" style="justify-content: space-between; margin-top:12px;">
               <button class="btn" type="button" id="copyRefBtn">Copy order reference</button>
@@ -282,8 +281,6 @@
         <p class="plaque-line subtle">Handcrafted for your home</p>
       </div>
     </div>
-    <!-- ...footer-credit removed... -->
-    </p>
     <div class="contact-buttons">
       <a class="btn" href="tel:+46707106182">Call</a>
       <a class="btn" href="sms:+46707106182?body=Hi%2C%20I%20would%20like%20more%20information%20about%20frames">SMS</a>

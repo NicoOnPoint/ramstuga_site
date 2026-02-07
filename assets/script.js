@@ -94,11 +94,13 @@
   }
 
   function updateCartBadge() {
-    const badge = document.getElementById("cartCount");
-    if (!badge) return;
+    const badges = document.querySelectorAll('[data-cart-count="true"], #cartCount');
+    if (!badges.length) return;
     const items = getCart();
     const count = items.reduce((sum, it) => sum + (Number(it?.qty) || 0), 0);
-    badge.textContent = String(count);
+    badges.forEach((badge) => {
+      badge.textContent = String(count);
+    });
   }
 
   updateCartBadge();
