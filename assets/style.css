@@ -2835,9 +2835,23 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     flex-wrap: wrap;
     justify-content: center;
     row-gap: 4px;
-    margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px solid rgba(31,30,28,.08);
+    order: -1;
+    margin-top: 0;
+    margin-bottom: 8px;
+    padding-top: 0;
+    padding-bottom: 8px;
+    border-top: 0;
+    border-bottom: 1px solid rgba(31,30,28,.08);
+  }
+
+  .site-nav #siteMenu .lang-switch a{
+    width: auto !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 10px;
+    white-space: nowrap;
   }
 
   .site-nav .nav-cart-item{
