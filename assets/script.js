@@ -235,6 +235,85 @@
   }
 
   /* =========================
+     HERO PLAQUE FIT CHECK
+     - If title/subtitle doesn't fit inside plaque, enable fallback mode
+  ========================= */
+  function setupHeroPlaqueFitFallback() {
+    const heroInner = document.querySelector(".about-hero-inner");
+    if (!heroInner) return;
+
+    const plaque = heroInner.querySelector(".about-plaque, .shop-hero-plaque");
+    if (!plaque) return;
+
+    const titleEl = heroInner.querySelector(".about-title");
+    const subtitleEl = heroInner.querySelector(".about-subtitle");
+    const brandEl = heroInner.querySelector(".plaque-brandline");
+
+    const fitsInside = (plaqueRect, el, inset = 8) => {
+      if (!el) return true;
+      const style = window.getComputedStyle(el);
+      if (style.display === "none" || style.visibility === "hidden") return true;
+      const r = el.getBoundingClientRect();
+      return (
+        r.left >= plaqueRect.left + inset &&
+        r.right <= plaqueRect.right - inset &&
+        r.top >= plaqueRect.top + inset &&
+        r.bottom <= plaqueRect.bottom - inset
+      );
+    };
+
+    const evaluateFit = () => {
+      const plaqueStyle = window.getComputedStyle(plaque);
+      if (
+        plaqueStyle.display === "none" ||
+        plaqueStyle.visibility === "hidden" ||
+        plaqueStyle.opacity === "0"
+      ) {
+        heroInner.classList.remove("hero-plaque-fallback");
+        return;
+      }
+
+      const pr = plaque.getBoundingClientRect();
+      if (pr.width < 80 || pr.height < 50) {
+        heroInner.classList.remove("hero-plaque-fallback");
+        return;
+      }
+
+      const shouldFallback =
+        !fitsInside(pr, titleEl, 10) ||
+        !fitsInside(pr, subtitleEl, 10) ||
+        !fitsInside(pr, brandEl, 6);
+
+      heroInner.classList.toggle("hero-plaque-fallback", shouldFallback);
+    };
+
+    const scheduleEvaluate = () => {
+      requestAnimationFrame(evaluateFit);
+    };
+
+    scheduleEvaluate();
+    setTimeout(scheduleEvaluate, 250);
+    setTimeout(scheduleEvaluate, 800);
+    setTimeout(scheduleEvaluate, 1400);
+
+    window.addEventListener("resize", scheduleEvaluate, { passive: true });
+    window.addEventListener("orientationchange", scheduleEvaluate);
+
+    const ro = new ResizeObserver(scheduleEvaluate);
+    ro.observe(heroInner);
+    ro.observe(plaque);
+    if (titleEl) ro.observe(titleEl);
+    if (subtitleEl) ro.observe(subtitleEl);
+    if (brandEl) ro.observe(brandEl);
+
+    const mo = new MutationObserver(scheduleEvaluate);
+    if (titleEl) mo.observe(titleEl, { childList: true, subtree: true, characterData: true });
+    if (subtitleEl) mo.observe(subtitleEl, { childList: true, subtree: true, characterData: true });
+  }
+
+  setupHeroPlaqueFitFallback();
+
+  /* =========================
      SHOP PAGE (PayPal + Swish QR)
   ========================= */
   const isShopPage = document.body && document.body.classList.contains("page-shop");

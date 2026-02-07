@@ -881,6 +881,20 @@ h2{
   left: 0;
 }
 
+/* Automatic fallback when hero text does not fit inside plaque */
+.about-hero-inner.hero-plaque-fallback .about-plaque,
+.about-hero-inner.hero-plaque-fallback .shop-hero-plaque{
+  display: none !important;
+}
+
+.about-hero-inner.hero-plaque-fallback .about-title,
+.about-hero-inner.hero-plaque-fallback .about-subtitle,
+.about-hero-inner.hero-plaque-fallback .plaque-brandline,
+.about-hero-inner.hero-plaque-fallback .plaque-brandtext{
+  color: #fff !important;
+  text-shadow: 0 4px 24px #000e, 0 2px 8px #000a, 0 1px 0 #0008 !important;
+}
+
 .grid-3{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
