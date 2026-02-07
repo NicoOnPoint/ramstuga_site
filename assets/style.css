@@ -2800,14 +2800,13 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     width: auto;
     max-width: none;
     box-sizing: border-box;
-    max-height: calc(100dvh - 86px);
+    max-height: calc(100dvh - 82px);
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: max(18px, env(safe-area-inset-bottom));
     flex-direction: column;
     gap: 6px;
-    padding: 12px;
+    padding: 12px 12px max(18px, env(safe-area-inset-bottom));
     border-radius: 14px;
     border: 1px solid rgba(31,30,28,.12);
     background: rgba(244,241,236,.97);
@@ -2836,6 +2835,9 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     flex-wrap: wrap;
     justify-content: center;
     row-gap: 4px;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(31,30,28,.08);
   }
 
   .site-nav .nav-cart-item{
