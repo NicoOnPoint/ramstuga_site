@@ -342,7 +342,11 @@ footer,
 }
 @media (max-width: 700px) {
   body:not(.page-home) .about-title {
-    transform: translate(20px, -58px) rotate(-8deg) !important;
+    transform: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    max-width: 94vw !important;
   }
   body:not(.page-home) .about-subtitle {
     margin-top: 4px !important;
@@ -869,6 +873,12 @@ h2{
   letter-spacing: .02em;
   position: relative;
   left: 70px;
+}
+
+/* Hero headings should never inherit the generic typewriter horizontal offset */
+.about-title.typewriter,
+.hero-wood-title.typewriter{
+  left: 0;
 }
 
 .grid-3{
@@ -1859,13 +1869,30 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
 /* Mobiel */
 @media (max-width: 600px){
+  .about-hero-inner .about-title.typewriter{
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 100%;
+    max-width: 92vw;
+  }
+
   .about-title{
-    font-size: clamp(56px, 12vw, 84px);
-    transform: translate(20px, 22px) rotate(-8deg); /* iets omhoog */
+    font-size: clamp(34px, 9.2vw, 52px);
+    max-width: 88vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    transform: none;
   }
 
   .maatwerk .about-title{
-    font-size: clamp(34px, 8vw, 52px);
+    font-size: clamp(32px, 8.6vw, 48px);
+    max-width: 92vw;
+    transform: none;
   }
 
   .maatwerk .about-hero-inner{
@@ -1877,12 +1904,17 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   }
 
   .about-subtitle{
-    font-size: 18px;
-    transform: translateX(-50%);
+    font-size: 16px;
+    left: auto;
+    width: min(92vw, 34ch);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    transform: none;
   }
 
   .page-portfolio .about-subtitle{
-    transform: translateX(-50%) translateX(-10px);
+    transform: none;
   }
 
   .page-portfolio .section-title{
@@ -1892,6 +1924,13 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
   .page-portfolio .section-title .subtle{
     margin-top: 6px;
+  }
+}
+
+@media (max-width: 420px){
+  .about-title{
+    font-size: clamp(30px, 8.8vw, 42px);
+    max-width: 94vw;
   }
 }
 .nav-cart-item{
@@ -2707,12 +2746,16 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
   .site-nav ul{
     display: none;
-    position: absolute;
-    right: 0;
-    top: calc(100% + 10px);
-    width: min(320px, 92vw);
-    max-height: 70vh;
-    overflow: auto;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    top: calc(env(safe-area-inset-top) + 74px);
+    width: auto;
+    max-width: none;
+    box-sizing: border-box;
+    max-height: calc(100dvh - 86px);
+    overflow-y: auto;
+    overflow-x: hidden;
     flex-direction: column;
     gap: 6px;
     padding: 12px;
@@ -2734,6 +2777,16 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   .site-nav ul li a{
     display: block;
     width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .site-nav ul .lang-switch{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 4px;
   }
 
   .site-nav .nav-cart-item{
@@ -2810,9 +2863,27 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   }
 }
 
+@media (max-width: 900px){
+  body:not(.page-home) .about-title{
+    width: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    line-height: 1.08 !important;
+    font-size: clamp(30px, 8.4vw, 44px) !important;
+    transform: none !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    hyphens: auto !important;
+  }
 
-
-
-
-
-
+  body:not(.page-home) .about-subtitle{
+    width: min(92vw, 34ch) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    left: auto !important;
+    transform: none !important;
+  }
+}
