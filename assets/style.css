@@ -2077,6 +2077,26 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   }
 }
 
+/* Laptop: make About photo + wooden frame composition smaller so it stays in view */
+@media (min-width: 901px) and (max-width: 1400px){
+  .about-story .about-grid{
+    gap: 38px;
+    grid-template-columns: .95fr 1.15fr;
+  }
+
+  .about-story .about-frame{
+    max-width: 470px;
+  }
+
+  .about-story .frame-back{
+    transform: translateX(-18px) translateY(18px) scale(0.94);
+  }
+
+  .about-story .frame-img{
+    transform: scale(1.5) translate(-16px, 10px);
+  }
+}
+
 /* ===== FOOTER ===== */
 
 .site-footer{
@@ -3071,9 +3091,30 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   }
 }
 
-/* Keep hero plaque text white on all middle pages (also desktop). */
-body:not(.page-home) .about-hero-inner .about-subtitle,
+/* Keep plaque logo/brand text white on all middle pages (also desktop). */
 body:not(.page-home) .about-hero-inner .plaque-brandline,
 body:not(.page-home) .about-hero-inner .plaque-brandtext{
   color: #fff !important;
+}
+
+/* Non-mobile: make hero typewriter subtitle slightly bolder on all middle pages */
+@media (min-width: 901px){
+  body:not(.page-home) .about-hero-inner .about-subtitle{
+    font-weight: 600;
+    font-size: clamp(15px, 1.28vw, 19px) !important;
+    width: min(56vw, 620px) !important;
+    max-width: 620px;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+}
+
+/* Extra compact on laptops so subtitle never falls outside the plaque */
+@media (min-width: 901px) and (max-width: 1400px){
+  body:not(.page-home) .about-hero-inner .about-subtitle{
+    font-size: clamp(14px, 1.15vw, 17px) !important;
+    width: min(52vw, 560px) !important;
+    max-width: 560px;
+    line-height: 1.28;
+  }
 }
