@@ -2999,10 +2999,10 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
   body:not(.page-home) .plaque-brandline{
     z-index: 4;
-    top: calc(62% - 92px);
+    top: calc(62% - 86px);
     left: 50%;
     right: auto;
-    transform: translate(clamp(48px, 10vw, 140px), 0) !important;
+    transform: translate(clamp(8px, 5vw, 70px), 0) !important;
   }
 
   /* Shop-only fine tuning */
@@ -3013,10 +3013,6 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     line-height: 1.26;
   }
 
-  body.page-shop .plaque-brandline{
-    top: calc(62% - 86px);
-    transform: translate(clamp(8px, 5vw, 70px), 0) !important;
-  }
 }
 
 /* Narrow desktop / laptop: keep brandline and typing safely inside plaque */
@@ -3039,8 +3035,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   }
 
   body:not(.page-home) .plaque-brandline{
-    top: calc(64% - 78px);
-    transform: translate(clamp(26px, 7vw, 82px), 0) !important;
+    top: calc(64% - 72px);
+    transform: translate(clamp(4px, 3.5vw, 40px), 0) !important;
     font-size: 12px;
     gap: 7px;
   }
@@ -3058,15 +3054,11 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     line-height: 1.24;
   }
 
-  body.page-shop .plaque-brandline{
-    top: calc(64% - 72px);
-    transform: translate(clamp(4px, 3.5vw, 40px), 0) !important;
-  }
 }
 
 /* Large laptop range: keep shop plaque logo slightly more to the left */
 @media (min-width: 1201px) and (max-width: 1440px){
-  body.page-shop .plaque-brandline{
+  body:not(.page-home) .plaque-brandline{
     top: calc(62% - 84px);
     transform: translate(clamp(20px, 4.5vw, 72px), 0) !important;
   }
@@ -3077,4 +3069,11 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     font-size: clamp(13px, 1.08vw, 16px);
     line-height: 1.25;
   }
+}
+
+/* Keep hero plaque text white on all middle pages (also desktop). */
+body:not(.page-home) .about-hero-inner .about-subtitle,
+body:not(.page-home) .about-hero-inner .plaque-brandline,
+body:not(.page-home) .about-hero-inner .plaque-brandtext{
+  color: #fff !important;
 }
