@@ -3233,31 +3233,3 @@ body:not(.page-home) .about-hero-inner .plaque-brandtext{
     top: -155px !important;
   }
 }
-
-/* Extra kleine kopie rechtsboven in de header-plaque (laptop/desktop) */
-@media (min-width: 901px){
-  body:not(.page-home) .about-hero-inner .plaque-brandline{
-    display: inline-flex !important;
-    left: auto !important;
-    right: clamp(14%, 18vw, 24%) !important;
-    top: calc(51% - 108px) !important;
-    transform: none !important;
-    z-index: 7 !important;
-    gap: 8px;
-    font-size: 12px !important;
-    letter-spacing: .14em;
-  }
-
-  body:not(.page-home) .about-hero-inner .plaque-logo{
-    width: 20px !important;
-    height: 20px !important;
-  }
-}
-
-/* Laptop-only fine tune: kleine kopie meer naar links en lager */
-@media (min-width: 901px) and (max-width: 1400px){
-  body:not(.page-home) .about-hero-inner .plaque-brandline{
-    right: clamp(25%, 30vw, 38%) !important;
-    top: calc(51% - 78px) !important;
-  }
-}
