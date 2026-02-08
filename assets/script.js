@@ -200,6 +200,14 @@
   /* =========================
      HERO TITLE TYPE-ON (HOME)
   ========================= */
+  document.querySelectorAll("body:not(.page-home) .about-hero-inner").forEach((heroInner) => {
+    if (heroInner.querySelector(".page-hero-brand")) return;
+    const brand = document.createElement("div");
+    brand.className = "hero-brand page-hero-brand typewriter";
+    brand.setAttribute("data-text", "RAMSTUGA");
+    heroInner.insertBefore(brand, heroInner.firstChild);
+  });
+
   const typeTitles = document.querySelectorAll(".type-title[data-text]");
   const typeTitlesLate = document.querySelectorAll(".type-title-late[data-text]");
   const typeTitlesLate2 = document.querySelectorAll(".type-title-late2[data-text]");
@@ -253,9 +261,63 @@
       return startDelay + chars.length * speed;
     };
 
+    const homeBrandExtras = Array.from(
+      document.querySelectorAll(".page-home .hero-brand.typewriter[data-text]")
+    );
+    const pageHeroBrands = Array.from(
+      document.querySelectorAll(".about-hero-inner .page-hero-brand.typewriter[data-text]")
+    );
+    const aboutTitleEls = Array.from(
+      document.querySelectorAll(".about-hero-inner .about-title.type-title[data-text]")
+    );
+    const homeTitleEls = Array.from(
+      document.querySelectorAll(".page-home .hero-wood-title.type-title[data-text]")
+    );
+    const otherTypeTitles = Array.from(typeTitles).filter(
+      (el) => !homeTitleEls.includes(el) && !aboutTitleEls.includes(el)
+    );
+    const otherExtras = Array.from(typewriterExtras).filter(
+      (el) => !homeBrandExtras.includes(el) && !pageHeroBrands.includes(el)
+    );
+
     let longest = 0;
-    typeTitles.forEach((el, idx) => {
-      const endAt = typeElement(el, 150 + idx * 60, TYPE_SPEED);
+
+    // Home sequence: first "RAMSTUGA" near logo, then the big hero headline.
+    let longestHomeBrand = 0;
+    homeBrandExtras.forEach((el, idx) => {
+      const endAt = typeElement(el, 120 + idx * 50, TYPE_SPEED);
+      longestHomeBrand = Math.max(longestHomeBrand, endAt);
+    });
+    if (longestHomeBrand) {
+      longest = Math.max(longest, longestHomeBrand);
+    }
+
+    const homeTitleDelay = (longestHomeBrand || 0) ? longestHomeBrand + 120 : 150;
+    homeTitleEls.forEach((el, idx) => {
+      const endAt = typeElement(el, homeTitleDelay + idx * 60, TYPE_SPEED);
+      longest = Math.max(longest, endAt);
+    });
+
+    // Middle pages: first type top centered brand, then page title.
+    let longestPageHeroBrand = 0;
+    const pageHeroBrandStart = (longest || 0) ? longest + 180 : 360;
+    pageHeroBrands.forEach((el, idx) => {
+      const endAt = typeElement(el, pageHeroBrandStart + idx * 70, TYPE_SPEED);
+      longestPageHeroBrand = Math.max(longestPageHeroBrand, endAt);
+    });
+    if (longestPageHeroBrand) {
+      longest = Math.max(longest, longestPageHeroBrand);
+    }
+
+    const aboutTitleDelay = (longestPageHeroBrand || 0) ? longestPageHeroBrand + 120 : ((longest || 0) ? longest + 120 : 150);
+    aboutTitleEls.forEach((el, idx) => {
+      const endAt = typeElement(el, aboutTitleDelay + idx * 60, TYPE_SPEED);
+      longest = Math.max(longest, endAt);
+    });
+
+    const otherTitleDelay = (longest || 0) ? longest + 120 : 150;
+    otherTypeTitles.forEach((el, idx) => {
+      const endAt = typeElement(el, otherTitleDelay + idx * 60, TYPE_SPEED);
       longest = Math.max(longest, endAt);
     });
 
@@ -274,7 +336,7 @@
     });
 
     const extrasDelay = (longestLate2 || late2Delay) + 250;
-    typewriterExtras.forEach((el, idx) => {
+    otherExtras.forEach((el, idx) => {
       typeElement(el, extrasDelay + idx * 60, TYPE_SPEED);
     });
   }
