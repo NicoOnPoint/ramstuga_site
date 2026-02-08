@@ -3188,3 +3188,11 @@ body:not(.page-home) .about-hero-inner .plaque-brandtext{
     line-height: 1.28;
   }
 }
+
+/* NL maatwerk desktop: title should sit higher than global middle-page offset */
+@media (min-width: 901px){
+  html[lang="nl"] body.page-maatwerk .about-hero-inner .about-title{
+    margin-top: clamp(48px, 5.8vw, 92px) !important;
+    transform: translateY(clamp(28px, 3.8vw, 56px)) rotate(-9deg) !important;
+  }
+}
