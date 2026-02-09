@@ -354,7 +354,12 @@
     const o = formToObject(form);
     const subject = encodeURIComponent("Maatwerk aanvraag – RAMSTUGA");
     const body = encodeURIComponent(buildSummary(o));
-    window.location.href = `mailto:info@ramstuga.se?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@ramstuga.se?subject=${subject}&body=${body}`;
+    const mailWindow = window.open(mailtoUrl, "_blank");
+    if (!mailWindow) window.location.href = mailtoUrl;
+    setTimeout(() => {
+      window.location.href = "bedankt.html";
+    }, 250);
   });
 </script>
 
