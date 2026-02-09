@@ -239,15 +239,7 @@
 
           <!-- ACTIES -->
           <div class="form-actions">
-            <button class="btn primary" type="submit">
-              Voeg toe aan winkelwagen
-            </button>
-
-            <button class="btn" type="button" id="mailBtn">
-              Verstuur als e-mail
-            </button>
-
-            <span class="subtle" id="statusMsg" aria-live="polite"></span>
+            <button class="btn primary" type="submit">Verstuur aanvraag</button>
           </div>
 
           <p class="fineprint">
@@ -306,28 +298,6 @@
 
 <script>
   // ---------- Helpers ----------
-  function getCart() {
-    try {
-      const raw = localStorage.getItem("ramstuga_cart") || "[]";
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
-  }
-
-  function setCart(items) {
-    localStorage.setItem("ramstuga_cart", JSON.stringify(items));
-    updateCartBadge();
-  }
-
-  function updateCartBadge() {
-    const items = getCart();
-    const count = items.reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
-    const el = document.getElementById("cartCount");
-    if (el) el.textContent = String(count);
-  }
-
   function formToObject(form) {
     const data = new FormData(form);
     const obj = {};
@@ -358,14 +328,11 @@
   }
 
   // ---------- Init ----------
-  updateCartBadge();
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // ---------- Form handlers ----------
   const form = document.getElementById("customOrderForm");
-  const statusMsg = document.getElementById("statusMsg");
-  const mailBtn = document.getElementById("mailBtn");
   const backPanelSelect = document.getElementById("backPanelSelect");
   const backPanelCustomWrap = document.getElementById("backPanelCustomWrap");
   const backPanelCustomInput = document.getElementById("backPanelCustomInput");
@@ -384,27 +351,6 @@
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const o = formToObject(form);
-
-    const cart = getCart();
-    cart.push({
-      id: "maatwerk-" + Date.now(),
-      type: "maatwerk",
-      title: "Maatwerk lijst",
-      qty: Number(o.qty) || 1,
-      price: 0, // offerte (later prijs)
-      meta: o,
-      summary: buildSummary(o)
-    });
-
-    setCart(cart);
-
-    if (statusMsg) statusMsg.textContent = "Toegevoegd aan winkelwagen ✅";
-    // Optioneel doorsturen:
-    // window.location.href = "shop.html";
-  });
-
-  mailBtn.addEventListener("click", () => {
     const o = formToObject(form);
     const subject = encodeURIComponent("Maatwerk aanvraag – RAMSTUGA");
     const body = encodeURIComponent(buildSummary(o));

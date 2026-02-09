@@ -217,9 +217,7 @@
           </label>
 
           <div class="form-actions">
-            <button class="btn primary" type="submit">Add to cart</button>
-            <button class="btn" type="button" id="mailBtn">Send by email</button>
-            <span class="subtle" id="statusMsg" aria-live="polite"></span>
+            <button class="btn primary" type="submit">Send request</button>
           </div>
 
           <p class="fineprint">
@@ -273,29 +271,6 @@
 
 <script src="/assets/script.js" defer></script>
 <script>
-  function getCart() {
-    try {
-      const raw = localStorage.getItem("ramstuga_cart") || "[]";
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
-  }
-
-  function setCart(items) {
-    localStorage.setItem("ramstuga_cart", JSON.stringify(items));
-    updateCartBadge();
-  }
-
-  function updateCartBadge() {
-    const items = getCart();
-    const count = items.reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
-    document.querySelectorAll("[data-cart-count='true']").forEach((el) => {
-      el.textContent = String(count);
-    });
-  }
-
   function formToObject(form) {
     const data = new FormData(form);
     const obj = {};
@@ -325,13 +300,10 @@
     ].filter(Boolean).join("\n");
   }
 
-  updateCartBadge();
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   const form = document.getElementById("customOrderForm");
-  const statusMsg = document.getElementById("statusMsg");
-  const mailBtn = document.getElementById("mailBtn");
   const backPanelSelect = document.getElementById("backPanelSelect");
   const backPanelCustomWrap = document.getElementById("backPanelCustomWrap");
   const backPanelCustomInput = document.getElementById("backPanelCustomInput");
@@ -350,22 +322,6 @@
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const o = formToObject(form);
-    const cart = getCart();
-    cart.push({
-      id: "custom-" + Date.now(),
-      type: "maatwerk",
-      title: "Custom frame",
-      qty: Number(o.qty) || 1,
-      price: 0,
-      meta: o,
-      summary: buildSummary(o)
-    });
-    setCart(cart);
-    if (statusMsg) statusMsg.textContent = "Added to cart";
-  });
-
-  mailBtn.addEventListener("click", () => {
     const o = formToObject(form);
     const subject = encodeURIComponent("Custom request - RAMSTUGA");
     const body = encodeURIComponent(buildSummary(o));
