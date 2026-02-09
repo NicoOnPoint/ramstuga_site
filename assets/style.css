@@ -1435,6 +1435,47 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   .story-text p{ font-size: 18px; }
 }
 
+/* Tablet/mobile landscape fix: voorkomt grote lege ruimte op home rond 601-900px */
+@media (min-width: 601px) and (max-width: 900px){
+  .page-home .hero-wood{
+    min-height: 430px;
+    padding-bottom: 0;
+  }
+
+  .page-home .hero-wood-inner{
+    min-height: 430px;
+    padding-bottom: 0;
+  }
+
+  .page-home .hero-wood-title{
+    top: 102px;
+    font-size: clamp(36px, 5.8vw, 52px);
+    max-width: 11ch;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  .page-home .hero-frames{
+    top: 16%;
+    height: 270px;
+  }
+
+  .page-home .frame-blue{
+    top: -44px;
+    height: 250px;
+  }
+
+  .page-home .frame-grey{
+    top: 136px;
+    height: 180px;
+  }
+
+  .page-home .story{
+    margin-top: 0;
+    padding-top: 48px;
+  }
+}
+
 @media (max-width: 600px){
     .footer-plaque .plaque-content {
       transform: translateY(-8px);
@@ -1454,7 +1495,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
   .page-home .hero-wood-title{
     left: 10px;
-    top: 185px;
+    top: 135px;
     font-size: clamp(34px, 9.5vw, 52px);
     --titleRot: -10deg;
     max-width: 92vw;
@@ -1470,7 +1511,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
   .page-home .hero-frames{
     left: 35%;
-    top: 35%;
+    top: 26%;
     transform: translate(-50%, -50%);
     width: 100%;
     height: 380px;
@@ -1499,8 +1540,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     display: none;
   }
 
-  .story{
-    margin-top: 0;
+  .page-home .story{
+    margin-top: -90px;
     padding: 96px 0 98px;
   }
 
@@ -1532,12 +1573,12 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     font-size: clamp(30px, 9.5vw, 46px);
     --titleRot: -7deg;
     max-width: 92vw;
-    top: 170px;
+    top: 125px;
   }
 
   .page-home .hero-frames{
     left: 35%;
-    top: 34%;
+    top: 25%;
   }
 
   .page-home .frame-blue{
@@ -1552,8 +1593,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     top: 228px;
   }
 
-  .story{
-    margin-top: 0;
+  .page-home .story{
+    margin-top: -90px;
     padding: 90px 0 92px;
   }
 
@@ -1569,7 +1610,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   .hero-wood-inner{ min-height: 660px; }
 
   .page-home .hero-wood-title{
-    top: 160px;
+    top: 118px;
     font-size: clamp(28px, 9vw, 42px);
     --titleRot: -6deg;
     max-width: 92vw;
@@ -1577,7 +1618,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 
   .page-home .hero-frames{
     left: 35%;
-    top: 34%;
+    top: 25%;
     height: 320px;
   }
 
@@ -1600,8 +1641,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     bottom: 16px;
   }
 
-  .story{
-    margin-top: 0;
+  .page-home .story{
+    margin-top: -90px;
     padding: 84px 0 86px;
   }
 
