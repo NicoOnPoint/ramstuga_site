@@ -188,6 +188,22 @@
             </label>
 
             <label>
+              Achterwand
+              <select name="back_panel" id="backPanelSelect" required>
+                <option value="Karton" selected>Karton</option>
+                <option value="Multiplex 3mm">Multiplex 3mm</option>
+                <option value="anders">Anders (zelf opgeven)</option>
+              </select>
+            </label>
+          </div>
+
+          <label id="backPanelCustomWrap" style="display:none;">
+            Achterwand (zelf opgeven)
+            <input type="text" name="back_panel_custom" id="backPanelCustomInput" placeholder="Bijv. MDF 2,5 mm" />
+          </label>
+
+          <div class="form-grid">
+            <label>
               Aantal
               <input type="number" name="qty" min="1" value="1" required />
             </label>
@@ -320,6 +336,7 @@
   }
 
   function buildSummary(o) {
+    const backPanel = o.back_panel === "anders" ? (o.back_panel_custom || "Anders (niet opgegeven)") : (o.back_panel || "-");
     return [
       `Maatwerk lijst`,
       ``,
@@ -331,6 +348,7 @@
       `Oriëntatie: ${o.orientation}`,
       `Glas/Plexi: ${o.front}`,
       `Ophangsysteem: ${o.hanging}`,
+      `Achterwand: ${backPanel}`,
       `Aantal: ${o.qty}`,
       ``,
       `Wensen: ${o.notes || "-"}`,
@@ -348,6 +366,21 @@
   const form = document.getElementById("customOrderForm");
   const statusMsg = document.getElementById("statusMsg");
   const mailBtn = document.getElementById("mailBtn");
+  const backPanelSelect = document.getElementById("backPanelSelect");
+  const backPanelCustomWrap = document.getElementById("backPanelCustomWrap");
+  const backPanelCustomInput = document.getElementById("backPanelCustomInput");
+
+  function updateBackPanelCustomVisibility() {
+    const isCustom = backPanelSelect && backPanelSelect.value === "anders";
+    if (backPanelCustomWrap) backPanelCustomWrap.style.display = isCustom ? "block" : "none";
+    if (backPanelCustomInput) backPanelCustomInput.required = !!isCustom;
+    if (!isCustom && backPanelCustomInput) backPanelCustomInput.value = "";
+  }
+
+  if (backPanelSelect) {
+    backPanelSelect.addEventListener("change", updateBackPanelCustomVisibility);
+    updateBackPanelCustomVisibility();
+  }
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();

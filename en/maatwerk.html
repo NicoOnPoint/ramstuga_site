@@ -82,62 +82,155 @@
 
   <section class="about-story">
     <div class="container" style="width:min(1100px,92vw);">
-
-      <div class="section-title">
-        <h2>How does custom work?</h2>
-        <div class="subtle">Request a quote and we’ll get back to you quickly.</div>
+      <div class="section-title" style="margin-bottom:18px; flex-direction: column; align-items: flex-start;">
+        <h2>Custom order</h2>
+        <div class="subtle" style="margin-top:6px;">Fill in as much as possible so we can respond quickly.</div>
       </div>
 
-      <div class="shop-help-grid" style="margin-top:18px;">
-        <article class="card">
-          <div class="shop-help-media">
-            <img src="/images/measure-guide-cm.png" alt="Meetgids" loading="lazy">
+      <div class="card pad" style="max-width:980px; margin:0 auto;">
+        <form id="customOrderForm">
+          <div class="form-grid">
+            <label>
+              Inner width (mm)
+              <input type="number" name="width_mm" min="1" required placeholder="Example: 300" />
+            </label>
+            <label>
+              Inner height (mm)
+              <input type="number" name="height_mm" min="1" required placeholder="Example: 400" />
+            </label>
           </div>
-          <div class="pad">
-            <div class="kicker">Step 1</div>
-            <h3>Measure your size</h3>
-            <p>Measure the photo (or opening). Note the desired outer size and depth.</p>
-          </div>
-        </article>
 
-        <article class="card">
-          <div class="shop-help-media">
-            <img src="/images/finishes.png" alt="Afwerkingen" loading="lazy">
+          <div class="form-grid">
+            <label>
+              Frame thickness (mm)
+              <select name="frame_thickness_mm" required>
+                <option value="25">25 mm</option>
+                <option value="35" selected>35 mm</option>
+                <option value="45">45 mm</option>
+                <option value="custom">Other (write in notes)</option>
+              </select>
+            </label>
+            <label>
+              Visible window for photo/art (mm)
+              <input type="text" name="window_mm" placeholder="Example: 280x380 (optional)" />
+            </label>
           </div>
-          <div class="pad">
-            <div class="kicker">Step 2</div>
-            <h3>Choose finish</h3>
-            <p>Light, dark, or weathered gray — optionally with special treatment.</p>
+
+          <div class="form-grid">
+            <label>
+              Wood type
+              <select name="wood_type" required>
+                <option value="reclaimed" selected>Reclaimed wood (rustic)</option>
+                <option value="pine">Pine</option>
+                <option value="oak">Oak</option>
+                <option value="birch">Birch</option>
+                <option value="other">Other (write in notes)</option>
+              </select>
+            </label>
+            <label>
+              Finish / color
+              <select name="finish" required>
+                <option value="natural" selected>Natural / matte oil</option>
+                <option value="light">Light (whitewash / light oil)</option>
+                <option value="dark">Dark (walnut look)</option>
+                <option value="gray">Weathered gray</option>
+                <option value="color">Color (write in notes)</option>
+              </select>
+            </label>
           </div>
-        </article>
 
-        <article class="card">
-          <div class="shop-help-media">
-            <img src="/images/wood-detail.png" alt="Hout detail" loading="lazy">
+          <div class="form-grid">
+            <label>
+              Orientation
+              <select name="orientation" required>
+                <option value="portrait">Portrait</option>
+                <option value="landscape">Landscape</option>
+                <option value="square">Square</option>
+              </select>
+            </label>
+            <label>
+              Glass / acrylic
+              <select name="front" required>
+                <option value="none" selected>None (open frame)</option>
+                <option value="glass">Glass</option>
+                <option value="acrylic">Acrylic</option>
+              </select>
+            </label>
           </div>
-          <div class="pad">
-            <div class="kicker">Step 3</div>
-            <h3>Send your request</h3>
-            <p>We respond quickly with price and planning. Then we build your custom frame.</p>
+
+          <div class="form-grid">
+            <label>
+              Hanging system
+              <select name="hanging" required>
+                <option value="standard" selected>Standard (bracket/hook)</option>
+                <option value="sawtooth">Sawtooth hanger</option>
+                <option value="wire">Wire</option>
+                <option value="other">Other (write in notes)</option>
+              </select>
+            </label>
+            <label>
+              Back panel
+              <select name="back_panel" id="backPanelSelect" required>
+                <option value="Cardboard" selected>Cardboard</option>
+                <option value="Plywood 3mm">Plywood 3mm</option>
+                <option value="other">Other (specify)</option>
+              </select>
+            </label>
           </div>
-        </article>
-      </div>
 
-      <div class="card pad" style="margin-top:18px;">
-        <div class="section-title" style="margin-bottom:10px;">
-          <h2>Request a quote</h2>
-          <div class="subtle">Use email, call, or WhatsApp.</div>
-        </div>
+          <label id="backPanelCustomWrap" style="display:none;">
+            Back panel (specify)
+            <input type="text" name="back_panel_custom" id="backPanelCustomInput" placeholder="For example: MDF 2.5 mm" />
+          </label>
 
-        <div class="form-actions" style="justify-content:flex-start; gap:10px;">
-          <a class="btn" href="tel:+46707106182">Call us</a>
-          <a class="btn" href="mailto:info@ramstuga.se">Email</a>
-          <a class="btn" href="https://wa.me/46707106182?text=Hi%2C%20I%20would%20like%20more%20information%20about%20custom%20frames" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
+          <div class="form-grid">
+            <label>
+              Quantity
+              <input type="number" name="qty" min="1" value="1" required />
+            </label>
+          </div>
 
-        <p class="fineprint" style="margin-top:10px;">
-          Please include: desired inner size, outer size, depth, and finish.
-        </p>
+          <label>
+            Specific wishes (color code, reference link, corner finish, etc.)
+            <textarea name="notes" placeholder="Tell us what you have in mind..."></textarea>
+          </label>
+
+          <div class="section-title" style="margin-top:16px;">
+            <h2>Contact</h2>
+            <div class="subtle">For quote and follow-up</div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Name
+              <input type="text" name="customer_name" required placeholder="Your name" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="customer_email" required placeholder="name@mail.com" />
+            </label>
+          </div>
+
+          <label>
+            Phone (optional)
+            <input type="tel" name="customer_phone" placeholder="+46 / +31 / ..." />
+          </label>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Add to cart</button>
+            <button class="btn" type="button" id="mailBtn">Send by email</button>
+            <span class="subtle" id="statusMsg" aria-live="polite"></span>
+          </div>
+
+          <p class="fineprint">
+            * Custom orders are usually handled as quotes. We contact you with price and lead time.
+          </p>
+          <div class="contact-buttons">
+            <a class="btn" href="tel:+46707106182">Call</a>
+            <a class="btn" href="sms:+46707106182?body=Hi%2C%20I%20would%20like%20more%20information%20about%20frames">SMS</a>
+            <a class="btn" href="https://wa.me/46707106182?text=Hi%2C%20I%20would%20like%20more%20information" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </form>
       </div>
 
     </div>
@@ -179,6 +272,106 @@
 </div>
 
 <script src="/assets/script.js" defer></script>
+<script>
+  function getCart() {
+    try {
+      const raw = localStorage.getItem("ramstuga_cart") || "[]";
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function setCart(items) {
+    localStorage.setItem("ramstuga_cart", JSON.stringify(items));
+    updateCartBadge();
+  }
+
+  function updateCartBadge() {
+    const items = getCart();
+    const count = items.reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
+    document.querySelectorAll("[data-cart-count='true']").forEach((el) => {
+      el.textContent = String(count);
+    });
+  }
+
+  function formToObject(form) {
+    const data = new FormData(form);
+    const obj = {};
+    for (const [k, v] of data.entries()) obj[k] = String(v).trim();
+    return obj;
+  }
+
+  function buildSummary(o) {
+    const backPanel = o.back_panel === "other" ? (o.back_panel_custom || "Other (not specified)") : (o.back_panel || "-");
+    return [
+      "Custom frame",
+      "",
+      `Sizes: ${o.width_mm} x ${o.height_mm} mm`,
+      `Frame thickness: ${o.frame_thickness_mm} mm`,
+      o.window_mm ? `Window: ${o.window_mm}` : null,
+      `Wood: ${o.wood_type}`,
+      `Finish: ${o.finish}`,
+      `Orientation: ${o.orientation}`,
+      `Glass/Acrylic: ${o.front}`,
+      `Hanging system: ${o.hanging}`,
+      `Back panel: ${backPanel}`,
+      `Quantity: ${o.qty}`,
+      "",
+      `Notes: ${o.notes || "-"}`,
+      "",
+      `Contact: ${o.customer_name} (${o.customer_email}${o.customer_phone ? ", " + o.customer_phone : ""})`
+    ].filter(Boolean).join("\n");
+  }
+
+  updateCartBadge();
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const form = document.getElementById("customOrderForm");
+  const statusMsg = document.getElementById("statusMsg");
+  const mailBtn = document.getElementById("mailBtn");
+  const backPanelSelect = document.getElementById("backPanelSelect");
+  const backPanelCustomWrap = document.getElementById("backPanelCustomWrap");
+  const backPanelCustomInput = document.getElementById("backPanelCustomInput");
+
+  function updateBackPanelCustomVisibility() {
+    const isCustom = backPanelSelect && backPanelSelect.value === "other";
+    if (backPanelCustomWrap) backPanelCustomWrap.style.display = isCustom ? "block" : "none";
+    if (backPanelCustomInput) backPanelCustomInput.required = !!isCustom;
+    if (!isCustom && backPanelCustomInput) backPanelCustomInput.value = "";
+  }
+
+  if (backPanelSelect) {
+    backPanelSelect.addEventListener("change", updateBackPanelCustomVisibility);
+    updateBackPanelCustomVisibility();
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const o = formToObject(form);
+    const cart = getCart();
+    cart.push({
+      id: "custom-" + Date.now(),
+      type: "maatwerk",
+      title: "Custom frame",
+      qty: Number(o.qty) || 1,
+      price: 0,
+      meta: o,
+      summary: buildSummary(o)
+    });
+    setCart(cart);
+    if (statusMsg) statusMsg.textContent = "Added to cart";
+  });
+
+  mailBtn.addEventListener("click", () => {
+    const o = formToObject(form);
+    const subject = encodeURIComponent("Custom request - RAMSTUGA");
+    const body = encodeURIComponent(buildSummary(o));
+    window.location.href = `mailto:info@ramstuga.se?subject=${subject}&body=${body}`;
+  });
+</script>
 
 <!-- Floating contact (fixed) -->
 <div class="floating-contact" aria-hidden="false">

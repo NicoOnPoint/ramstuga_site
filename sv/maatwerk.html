@@ -73,55 +73,155 @@
 
   <section class="about-story">
     <div class="container" style="width:min(1100px,92vw);">
-      <div class="section-title">
-        <h2>Hur fungerar måttbeställt?</h2>
-        <div class="subtle">Be om en offert så återkommer vi snabbt.</div>
+      <div class="section-title" style="margin-bottom:18px; flex-direction: column; align-items: flex-start;">
+        <h2>Beställning på mått</h2>
+        <div class="subtle" style="margin-top:6px;">Fyll i så mycket som möjligt så att vi kan svara snabbt.</div>
       </div>
-      <div class="shop-help-grid" style="margin-top:18px;">
-        <article class="card">
-          <div class="shop-help-media">
-            <img src="/images/measure-guide-cm.png" alt="Mätguide" loading="lazy">
+
+      <div class="card pad" style="max-width:980px; margin:0 auto;">
+        <form id="customOrderForm">
+          <div class="form-grid">
+            <label>
+              Bredd invändigt (mm)
+              <input type="number" name="width_mm" min="1" required placeholder="T.ex. 300" />
+            </label>
+            <label>
+              Höjd invändigt (mm)
+              <input type="number" name="height_mm" min="1" required placeholder="T.ex. 400" />
+            </label>
           </div>
-          <div class="pad">
-            <div class="kicker">Steg 1</div>
-            <h3>Mät din storlek</h3>
-            <p>Mät fotot (eller öppningen). Notera önskad yttermått och djup.</p>
+
+          <div class="form-grid">
+            <label>
+              Listtjocklek (mm)
+              <select name="frame_thickness_mm" required>
+                <option value="25">25 mm</option>
+                <option value="35" selected>35 mm</option>
+                <option value="45">45 mm</option>
+                <option value="custom">Annat (skriv i önskemål)</option>
+              </select>
+            </label>
+            <label>
+              Synligt fönster för foto/konst (mm)
+              <input type="text" name="window_mm" placeholder="T.ex. 280x380 (valfritt)" />
+            </label>
           </div>
-        </article>
-        <article class="card">
-          <div class="shop-help-media">
-            <img src="/images/finishes.png" alt="Ytbehandlingar" loading="lazy">
+
+          <div class="form-grid">
+            <label>
+              Träslag
+              <select name="wood_type" required>
+                <option value="atervunnet" selected>Återvunnet trä (rustikt)</option>
+                <option value="furu">Furu</option>
+                <option value="ek">Ek</option>
+                <option value="bjork">Björk</option>
+                <option value="annat">Annat (skriv i önskemål)</option>
+              </select>
+            </label>
+            <label>
+              Ytbehandling / färg
+              <select name="finish" required>
+                <option value="natur" selected>Natur / matt olja</option>
+                <option value="ljus">Ljus (whitewash / ljus olja)</option>
+                <option value="mork">Mörk (valnötslook)</option>
+                <option value="gra">Grå väderbiten</option>
+                <option value="farg">Färg (skriv i önskemål)</option>
+              </select>
+            </label>
           </div>
-          <div class="pad">
-            <div class="kicker">Steg 2</div>
-            <h3>Välj ytbehandling</h3>
-            <p>Ljus, mörk eller vädergrå — eventuellt med specialbehandling.</p>
+
+          <div class="form-grid">
+            <label>
+              Orientering
+              <select name="orientation" required>
+                <option value="staende">Stående</option>
+                <option value="liggande">Liggande</option>
+                <option value="kvadrat">Kvadrat</option>
+              </select>
+            </label>
+            <label>
+              Glas / plexi
+              <select name="front" required>
+                <option value="ingen" selected>Ingen (öppen ram)</option>
+                <option value="glas">Glas</option>
+                <option value="plexi">Plexiglas</option>
+              </select>
+            </label>
           </div>
-        </article>
-        <article class="card">
-          <div class="shop-help-media">
-            <img src="/images/wood-detail.png" alt="Trädetalj" loading="lazy">
+
+          <div class="form-grid">
+            <label>
+              Upphängning
+              <select name="hanging" required>
+                <option value="standard" selected>Standard (beslag/krok)</option>
+                <option value="tagg">Tagghängare</option>
+                <option value="trad">Tråd</option>
+                <option value="annat">Annat (skriv i önskemål)</option>
+              </select>
+            </label>
+            <label>
+              Bakstycke
+              <select name="back_panel" id="backPanelSelect" required>
+                <option value="Kartong" selected>Kartong</option>
+                <option value="Plywood 3 mm">Plywood 3 mm</option>
+                <option value="annat">Annat (ange själv)</option>
+              </select>
+            </label>
           </div>
-          <div class="pad">
-            <div class="kicker">Steg 3</div>
-            <h3>Skicka din förfrågan</h3>
-            <p>Vi svarar snabbt med pris och planering. Sedan bygger vi din måttbeställda ram.</p>
+
+          <label id="backPanelCustomWrap" style="display:none;">
+            Bakstycke (ange själv)
+            <input type="text" name="back_panel_custom" id="backPanelCustomInput" placeholder="T.ex. MDF 2,5 mm" />
+          </label>
+
+          <div class="form-grid">
+            <label>
+              Antal
+              <input type="number" name="qty" min="1" value="1" required />
+            </label>
           </div>
-        </article>
-      </div>
-      <div class="card pad" style="margin-top:18px;">
-        <div class="section-title" style="margin-bottom:10px;">
-          <h2>Be om offert</h2>
-          <div class="subtle">Via e-post, telefon eller WhatsApp.</div>
-        </div>
-        <div class="form-actions" style="justify-content:flex-start; gap:10px;">
-          <a class="btn" href="tel:+46707106182">Ring oss</a>
-          <a class="btn" href="mailto:info@ramstuga.se">E-post</a>
-          <a class="btn" href="https://wa.me/46707106182?text=Hej%2C%20jag%20vill%20ha%20mer%20information%20om%20måttbeställda%20ramar" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
-        <p class="fineprint" style="margin-top:10px;">
-          Ange gärna: önskat innermått, yttermått, djup och ytbehandling.
-        </p>
+
+          <label>
+            Specifika önskemål (färgkod, referenslänk, hörnfinish, etc.)
+            <textarea name="notes" placeholder="Berätta vad du har i åtanke..."></textarea>
+          </label>
+
+          <div class="section-title" style="margin-top:16px;">
+            <h2>Kontakt</h2>
+            <div class="subtle">För offert och uppföljning</div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Namn
+              <input type="text" name="customer_name" required placeholder="Ditt namn" />
+            </label>
+            <label>
+              E-post
+              <input type="email" name="customer_email" required placeholder="namn@mail.se" />
+            </label>
+          </div>
+
+          <label>
+            Telefon (valfritt)
+            <input type="tel" name="customer_phone" placeholder="+46 / +31 / ..." />
+          </label>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Lägg i varukorg</button>
+            <button class="btn" type="button" id="mailBtn">Skicka via e-post</button>
+            <span class="subtle" id="statusMsg" aria-live="polite"></span>
+          </div>
+
+          <p class="fineprint">
+            * Måttbeställt hanteras oftast som offert. Vi kontaktar dig med pris och leveranstid.
+          </p>
+          <div class="contact-buttons">
+            <a class="btn" href="tel:+46707106182">Ring</a>
+            <a class="btn" href="sms:+46707106182?body=Hej%2C%20jag%20vill%20ha%20mer%20information%20om%20ramar">SMS</a>
+            <a class="btn" href="https://wa.me/46707106182?text=Hej%2C%20jag%20vill%20ha%20mer%20information" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -146,5 +246,105 @@
   </div>
 </footer>
 <script src="/assets/script.js" defer></script>
+<script>
+  function getCart() {
+    try {
+      const raw = localStorage.getItem("ramstuga_cart") || "[]";
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function setCart(items) {
+    localStorage.setItem("ramstuga_cart", JSON.stringify(items));
+    updateCartBadge();
+  }
+
+  function updateCartBadge() {
+    const items = getCart();
+    const count = items.reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
+    document.querySelectorAll("[data-cart-count='true']").forEach((el) => {
+      el.textContent = String(count);
+    });
+  }
+
+  function formToObject(form) {
+    const data = new FormData(form);
+    const obj = {};
+    for (const [k, v] of data.entries()) obj[k] = String(v).trim();
+    return obj;
+  }
+
+  function buildSummary(o) {
+    const backPanel = o.back_panel === "annat" ? (o.back_panel_custom || "Annat (inte angivet)") : (o.back_panel || "-");
+    return [
+      "Måttbeställd ram",
+      "",
+      `Mått: ${o.width_mm} x ${o.height_mm} mm`,
+      `Listtjocklek: ${o.frame_thickness_mm} mm`,
+      o.window_mm ? `Fönster: ${o.window_mm}` : null,
+      `Träslag: ${o.wood_type}`,
+      `Ytbehandling: ${o.finish}`,
+      `Orientering: ${o.orientation}`,
+      `Glas/Plexi: ${o.front}`,
+      `Upphängning: ${o.hanging}`,
+      `Bakstycke: ${backPanel}`,
+      `Antal: ${o.qty}`,
+      "",
+      `Önskemål: ${o.notes || "-"}`,
+      "",
+      `Kontakt: ${o.customer_name} (${o.customer_email}${o.customer_phone ? ", " + o.customer_phone : ""})`
+    ].filter(Boolean).join("\n");
+  }
+
+  updateCartBadge();
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const form = document.getElementById("customOrderForm");
+  const statusMsg = document.getElementById("statusMsg");
+  const mailBtn = document.getElementById("mailBtn");
+  const backPanelSelect = document.getElementById("backPanelSelect");
+  const backPanelCustomWrap = document.getElementById("backPanelCustomWrap");
+  const backPanelCustomInput = document.getElementById("backPanelCustomInput");
+
+  function updateBackPanelCustomVisibility() {
+    const isCustom = backPanelSelect && backPanelSelect.value === "annat";
+    if (backPanelCustomWrap) backPanelCustomWrap.style.display = isCustom ? "block" : "none";
+    if (backPanelCustomInput) backPanelCustomInput.required = !!isCustom;
+    if (!isCustom && backPanelCustomInput) backPanelCustomInput.value = "";
+  }
+
+  if (backPanelSelect) {
+    backPanelSelect.addEventListener("change", updateBackPanelCustomVisibility);
+    updateBackPanelCustomVisibility();
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const o = formToObject(form);
+    const cart = getCart();
+    cart.push({
+      id: "maatwerk-" + Date.now(),
+      type: "maatwerk",
+      title: "Måttbeställd ram",
+      qty: Number(o.qty) || 1,
+      price: 0,
+      meta: o,
+      summary: buildSummary(o)
+    });
+    setCart(cart);
+    if (statusMsg) statusMsg.textContent = "Tillagd i varukorg";
+  });
+
+  mailBtn.addEventListener("click", () => {
+    const o = formToObject(form);
+    const subject = encodeURIComponent("Offertförfrågan - RAMSTUGA");
+    const body = encodeURIComponent(buildSummary(o));
+    window.location.href = `mailto:info@ramstuga.se?subject=${subject}&body=${body}`;
+  });
+</script>
 </body>
 </html>
