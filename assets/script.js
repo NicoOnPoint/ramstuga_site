@@ -459,7 +459,17 @@
     const ADD_LABEL = langKey === "en" ? "Add to cart" : langKey === "nl" ? "Voeg toe" : "Lägg till";
 
     // Vaste verzendkosten (per bestelling wanneer er standaardproducten in zitten)
-    const SHIPPING_COST_EUR = 9.00;
+    const SHIPPING_COST_BY_CURRENCY = {
+      EUR: 20.00,
+      SEK: 119.00
+    };
+
+    function shippingCostInCurrentCurrency() {
+      if (Object.prototype.hasOwnProperty.call(SHIPPING_COST_BY_CURRENCY, currentCurrency)) {
+        return SHIPPING_COST_BY_CURRENCY[currentCurrency];
+      }
+      return SHIPPING_COST_BY_CURRENCY.EUR;
+    }
 
     function moneyEUR(n) {
       const v = Number(n) || 0;
@@ -572,7 +582,7 @@
 
       const subtotalAll = subtotal(items);
       const hasProducts = items.some(it => it?.type === "product");
-      const shipping = hasProducts ? convertAmount(SHIPPING_COST_EUR, "EUR", currentCurrency) : 0;
+      const shipping = hasProducts ? shippingCostInCurrentCurrency() : 0;
       const total = subtotalAll + shipping;
 
       subEl.textContent = moneyEUR(subtotalAll);
@@ -632,7 +642,7 @@
     if (paypalLink) {
       const prodItems = getCart().filter(it => it?.type === "product");
       const prodSubtotal = subtotal(prodItems);
-      const shipping = prodSubtotal > 0 ? convertAmount(SHIPPING_COST_EUR, "EUR", currentCurrency) : 0;
+      const shipping = prodSubtotal > 0 ? shippingCostInCurrentCurrency() : 0;
       const amountNum = prodSubtotal + shipping;
       const isPayPalMe = /paypal\.me\/|paypal\.me$/i.test(PAYPAL_URL);
       // PayPal.me ondersteunt een bedrag in de URL: /<bedrag>
@@ -666,7 +676,7 @@
       if (!prodItems.length) return alert("Je winkelwagen is leeg (standaardproducten).");
 
       const prodSubtotal = subtotal(prodItems);
-      const shipping = prodSubtotal > 0 ? convertAmount(SHIPPING_COST_EUR, "EUR", currentCurrency) : 0;
+      const shipping = prodSubtotal > 0 ? shippingCostInCurrentCurrency() : 0;
       const total = prodSubtotal + shipping;
 
       const lines = [];

@@ -14,7 +14,7 @@ Shop / payment notes
 
 - The shop is client-side only. Cart state is stored in `localStorage` under the key `ramstuga_cart`.
 - Payment link: set your PayPal link in `assets/script.js` inside the `if (isShopPage)` block by editing `PAYPAL_URL`.
-- Shipping: a fixed `SHIPPING_COST` is defined in `assets/script.js` (default €9.00). Totals shown in the cart include that amount when product items are present.
+- Shipping: fixed shipping costs are defined in `assets/script.js` per currency (`EUR: 20.00`, `SEK: 119.00`). Totals shown in the cart include that amount when product items are present.
 
 Data migration
 
