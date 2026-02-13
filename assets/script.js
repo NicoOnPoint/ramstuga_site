@@ -500,6 +500,41 @@
       return v.toLocaleString(locale, { style: "currency", currency: currentCurrency });
     }
 
+    function round2(n) {
+      return Number((Number(n) || 0).toFixed(2));
+    }
+
+    function trackGaEvent(name, params = {}) {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", name, params);
+    }
+
+    function gaItemFromProduct(product, qty = 1) {
+      return {
+        item_id: product.id,
+        item_name: product.title,
+        item_variant: product.size,
+        item_category: "frame",
+        price: round2(convertAmount(product.price, "EUR", currentCurrency)),
+        quantity: Math.max(1, Number(qty) || 1)
+      };
+    }
+
+    function gaItemsFromCart(items) {
+      return (items || [])
+        .filter((it) => it?.type === "product")
+        .map((it) => ({
+          item_id: it?.id || "unknown_item",
+          item_name: it?.title || "Item",
+          item_category: "frame",
+          price: round2(itemUnitPrice(it)),
+          quantity: Math.max(1, Number(it?.qty) || 1)
+        }));
+    }
+
+    let viewCartTracked = false;
+    let beginCheckoutTracked = false;
+
     function escapeHtml(str) {
       return String(str || "")
         .replaceAll("&", "&amp;")
@@ -527,6 +562,12 @@
       }
       setCart(cart);
       renderCart();
+
+      trackGaEvent("add_to_cart", {
+        currency: currentCurrency,
+        value: round2(unitPrice),
+        items: [gaItemFromProduct(product, 1)]
+      });
     }
 
     function updateQty(id, qty) {
@@ -539,6 +580,22 @@
     }
 
     function removeItem(id) {
+      const existing = getCart().find((it) => it?.id === id);
+      if (existing?.type === "product") {
+        const removedQty = Math.max(1, Number(existing?.qty) || 1);
+        trackGaEvent("remove_from_cart", {
+          currency: currentCurrency,
+          value: round2(itemUnitPrice(existing) * removedQty),
+          items: [{
+            item_id: existing?.id || "unknown_item",
+            item_name: existing?.title || "Item",
+            item_category: "frame",
+            price: round2(itemUnitPrice(existing)),
+            quantity: removedQty
+          }]
+        });
+      }
+
       const cart = getCart().filter(it => it?.id !== id);
       setCart(cart);
       renderCart();
@@ -613,6 +670,34 @@
       if (shipEl) shipEl.textContent = moneyEUR(shipping);
       if (totalEl) totalEl.textContent = moneyEUR(total);
       if (payAmountEl) payAmountEl.textContent = moneyEUR(total);
+
+      if (!viewCartTracked && hasProducts) {
+        viewCartTracked = true;
+        trackGaEvent("view_cart", {
+          currency: currentCurrency,
+          value: round2(subtotalAll),
+          items: gaItemsFromCart(items)
+        });
+      }
+    }
+
+    function trackBeginCheckout(source) {
+      if (beginCheckoutTracked) return;
+      const prodItems = getCart().filter((it) => it?.type === "product");
+      if (!prodItems.length) return;
+
+      const prodSubtotal = subtotal(prodItems);
+      const shipping = prodSubtotal > 0 ? shippingCostInCurrentCurrency() : 0;
+      const total = prodSubtotal + shipping;
+
+      beginCheckoutTracked = true;
+      trackGaEvent("begin_checkout", {
+        currency: currentCurrency,
+        value: round2(total),
+        shipping: round2(shipping),
+        checkout_source: source,
+        items: gaItemsFromCart(prodItems)
+      });
     }
 
     // ===== Payment reference (datum + nummer) =====
@@ -679,6 +764,23 @@
       } else {
         paypalLink.textContent = "Betaal veilig (kaart / PayPal)";
       }
+
+      paypalLink.addEventListener("click", () => {
+        const prodItems = getCart().filter((it) => it?.type === "product");
+        if (!prodItems.length) return;
+
+        const prodSubtotal = subtotal(prodItems);
+        const shipping = prodSubtotal > 0 ? shippingCostInCurrentCurrency() : 0;
+        const total = prodSubtotal + shipping;
+
+        trackBeginCheckout("paypal_link");
+        trackGaEvent("add_payment_info", {
+          currency: currentCurrency,
+          value: round2(total),
+          payment_type: "paypal",
+          items: gaItemsFromCart(prodItems)
+        });
+      });
     }
     // Bestelreferentie hint (optioneel)
     const refHint = document.getElementById("swishHint");
@@ -698,6 +800,13 @@
     document.getElementById("paidMailBtn")?.addEventListener("click", () => {
       const prodItems = getCart().filter(it => it?.type === "product");
       if (!prodItems.length) return alert("Je winkelwagen is leeg (standaardproducten).");
+
+      trackBeginCheckout("paid_mail_button");
+      trackGaEvent("generate_lead", {
+        currency: currentCurrency,
+        value: round2(subtotal(prodItems)),
+        lead_type: "order_email_after_payment"
+      });
 
       const prodSubtotal = subtotal(prodItems);
       const shipping = prodSubtotal > 0 ? shippingCostInCurrentCurrency() : 0;
@@ -755,6 +864,12 @@
     document.addEventListener("input", (e) => {
       const id = e.target?.getAttribute?.("data-qty");
       if (id) updateQty(id, e.target.value);
+    });
+
+    document.querySelectorAll('a[href="#pay"]').forEach((link) => {
+      link.addEventListener("click", () => {
+        trackBeginCheckout("pay_anchor");
+      });
     });
 
     // Init
