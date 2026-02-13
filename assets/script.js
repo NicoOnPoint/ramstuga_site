@@ -1,5 +1,5 @@
 (() => {
-  const GA_MEASUREMENT_ID = "G-2SVNVL292N";
+  const GA_MEASUREMENT_ID = "G-3PEW6XG51V";
   const GA_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("ga_debug") === "1";
 
   function enableGaDebugFromQuery() {
