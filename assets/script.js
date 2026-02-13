@@ -1,4 +1,28 @@
 (() => {
+  const GA_MEASUREMENT_ID = "G-2SVNVL292N";
+
+  function enableGaDebugFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("ga_debug") !== "1") return;
+    if (typeof window.gtag !== "function") {
+      console.warn("GA debug requested, but gtag is not available on this page.");
+      return;
+    }
+
+    window.gtag("config", GA_MEASUREMENT_ID, { debug_mode: true });
+    window.gtag("event", "ga_debug_ping", {
+      page_path: window.location.pathname,
+      page_location: window.location.href
+    });
+    console.info("GA debug ping sent. Check GA4 DebugView.");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", enableGaDebugFromQuery, { once: true });
+  } else {
+    enableGaDebugFromQuery();
+  }
+
   /* =========================
      LANGUAGE SWITCH (SV/EN/NL)
   ========================= */
