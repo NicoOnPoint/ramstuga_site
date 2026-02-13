@@ -23,7 +23,8 @@
     ad_user_data: "denied",
     ad_personalization: "denied"
   });
-  gtag("config", "G-2SVNVL292N");
+    var gaDebug = new URLSearchParams(window.location.search).get("ga_debug") === "1";
+  gtag("config", "G-2SVNVL292N", gaDebug ? { debug_mode: true } : {});
 </script>
 </head>
 <body class="page-shop">

@@ -1,9 +1,9 @@
 (() => {
   const GA_MEASUREMENT_ID = "G-2SVNVL292N";
+  const GA_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("ga_debug") === "1";
 
   function enableGaDebugFromQuery() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("ga_debug") !== "1") return;
+    if (!GA_DEBUG_ENABLED) return;
     if (typeof window.gtag !== "function") {
       console.warn("GA debug requested, but gtag is not available on this page.");
       return;
