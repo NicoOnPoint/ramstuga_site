@@ -1,6 +1,211 @@
 (() => {
   const GA_MEASUREMENT_ID = "G-3PEW6XG51V";
   const GA_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("ga_debug") === "1";
+  const CONSENT_STORAGE_KEY = "ramstuga_consent_v1";
+  const CONSENT_UNKNOWN = "unknown";
+  const CONSENT_ACCEPTED = "accepted";
+  const CONSENT_REJECTED = "rejected";
+
+  function getDocLang() {
+    const lang = (document.documentElement?.lang || "").toLowerCase();
+    if (lang.startsWith("en")) return "en";
+    if (lang.startsWith("nl")) return "nl";
+    return "sv";
+  }
+
+  function getConsentChoice() {
+    try {
+      return localStorage.getItem(CONSENT_STORAGE_KEY) || CONSENT_UNKNOWN;
+    } catch {
+      return CONSENT_UNKNOWN;
+    }
+  }
+
+  function setConsentChoice(choice) {
+    try {
+      localStorage.setItem(CONSENT_STORAGE_KEY, choice);
+    } catch {
+      // Ignore storage failures in restricted browser modes.
+    }
+  }
+
+  function updateAnalyticsConsent(granted) {
+    if (typeof window.gtag !== "function") return;
+    window.gtag("consent", "update", {
+      analytics_storage: granted ? "granted" : "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+  }
+
+  function sendManualPageView() {
+    if (typeof window.gtag !== "function") return;
+    window.gtag("event", "page_view", {
+      page_title: document.title,
+      page_path: window.location.pathname,
+      page_location: window.location.href
+    });
+  }
+
+  function getConsentUiText() {
+    const lang = getDocLang();
+    if (lang === "en") {
+      return {
+        message: "We use analytics cookies to understand site performance. You can accept or decline analytics.",
+        accept: "Accept",
+        decline: "Decline",
+        settings: "Cookie settings"
+      };
+    }
+    if (lang === "nl") {
+      return {
+        message: "We gebruiken analytics-cookies om de siteprestaties te begrijpen. Je kunt analytics accepteren of weigeren.",
+        accept: "Accepteren",
+        decline: "Weigeren",
+        settings: "Cookie-instellingen"
+      };
+    }
+    return {
+      message: "Vi använder analyscookies för att förstå webbplatsens prestanda. Du kan acceptera eller avvisa analyscookies.",
+      accept: "Acceptera",
+      decline: "Avvisa",
+      settings: "Cookie-inställningar"
+    };
+  }
+
+  function ensureConsentStyles() {
+    if (document.getElementById("ramstugaConsentStyles")) return;
+    const style = document.createElement("style");
+    style.id = "ramstugaConsentStyles";
+    style.textContent = `
+      .consent-banner {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        z-index: 9999;
+        max-width: 860px;
+        margin: 0 auto;
+        background: #f1ece4;
+        color: #2f2720;
+        border: 1px solid rgba(47,39,32,0.25);
+        border-radius: 12px;
+        box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+        padding: 14px;
+      }
+      .consent-banner p {
+        margin: 0 0 10px 0;
+        line-height: 1.45;
+      }
+      .consent-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .consent-btn {
+        border: 1px solid rgba(47,39,32,0.25);
+        background: #fff;
+        color: #2f2720;
+        border-radius: 10px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font: inherit;
+      }
+      .consent-btn.primary {
+        background: #2f2720;
+        color: #fff;
+      }
+      .consent-settings-btn {
+        position: fixed;
+        left: 12px;
+        bottom: 12px;
+        z-index: 9998;
+      }
+      @media (max-width: 680px) {
+        .consent-banner {
+          left: 10px;
+          right: 10px;
+          bottom: 10px;
+          padding: 12px;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function removeConsentBanner() {
+    document.getElementById("ramstugaConsentBanner")?.remove();
+  }
+
+  function getOrCreateSettingsButton() {
+    let btn = document.getElementById("ramstugaConsentSettingsBtn");
+    if (btn) return btn;
+    ensureConsentStyles();
+    const txt = getConsentUiText();
+    btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "ramstugaConsentSettingsBtn";
+    btn.className = "consent-btn consent-settings-btn";
+    btn.textContent = txt.settings;
+    btn.addEventListener("click", () => {
+      showConsentBanner(true);
+    });
+    document.body.appendChild(btn);
+    return btn;
+  }
+
+  function showConsentBanner(forceOpen = false) {
+    const currentChoice = getConsentChoice();
+    if (!forceOpen && currentChoice !== CONSENT_UNKNOWN) return;
+    if (document.getElementById("ramstugaConsentBanner")) return;
+
+    ensureConsentStyles();
+    const txt = getConsentUiText();
+    const banner = document.createElement("section");
+    banner.id = "ramstugaConsentBanner";
+    banner.className = "consent-banner";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-live", "polite");
+    banner.innerHTML = `
+      <p>${txt.message}</p>
+      <div class="consent-actions">
+        <button type="button" class="consent-btn primary" data-consent-action="accept">${txt.accept}</button>
+        <button type="button" class="consent-btn" data-consent-action="decline">${txt.decline}</button>
+      </div>
+    `;
+    banner.addEventListener("click", (e) => {
+      const action = e.target?.getAttribute?.("data-consent-action");
+      if (!action) return;
+      if (action === "accept") {
+        setConsentChoice(CONSENT_ACCEPTED);
+        updateAnalyticsConsent(true);
+        sendManualPageView();
+      } else {
+        setConsentChoice(CONSENT_REJECTED);
+        updateAnalyticsConsent(false);
+      }
+      removeConsentBanner();
+      getOrCreateSettingsButton().style.display = "inline-block";
+    });
+    document.body.appendChild(banner);
+    getOrCreateSettingsButton().style.display = "none";
+  }
+
+  function initConsentManager() {
+    const choice = getConsentChoice();
+    if (choice === CONSENT_ACCEPTED) {
+      updateAnalyticsConsent(true);
+      getOrCreateSettingsButton().style.display = "inline-block";
+      return;
+    }
+    if (choice === CONSENT_REJECTED) {
+      updateAnalyticsConsent(false);
+      getOrCreateSettingsButton().style.display = "inline-block";
+      return;
+    }
+    showConsentBanner();
+  }
 
   function enableGaDebugFromQuery() {
     if (!GA_DEBUG_ENABLED) return;
@@ -9,6 +214,7 @@
       return;
     }
 
+    updateAnalyticsConsent(true);
     window.gtag("config", GA_MEASUREMENT_ID, { debug_mode: true });
     window.gtag("event", "ga_debug_ping", {
       page_path: window.location.pathname,
@@ -18,8 +224,10 @@
   }
 
   if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initConsentManager, { once: true });
     document.addEventListener("DOMContentLoaded", enableGaDebugFromQuery, { once: true });
   } else {
+    initConsentManager();
     enableGaDebugFromQuery();
   }
 

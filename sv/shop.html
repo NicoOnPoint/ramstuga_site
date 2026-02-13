@@ -17,13 +17,16 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
+  var consentChoice = "unknown";
+  try { consentChoice = localStorage.getItem("ramstuga_consent_v1") || "unknown"; } catch (e) {}
+  var analyticsGranted = consentChoice === "accepted";
   gtag("consent", "default", {
-    analytics_storage: "granted",
+    analytics_storage: analyticsGranted ? "granted" : "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied"
   });
-    var gaDebug = new URLSearchParams(window.location.search).get("ga_debug") === "1";
+  var gaDebug = new URLSearchParams(window.location.search).get("ga_debug") === "1";
   gtag("config", "G-3PEW6XG51V", gaDebug ? { debug_mode: true } : {});
 </script>
 </head>
