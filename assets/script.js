@@ -670,29 +670,44 @@
     const langKey = docLang.startsWith("en") ? "en" : docLang.startsWith("nl") ? "nl" : "sv";
     const PRODUCT_CATALOG = {
       nl: [
-        { id: "std-30x40-licht",   title: "Standaardlijst Licht",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavisch licht." },
-        { id: "std-40x50-naturel", title: "Standaardlijst Naturel", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustiek naturel." },
-        { id: "std-50x70-donker",  title: "Standaardlijst Donker",  size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Diep donker, luxe." },
+        { id: "std-30x40-licht",   title: "Standaardlijst Licht",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavisch licht.", orientationOption: true },
+        { id: "std-40x50-naturel", title: "Standaardlijst Naturel", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustiek naturel.", orientationOption: true },
+        { id: "std-50x70-donker",  title: "Standaardlijst Donker",  size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Diep donker, luxe.", orientationOption: true },
         { id: "std-40x40-grijs",   title: "Standaardlijst Grijs",   size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Verweerd grijs." },
+        { id: "std-30x40-grenen-custom", title: "Standaardlijst Grenen", size: "30×40 cm", price: 69.00, img: "/images/portfolio/standaard-grenen.png", note: "Kies zelf je kleur. Handgemaakt grenen met rustige nerf.", customColor: true, orientationOption: true },
+        { id: "std-40x40-grenen-custom", title: "Standaardlijst Grenen", size: "40×40 cm", price: 79.00, img: "/images/portfolio/standaard-grenen.png", note: "Kies zelf je kleur. Handgemaakt grenen met rustige nerf.", customColor: true },
+        { id: "std-40x50-grenen-custom", title: "Standaardlijst Grenen", size: "40×50 cm", price: 89.00, img: "/images/portfolio/standaard-grenen.png", note: "Kies zelf je kleur. Handgemaakt grenen met rustige nerf.", customColor: true, orientationOption: true },
         { id: "project-hekjes",    title: "Rustieke projectlijst Donker", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgemaakt uit oud tuinhekje. Duurzaam hergebruik met karakter." }
       ],
       en: [
-        { id: "std-30x40-licht",   title: "Standard Frame Light",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavian light." },
-        { id: "std-40x50-naturel", title: "Standard Frame Natural", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustic natural." },
-        { id: "std-50x70-donker",  title: "Standard Frame Dark",    size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Deep dark, luxury." },
+        { id: "std-30x40-licht",   title: "Standard Frame Light",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavian light.", orientationOption: true },
+        { id: "std-40x50-naturel", title: "Standard Frame Natural", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustic natural.", orientationOption: true },
+        { id: "std-50x70-donker",  title: "Standard Frame Dark",    size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Deep dark, luxury.", orientationOption: true },
         { id: "std-40x40-grijs",   title: "Standard Frame Grey",    size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Weathered grey." },
+        { id: "std-30x40-grenen-custom", title: "Standard Pine Frame", size: "30×40 cm", price: 69.00, img: "/images/portfolio/standaard-grenen.png", note: "Choose your own color. Handmade pine with calm grain.", customColor: true, orientationOption: true },
+        { id: "std-40x40-grenen-custom", title: "Standard Pine Frame", size: "40×40 cm", price: 79.00, img: "/images/portfolio/standaard-grenen.png", note: "Choose your own color. Handmade pine with calm grain.", customColor: true },
+        { id: "std-40x50-grenen-custom", title: "Standard Pine Frame", size: "40×50 cm", price: 89.00, img: "/images/portfolio/standaard-grenen.png", note: "Choose your own color. Handmade pine with calm grain.", customColor: true, orientationOption: true },
         { id: "project-hekjes",    title: "Rustic Project Frame Dark", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handmade from an old garden fence. Sustainable reuse with character." }
       ],
       sv: [
-        { id: "std-30x40-licht",   title: "Standardram Ljus",     size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Skandinaviskt ljus." },
-        { id: "std-40x50-naturel", title: "Standardram Naturell", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustikt naturell." },
-        { id: "std-50x70-donker",  title: "Standardram Mörk",     size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Djup mörk, lyx." },
+        { id: "std-30x40-licht",   title: "Standardram Ljus",     size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Skandinaviskt ljus.", orientationOption: true },
+        { id: "std-40x50-naturel", title: "Standardram Naturell", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustikt naturell.", orientationOption: true },
+        { id: "std-50x70-donker",  title: "Standardram Mörk",     size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Djup mörk, lyx.", orientationOption: true },
         { id: "std-40x40-grijs",   title: "Standardram Grå",      size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Väderbiten grå." },
+        { id: "std-30x40-grenen-custom", title: "Standardram Furu", size: "30×40 cm", price: 69.00, img: "/images/portfolio/standaard-grenen.png", note: "Välj färg själv. Handgjord furu med lugn ådring.", customColor: true, orientationOption: true },
+        { id: "std-40x40-grenen-custom", title: "Standardram Furu", size: "40×40 cm", price: 79.00, img: "/images/portfolio/standaard-grenen.png", note: "Välj färg själv. Handgjord furu med lugn ådring.", customColor: true },
+        { id: "std-40x50-grenen-custom", title: "Standardram Furu", size: "40×50 cm", price: 89.00, img: "/images/portfolio/standaard-grenen.png", note: "Välj färg själv. Handgjord furu med lugn ådring.", customColor: true, orientationOption: true },
         { id: "project-hekjes",    title: "Rustik projektram Mörk", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgjord av ett gammalt trädgårdsstaket. Hållbart återbruk med karaktär." }
       ]
     };
     const PRODUCTS = PRODUCT_CATALOG[langKey] || PRODUCT_CATALOG.sv;
     const ADD_LABEL = langKey === "en" ? "Add to cart" : langKey === "nl" ? "Voeg toe" : "Lägg till";
+    const COLOR_LABEL = langKey === "en" ? "Color" : langKey === "nl" ? "Kleur" : "Färg";
+    const COLOR_PLACEHOLDER = langKey === "en" ? "Enter preferred color" : langKey === "nl" ? "Vul gewenste kleur in" : "Ange önskad färg";
+    const COLOR_REQUIRED_MSG = langKey === "en" ? "Please enter a color first." : langKey === "nl" ? "Vul eerst een kleur in." : "Ange färg först.";
+    const ORIENTATION_LABEL = langKey === "en" ? "Orientation" : langKey === "nl" ? "Oriëntatie" : "Orientering";
+    const ORIENTATION_VERTICAL = langKey === "en" ? "Vertical" : langKey === "nl" ? "Verticaal" : "Vertikal";
+    const ORIENTATION_HORIZONTAL = langKey === "en" ? "Horizontal" : langKey === "nl" ? "Horizontaal" : "Horisontell";
     const PROJECT_PRODUCTS = {
       "project-hekjes": {
         nl: { id: "project-hekjes", title: "Rustieke projectlijst Donker", size: "30×40 cm", price: 119.00 },
@@ -701,17 +716,40 @@
       }
     };
 
-    // Vaste verzendkosten (per bestelling wanneer er standaardproducten in zitten)
-    const SHIPPING_COST_BY_CURRENCY = {
-      EUR: 20.00,
-      SEK: 119.00
+    // Verzendkosten op basis van bestemming (prijzen in EUR-basis)
+    const SHIP_REGION_KEY = "ramstuga_ship_region";
+    const SHIPPING_COST_BY_REGION_EUR = {
+      sweden: 10.35,
+      eu: 20.00
     };
 
+    function getSelectedShippingRegion() {
+      const select = document.getElementById("shippingRegion");
+      const raw = String(select?.value || "eu").toLowerCase();
+      return raw === "sweden" ? "sweden" : "eu";
+    }
+
     function shippingCostInCurrentCurrency() {
-      if (Object.prototype.hasOwnProperty.call(SHIPPING_COST_BY_CURRENCY, currentCurrency)) {
-        return SHIPPING_COST_BY_CURRENCY[currentCurrency];
+      const region = getSelectedShippingRegion();
+      const baseEur = SHIPPING_COST_BY_REGION_EUR[region] ?? SHIPPING_COST_BY_REGION_EUR.eu;
+      return convertAmount(baseEur, "EUR", currentCurrency);
+    }
+
+    function initShippingRegion() {
+      const select = document.getElementById("shippingRegion");
+      if (!select) return;
+
+      const stored = String(localStorage.getItem(SHIP_REGION_KEY) || "").toLowerCase();
+      if (stored === "sweden" || stored === "eu") {
+        select.value = stored;
+      } else {
+        select.value = "eu";
       }
-      return SHIPPING_COST_BY_CURRENCY.EUR;
+
+      select.addEventListener("change", () => {
+        localStorage.setItem(SHIP_REGION_KEY, getSelectedShippingRegion());
+        renderCart();
+      });
     }
 
     function moneyEUR(n) {
@@ -763,17 +801,25 @@
         .replaceAll("'", "&#039;");
     }
 
-    function addToCart(product) {
+    function addToCart(product, opts = {}) {
       const unitPrice = convertAmount(product.price, "EUR", currentCurrency);
       const cart = getCart();
-      const idx = cart.findIndex(it => it?.id === product.id);
+      const colorValue = String(opts?.color || "").trim();
+      const colorKey = colorValue.toLowerCase();
+      const orientationValue = String(opts?.orientation || "").trim();
+      const orientationKey = orientationValue.toLowerCase();
+      const colorSuffix = colorValue ? ` • ${COLOR_LABEL}: ${colorValue}` : "";
+      const orientationSuffix = orientationValue ? ` • ${ORIENTATION_LABEL}: ${orientationValue}` : "";
+      const lineId = `${product.id}::${colorKey || "-"}::${orientationKey || "-"}`;
+      const idx = cart.findIndex(it => (it?.lineId || it?.id) === lineId);
       if (idx >= 0) {
         cart[idx].qty = (Number(cart[idx].qty) || 0) + 1;
       } else {
         cart.push({
           id: product.id,
+          lineId,
           type: "product",
-          title: `${product.title} (${product.size})`,
+          title: `${product.title} (${product.size})${colorSuffix}${orientationSuffix}`,
           qty: 1,
           price: unitPrice,
           currency: currentCurrency
@@ -789,17 +835,17 @@
       });
     }
 
-    function updateQty(id, qty) {
+    function updateQty(lineId, qty) {
       const cart = getCart();
-      const idx = cart.findIndex(it => it?.id === id);
+      const idx = cart.findIndex(it => (it?.lineId || it?.id) === lineId);
       if (idx < 0) return;
       cart[idx].qty = Math.max(1, Number(qty) || 1);
       setCart(cart);
       renderCart();
     }
 
-    function removeItem(id) {
-      const existing = getCart().find((it) => it?.id === id);
+    function removeItem(lineId) {
+      const existing = getCart().find((it) => (it?.lineId || it?.id) === lineId);
       if (existing?.type === "product") {
         const removedQty = Math.max(1, Number(existing?.qty) || 1);
         trackGaEvent("remove_from_cart", {
@@ -815,7 +861,7 @@
         });
       }
 
-      const cart = getCart().filter(it => it?.id !== id);
+      const cart = getCart().filter((it) => (it?.lineId || it?.id) !== lineId);
       setCart(cart);
       renderCart();
     }
@@ -842,9 +888,24 @@
             <h3>${escapeHtml(p.title)}</h3>
             <div class="subtle">${escapeHtml(p.size)}</div>
             <p style="margin-top:10px;">${escapeHtml(p.note)}</p>
+            ${p.orientationOption ? `
+              <label style="display:block;margin-top:8px;">
+                <span class="subtle">${escapeHtml(ORIENTATION_LABEL)}</span>
+                <select data-orientation-for="${escapeHtml(p.id)}">
+                  <option value="${escapeHtml(ORIENTATION_VERTICAL)}">${escapeHtml(ORIENTATION_VERTICAL)}</option>
+                  <option value="${escapeHtml(ORIENTATION_HORIZONTAL)}">${escapeHtml(ORIENTATION_HORIZONTAL)}</option>
+                </select>
+              </label>
+            ` : ""}
+            ${p.customColor ? `
+              <label style="display:block;margin-top:8px;">
+                <span class="subtle">${escapeHtml(COLOR_LABEL)}</span>
+                <input type="text" data-color-for="${escapeHtml(p.id)}" placeholder="${escapeHtml(COLOR_PLACEHOLDER)}">
+              </label>
+            ` : ""}
             <div class="product-actions">
               <strong>${moneyEUR(convertAmount(p.price, "EUR", currentCurrency))}</strong>
-              <button class="btn primary" type="button" data-add="${escapeHtml(p.id)}">${ADD_LABEL}</button>
+              <button class="btn primary" type="button" ${p.customColor ? `data-add-custom="${escapeHtml(p.id)}"` : `data-add="${escapeHtml(p.id)}"`}>${ADD_LABEL}</button>
             </div>
           </div>
         </article>
@@ -870,12 +931,12 @@
             <div class="subtle">
               ${it?.type === "maatwerk" ? "Maatwerk (offerte)" : moneyEUR(itemUnitPrice(it))} •
               Aantal:
-              <input class="cart-qty" type="number" min="1" value="${Number(it?.qty) || 1}" data-qty="${escapeHtml(it?.id)}">
+              <input class="cart-qty" type="number" min="1" value="${Number(it?.qty) || 1}" data-qty="${escapeHtml(it?.lineId || it?.id)}">
             </div>
           </div>
           <div class="cart-item-end">
             <strong>${moneyEUR(itemUnitPrice(it) * (Number(it?.qty) || 0))}</strong>
-            <button class="btn" type="button" data-remove="${escapeHtml(it?.id)}">Verwijder</button>
+            <button class="btn" type="button" data-remove="${escapeHtml(it?.lineId || it?.id)}">Verwijder</button>
           </div>
         </div>
       `).join("");
@@ -1096,7 +1157,29 @@
       const addId = e.target?.getAttribute?.("data-add");
       if (addId) {
         const p = PRODUCTS.find(x => x.id === addId);
-        if (p) addToCart(p);
+        if (p) {
+          const card = e.target.closest(".product-card");
+          const orientationSelect = card ? card.querySelector(`[data-orientation-for="${addId}"]`) : null;
+          const orientationValue = String(orientationSelect?.value || "").trim();
+          addToCart(p, { orientation: orientationValue });
+        }
+        return;
+      }
+      const addCustomId = e.target?.getAttribute?.("data-add-custom");
+      if (addCustomId) {
+        const p = PRODUCTS.find(x => x.id === addCustomId);
+        if (!p) return;
+        const card = e.target.closest(".product-card");
+        const colorInput = card ? card.querySelector(`[data-color-for="${addCustomId}"]`) : null;
+        const orientationSelect = card ? card.querySelector(`[data-orientation-for="${addCustomId}"]`) : null;
+        const colorValue = String(colorInput?.value || "").trim();
+        const orientationValue = String(orientationSelect?.value || "").trim();
+        if (!colorValue) {
+          alert(COLOR_REQUIRED_MSG);
+          colorInput?.focus();
+          return;
+        }
+        addToCart(p, { color: colorValue, orientation: orientationValue });
         return;
       }
       const remId = e.target?.getAttribute?.("data-remove");
@@ -1133,6 +1216,7 @@
 
     // Init
     renderProducts();
+    initShippingRegion();
     addProductFromQuery();
     renderCart();
     updateCartBadge();
