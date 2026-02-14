@@ -1074,6 +1074,18 @@ h2{
   opacity: .9;
 }
 
+.project-pair-price{
+  margin-top: 10px !important;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.35;
+  opacity: 1 !important;
+}
+
+.project-pair-actions{
+  margin-top: 12px;
+}
+
 .project-pair-gallery{
   display: grid;
   grid-template-columns: repeat(6, 1fr);

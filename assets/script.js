@@ -662,7 +662,8 @@
     }
 
     // ====== Vul dit in ======
-    const PAYPAL_URL = "https://www.paypal.com/ncp/payment/ZKYKA5JWNBYBJ"; // <-- zet jouw echte PayPal.me link
+    const PAYPAL_URL = "https://www.paypal.com/ncp/payment/ZKYKA5JWNBYBJ";
+    const PAYPAL_ME_URL = "https://paypal.me/Ramstuga";
     const SWISH_INSTRUCTION = "Swish: lägg till din referens i meddelandet:"; // tekstje, optioneel
 
     // Standaard assortiment (pas aan / breid uit)
@@ -672,23 +673,33 @@
         { id: "std-30x40-licht",   title: "Standaardlijst Licht",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavisch licht." },
         { id: "std-40x50-naturel", title: "Standaardlijst Naturel", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustiek naturel." },
         { id: "std-50x70-donker",  title: "Standaardlijst Donker",  size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Diep donker, luxe." },
-        { id: "std-40x40-grijs",   title: "Standaardlijst Grijs",   size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Verweerd grijs." }
+        { id: "std-40x40-grijs",   title: "Standaardlijst Grijs",   size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Verweerd grijs." },
+        { id: "project-hekjes",    title: "Rustieke projectlijst Donker", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgemaakt uit oud tuinhekje. Duurzaam hergebruik met karakter." }
       ],
       en: [
         { id: "std-30x40-licht",   title: "Standard Frame Light",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavian light." },
         { id: "std-40x50-naturel", title: "Standard Frame Natural", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustic natural." },
         { id: "std-50x70-donker",  title: "Standard Frame Dark",    size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Deep dark, luxury." },
-        { id: "std-40x40-grijs",   title: "Standard Frame Grey",    size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Weathered grey." }
+        { id: "std-40x40-grijs",   title: "Standard Frame Grey",    size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Weathered grey." },
+        { id: "project-hekjes",    title: "Rustic Project Frame Dark", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handmade from an old garden fence. Sustainable reuse with character." }
       ],
       sv: [
         { id: "std-30x40-licht",   title: "Standardram Ljus",     size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Skandinaviskt ljus." },
         { id: "std-40x50-naturel", title: "Standardram Naturell", size: "40×50 cm", price: 59.00, img: "/images/shop/lijst-naturel.png", note: "Rustikt naturell." },
         { id: "std-50x70-donker",  title: "Standardram Mörk",     size: "50×70 cm", price: 89.00, img: "/images/shop/lijst-donker.png",  note: "Djup mörk, lyx." },
-        { id: "std-40x40-grijs",   title: "Standardram Grå",      size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Väderbiten grå." }
+        { id: "std-40x40-grijs",   title: "Standardram Grå",      size: "40×40 cm", price: 64.00, img: "/images/shop/lijst-grijs.png",   note: "Väderbiten grå." },
+        { id: "project-hekjes",    title: "Rustik projektram Mörk", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgjord av ett gammalt trädgårdsstaket. Hållbart återbruk med karaktär." }
       ]
     };
     const PRODUCTS = PRODUCT_CATALOG[langKey] || PRODUCT_CATALOG.sv;
     const ADD_LABEL = langKey === "en" ? "Add to cart" : langKey === "nl" ? "Voeg toe" : "Lägg till";
+    const PROJECT_PRODUCTS = {
+      "project-hekjes": {
+        nl: { id: "project-hekjes", title: "Rustieke projectlijst Donker", size: "30×40 cm", price: 119.00 },
+        en: { id: "project-hekjes", title: "Rustic Project Frame Dark", size: "30×40 cm", price: 119.00 },
+        sv: { id: "project-hekjes", title: "Rustik projektram Mörk", size: "30×40 cm", price: 119.00 }
+      }
+    };
 
     // Vaste verzendkosten (per bestelling wanneer er standaardproducten in zitten)
     const SHIPPING_COST_BY_CURRENCY = {
@@ -878,6 +889,7 @@
       if (shipEl) shipEl.textContent = moneyEUR(shipping);
       if (totalEl) totalEl.textContent = moneyEUR(total);
       if (payAmountEl) payAmountEl.textContent = moneyEUR(total);
+      updatePaymentLinks();
 
       if (!viewCartTracked && hasProducts) {
         viewCartTracked = true;
@@ -956,23 +968,26 @@
 
     // PayPal direct link (kaart + PayPal in één)
     const paypalLink = document.getElementById("paypalLink");
-    if (paypalLink) {
-      const prodItems = getCart().filter(it => it?.type === "product");
+    const paypalMeLink = document.getElementById("paypalMeLink");
+    function getCheckoutTotal() {
+      const prodItems = getCart().filter((it) => it?.type === "product");
       const prodSubtotal = subtotal(prodItems);
       const shipping = prodSubtotal > 0 ? shippingCostInCurrentCurrency() : 0;
-      const amountNum = prodSubtotal + shipping;
-      const isPayPalMe = /paypal\.me\/|paypal\.me$/i.test(PAYPAL_URL);
-      // PayPal.me ondersteunt een bedrag in de URL: /<bedrag>
-      const amount = isPayPalMe && amountNum > 0 ? `/${amountNum.toFixed(2)}` : "";
-      paypalLink.href = `${PAYPAL_URL}${amount}`;
-      if (langKey === "en") {
-        paypalLink.textContent = "Pay securely (card / PayPal)";
-      } else if (langKey === "sv") {
-        paypalLink.textContent = "Betala säkert (kort / PayPal)";
-      } else {
-        paypalLink.textContent = "Betaal veilig (kaart / PayPal)";
-      }
+      return prodSubtotal + shipping;
+    }
 
+    function updatePaymentLinks() {
+      if (paypalLink) paypalLink.href = PAYPAL_URL;
+      if (paypalMeLink) {
+        const amountNum = getCheckoutTotal();
+        const amount = amountNum > 0 ? `/${amountNum.toFixed(2)}` : "";
+        paypalMeLink.href = `${PAYPAL_ME_URL}${amount}`;
+      }
+    }
+
+    updatePaymentLinks();
+
+    if (paypalLink) {
       paypalLink.addEventListener("click", () => {
         const prodItems = getCart().filter((it) => it?.type === "product");
         if (!prodItems.length) return;
@@ -986,6 +1001,25 @@
           currency: currentCurrency,
           value: round2(total),
           payment_type: "paypal",
+          items: gaItemsFromCart(prodItems)
+        });
+      });
+    }
+
+    if (paypalMeLink) {
+      paypalMeLink.addEventListener("click", () => {
+        const prodItems = getCart().filter((it) => it?.type === "product");
+        if (!prodItems.length) return;
+
+        const prodSubtotal = subtotal(prodItems);
+        const shipping = prodSubtotal > 0 ? shippingCostInCurrentCurrency() : 0;
+        const total = prodSubtotal + shipping;
+
+        trackBeginCheckout("paypal_me_link");
+        trackGaEvent("add_payment_info", {
+          currency: currentCurrency,
+          value: round2(total),
+          payment_type: "paypal_me",
           items: gaItemsFromCart(prodItems)
         });
       });
@@ -1080,8 +1114,26 @@
       });
     });
 
+    function addProductFromQuery() {
+      const url = new URL(window.location.href);
+      const addId = url.searchParams.get("add");
+      if (!addId) return;
+
+      const productFromCatalog = PRODUCTS.find((p) => p.id === addId);
+      const projectSet = PROJECT_PRODUCTS[addId];
+      const projectProduct = projectSet ? (projectSet[langKey] || projectSet.sv) : null;
+      const product = productFromCatalog || projectProduct;
+      if (product) addToCart(product);
+
+      url.searchParams.delete("add");
+      const nextSearch = url.searchParams.toString();
+      const nextUrl = `${url.pathname}${nextSearch ? `?${nextSearch}` : ""}${url.hash || ""}`;
+      window.history.replaceState({}, "", nextUrl);
+    }
+
     // Init
     renderProducts();
+    addProductFromQuery();
     renderCart();
     updateCartBadge();
   }

@@ -96,8 +96,8 @@
         <!-- LINKS: PRODUKTER -->
         <section>
           <div class="section-title" style="margin-bottom:14px;">
-            <h2>Standardstorlekar</h2>
-            <div class="subtle">Lägg till i varukorgen, betala, maila din beställning.</div>
+            <h2>Vårt utbud</h2>
+            <div class="subtle">Standardstorlekar och handgjorda projekt. Lägg i varukorgen, betala, maila din beställning.</div>
           </div>
           <div class="card pad">
             <div class="shop-top-actions">
@@ -107,14 +107,15 @@
             </div>
             <div class="shop-divider"></div>
             <p class="fineprint" style="margin:12px 0 10px;">
-              <strong>Viktigt för standardstorlekar:</strong> dessa ramar levereras
+              <strong>Viktigt för vårt utbud:</strong> ramar levereras vanligtvis
               <strong>utan glas eller plexiglas</strong>, men <strong>med standard bakstycke och upphängningssystem</strong>.
+              Handgjorda projekt kan ha avvikande utförande beroende på material och design.
               Vill du ha andra specifikationer (t.ex. glas/plexi eller andra detaljer)?
               Beställ via <a href="/sv/maatwerk.html">Måttbeställt (offert)</a>.
             </p>
             <div id="productGrid" class="shop-grid" aria-live="polite"></div>
             <p class="fineprint" style="margin-top:12px;">
-              Tips: håll ditt standardsortiment litet (4–8 produkter). Måttbeställt går via offert.
+              Tips: kombinera standardstorlekar med unika handgjorda projekt för ett levande sortiment.
             </p>
           </div>
           <div class="card pad" style="margin-top:16px;">
@@ -201,7 +202,7 @@
           <div class="card pad" style="margin-top:14px;">
             <div class="section-title" style="margin-bottom:10px;">
               <h3>Kontakt</h3>
-              <div class="subtle">Direkt kontakt via telefon/SMS eller WhatsApp</div>
+              <div class="subtle">Har du frågor om produkter, service eller betalning? Kontakta oss via telefon, SMS eller WhatsApp.</div>
               <div class="subtle mobile-only">Lägg till i varukorgen, betala, maila din beställning.</div>
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -216,6 +217,9 @@
               <h2>Betalning</h2>
               <div class="subtle">PayPal (även med kort).</div>
             </div>
+            <p class="fineprint" style="margin:6px 0 10px;">
+              Steg: 1) Lägg i varukorgen 2) Betala via PayPal och kontrollera/fyll i rätt belopp där 3) Klicka på “Jag har betalat → maila order”.
+            </p>
             <div class="pay-grid">
               <div class="pay-method">
                 <div class="kicker"></div>
@@ -230,11 +234,16 @@
                 <p class="subtle" style="margin-top:6px;">
                   Att betala: <strong id="payAmount">€ 0,00</strong>
                 </p>
+                <p class="fineprint">Beloppet uppdateras automatiskt när du ändrar varukorgen.</p>
                 <p class="fineprint" style="margin-top:6px;">
-                  Obs: Ange rätt belopp inklusive frakt samt din orderreferens.
+                  Obs: Kontrollera att beloppet i PayPal stämmer med totalsumman ovan (inklusive frakt) och ange din orderreferens.
                 </p>
-                <a class="btn primary" href="#" id="paypalLink" target="_blank" rel="noopener">Betala med PayPal</a>
-                <p class="fineprint"> Du kan betala med PayPal-saldo, bank eller kort (även utan PayPal-konto).</p>
+                <div class="form-actions" style="margin-top:8px;">
+                  <a class="btn primary" href="#" id="paypalLink" target="_blank" rel="noopener">PayPal-checkout (rekommenderas)</a>
+                  <a class="btn primary" href="#" id="paypalMeLink" target="_blank" rel="noopener">PayPal.me (alternativ)</a>
+                </div>
+                <p class="fineprint">Du kan betala med PayPal-saldo, bank eller kort (även utan PayPal-konto).</p>
+                <p class="fineprint">PayPal.me öppnas med beloppet ifyllt från din varukorg.</p>
               </div>
             </div>
             <div class="shop-divider"></div>
@@ -269,6 +278,15 @@
     <p class="footer-copy">© <span id="year"></span> RAMSTUGA</p>
   </div>
 </footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Stäng">×</button>
+  <button class="lightbox-prev" aria-label="Föregående">‹</button>
+  <img id="lightbox-img" alt="">
+  <button class="lightbox-next" aria-label="Nästa">›</button>
+</div>
+
   <script src="/assets/script.js" defer></script>
 </body>
 </html>
