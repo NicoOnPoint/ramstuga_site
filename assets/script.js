@@ -1137,7 +1137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Kies welke foto's mee doen (NIET logo, NIET decoratieve)
   const images = Array.from(
     document.querySelectorAll(
-      ".gallery img, .shop-help-media img, .product-media img, .shop-hero-plaque img, .shop-hero-media img, .about-frame img"
+      ".gallery img, .project-pair-gallery img, .shop-help-media img, .product-media img, .shop-hero-plaque img, .shop-hero-media img, .about-frame img"
     )
   ).filter(img => img.getAttribute("aria-hidden") !== "true");
 
@@ -1176,7 +1176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Portfolio-tegels (<a.shot>): voorkom navigatie naar jpg en open in lightbox
-  document.querySelectorAll(".gallery a.shot").forEach((a) => {
+  document.querySelectorAll(".gallery a.shot, .project-pair-gallery a.shot").forEach((a) => {
     const img = a.querySelector("img");
     if (!img) return;
 

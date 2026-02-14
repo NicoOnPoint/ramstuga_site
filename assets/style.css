@@ -1059,6 +1059,31 @@ h2{
   box-shadow: 0 10px 20px rgba(0,0,0,.10);
 }
 
+/* Portfolio project pair: text + before/after images */
+.project-pair{
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.project-pair-copy p{
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  opacity: .9;
+}
+
+.project-pair-gallery{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.project-pair-gallery .shot{
+  grid-column: span 3;
+}
+
 /* Form */
 form{ display:grid; gap: 12px; }
 
@@ -1393,6 +1418,8 @@ footer{ padding: 30px 0 40px; opacity: .9; }
 @media (max-width: 900px){
   .grid-3{ grid-template-columns: 1fr; }
   .shot{ grid-column: span 6; }
+  .project-pair{ grid-template-columns: 1fr; }
+  .project-pair-gallery .shot{ grid-column: span 6; }
   .form-grid{ grid-template-columns: 1fr; }
   .footer-grid{ grid-template-columns: 1fr; }
 
