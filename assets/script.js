@@ -1,9 +1,7 @@
 (() => {
   const GA_MEASUREMENT_ID = "G-3PEW6XG51V";
   const GA_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("ga_debug") === "1";
-  const CONSENT_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("consent_debug") === "1";
-  const SHOW_CONSENT_SETTINGS_BUTTON = false;
-  const CONSENT_STORAGE_KEY = "ramstuga_consent_v1";
+  const CONSENT_STORAGE_KEY = "ramstuga_consent_session_v1";
   const CONSENT_UNKNOWN = "unknown";
   const CONSENT_ACCEPTED = "accepted";
   const CONSENT_REJECTED = "rejected";
@@ -17,7 +15,7 @@
 
   function getConsentChoice() {
     try {
-      const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
+      const stored = sessionStorage.getItem(CONSENT_STORAGE_KEY);
       if (stored) return stored;
     } catch {
       // Fall through to cookie fallback.
@@ -28,24 +26,18 @@
     return CONSENT_UNKNOWN;
   }
 
-  function logConsentDebug(message, data) {
-    if (!CONSENT_DEBUG_ENABLED) return;
-    if (typeof console === "undefined") return;
-    console.info("[ConsentDebug]", message, data || "");
-  }
-
   function setConsentChoice(choice) {
     try {
-      localStorage.setItem(CONSENT_STORAGE_KEY, choice);
+      sessionStorage.setItem(CONSENT_STORAGE_KEY, choice);
     } catch {
       // Ignore storage failures in restricted browser modes.
     }
     try {
-      document.cookie = `${CONSENT_STORAGE_KEY}=${encodeURIComponent(choice)}; Path=/; Max-Age=31536000; SameSite=Lax`;
+      // Session cookie: cleared when browser session ends.
+      document.cookie = `${CONSENT_STORAGE_KEY}=${encodeURIComponent(choice)}; Path=/; SameSite=Lax`;
     } catch {
       // Ignore cookie failures.
     }
-    logConsentDebug("setConsentChoice", { choice });
   }
 
   function updateAnalyticsConsent(granted) {
@@ -73,23 +65,20 @@
       return {
         message: "We use analytics cookies to understand site performance. You can accept or decline analytics.",
         accept: "Accept",
-        decline: "Decline",
-        settings: "Cookie settings"
+        decline: "Decline"
       };
     }
     if (lang === "nl") {
       return {
         message: "We gebruiken analytics-cookies om de siteprestaties te begrijpen. Je kunt analytics accepteren of weigeren.",
         accept: "Accepteren",
-        decline: "Weigeren",
-        settings: "Cookie-instellingen"
+        decline: "Weigeren"
       };
     }
     return {
       message: "Vi använder analyscookies för att förstå webbplatsens prestanda. Du kan acceptera eller avvisa analyscookies.",
       accept: "Acceptera",
-      decline: "Avvisa",
-      settings: "Cookie-inställningar"
+      decline: "Avvisa"
     };
   }
 
@@ -135,12 +124,6 @@
         background: #2f2720;
         color: #fff;
       }
-      .consent-settings-btn {
-        position: fixed;
-        left: 12px;
-        bottom: 12px;
-        z-index: 9998;
-      }
       @media (max-width: 680px) {
         .consent-banner {
           left: 10px;
@@ -158,48 +141,19 @@
     if (!banner) return;
     banner.style.display = "none";
     banner.remove();
-    logConsentDebug("removeConsentBanner");
   }
 
   function applyConsentChoice(choice) {
     const granted = choice === CONSENT_ACCEPTED;
-    logConsentDebug("applyConsentChoice", { choice, granted });
+    removeConsentBanner();
     setConsentChoice(choice);
     updateAnalyticsConsent(granted);
     if (granted) sendManualPageView();
-    removeConsentBanner();
-    setSettingsButtonVisibility(true);
   }
 
-  function getOrCreateSettingsButton() {
-    let btn = document.getElementById("ramstugaConsentSettingsBtn");
-    if (btn) return btn;
-    ensureConsentStyles();
-    const txt = getConsentUiText();
-    btn = document.createElement("button");
-    btn.type = "button";
-    btn.id = "ramstugaConsentSettingsBtn";
-    btn.className = "consent-btn consent-settings-btn";
-    btn.textContent = txt.settings;
-    btn.addEventListener("click", () => {
-      showConsentBanner(true);
-    });
-    document.body.appendChild(btn);
-    return btn;
-  }
-
-  function setSettingsButtonVisibility(visible) {
-    if (!SHOW_CONSENT_SETTINGS_BUTTON) {
-      const existing = document.getElementById("ramstugaConsentSettingsBtn");
-      if (existing) existing.style.display = "none";
-      return;
-    }
-    getOrCreateSettingsButton().style.display = visible ? "inline-block" : "none";
-  }
-
-  function showConsentBanner(forceOpen = false) {
+  function showConsentBanner() {
     const currentChoice = getConsentChoice();
-    if (!forceOpen && currentChoice !== CONSENT_UNKNOWN) return;
+    if (currentChoice !== CONSENT_UNKNOWN) return;
     if (document.getElementById("ramstugaConsentBanner")) return;
 
     ensureConsentStyles();
@@ -218,47 +172,26 @@
     `;
     const handleConsentAction = (action) => {
       if (!action) return;
-      // Hide immediately so the choice never appears to "stick" on screen.
-      banner.style.display = "none";
-      banner.setAttribute("aria-hidden", "true");
       applyConsentChoice(action === "accept" ? CONSENT_ACCEPTED : CONSENT_REJECTED);
     };
 
     const acceptBtn = banner.querySelector('[data-consent-action="accept"]');
     const declineBtn = banner.querySelector('[data-consent-action="decline"]');
-    acceptBtn?.addEventListener("click", () => {
-      logConsentDebug("buttonClick", { action: "accept" });
-      handleConsentAction("accept");
-    });
-    declineBtn?.addEventListener("click", () => {
-      logConsentDebug("buttonClick", { action: "decline" });
-      handleConsentAction("decline");
-    });
-
-    // Fallback for any nested/custom click targets.
-    banner.addEventListener("click", (e) => {
-      const target = e.target instanceof Element ? e.target.closest("[data-consent-action]") : null;
-      const action = target?.getAttribute("data-consent-action");
-      logConsentDebug("bannerClick", { action, targetTag: target?.tagName || null });
-      handleConsentAction(action);
-    });
+    acceptBtn?.addEventListener("click", () => handleConsentAction("accept"));
+    declineBtn?.addEventListener("click", () => handleConsentAction("decline"));
     document.body.appendChild(banner);
-    setSettingsButtonVisibility(false);
   }
 
   function initConsentManager() {
     const choice = getConsentChoice();
-    logConsentDebug("initConsentManager", { choice });
     if (choice === CONSENT_ACCEPTED) {
       removeConsentBanner();
       updateAnalyticsConsent(true);
-      setSettingsButtonVisibility(true);
       return;
     }
     if (choice === CONSENT_REJECTED) {
       removeConsentBanner();
       updateAnalyticsConsent(false);
-      setSettingsButtonVisibility(true);
       return;
     }
     showConsentBanner();
