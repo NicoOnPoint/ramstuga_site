@@ -216,12 +216,31 @@
         <button type="button" class="consent-btn" data-consent-action="decline">${txt.decline}</button>
       </div>
     `;
+    const handleConsentAction = (action) => {
+      if (!action) return;
+      // Hide immediately so the choice never appears to "stick" on screen.
+      banner.style.display = "none";
+      banner.setAttribute("aria-hidden", "true");
+      applyConsentChoice(action === "accept" ? CONSENT_ACCEPTED : CONSENT_REJECTED);
+    };
+
+    const acceptBtn = banner.querySelector('[data-consent-action="accept"]');
+    const declineBtn = banner.querySelector('[data-consent-action="decline"]');
+    acceptBtn?.addEventListener("click", () => {
+      logConsentDebug("buttonClick", { action: "accept" });
+      handleConsentAction("accept");
+    });
+    declineBtn?.addEventListener("click", () => {
+      logConsentDebug("buttonClick", { action: "decline" });
+      handleConsentAction("decline");
+    });
+
+    // Fallback for any nested/custom click targets.
     banner.addEventListener("click", (e) => {
       const target = e.target instanceof Element ? e.target.closest("[data-consent-action]") : null;
       const action = target?.getAttribute("data-consent-action");
       logConsentDebug("bannerClick", { action, targetTag: target?.tagName || null });
-      if (!action) return;
-      applyConsentChoice(action === "accept" ? CONSENT_ACCEPTED : CONSENT_REJECTED);
+      handleConsentAction(action);
     });
     document.body.appendChild(banner);
     setSettingsButtonVisibility(false);
