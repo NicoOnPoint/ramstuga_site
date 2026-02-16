@@ -2,6 +2,7 @@
   const GA_MEASUREMENT_ID = "G-3PEW6XG51V";
   const GA_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("ga_debug") === "1";
   const CONSENT_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("consent_debug") === "1";
+  const SHOW_CONSENT_SETTINGS_BUTTON = false;
   const CONSENT_STORAGE_KEY = "ramstuga_consent_v1";
   const CONSENT_UNKNOWN = "unknown";
   const CONSENT_ACCEPTED = "accepted";
@@ -167,7 +168,7 @@
     updateAnalyticsConsent(granted);
     if (granted) sendManualPageView();
     removeConsentBanner();
-    getOrCreateSettingsButton().style.display = "inline-block";
+    setSettingsButtonVisibility(true);
   }
 
   function getOrCreateSettingsButton() {
@@ -185,6 +186,15 @@
     });
     document.body.appendChild(btn);
     return btn;
+  }
+
+  function setSettingsButtonVisibility(visible) {
+    if (!SHOW_CONSENT_SETTINGS_BUTTON) {
+      const existing = document.getElementById("ramstugaConsentSettingsBtn");
+      if (existing) existing.style.display = "none";
+      return;
+    }
+    getOrCreateSettingsButton().style.display = visible ? "inline-block" : "none";
   }
 
   function showConsentBanner(forceOpen = false) {
@@ -214,7 +224,7 @@
       applyConsentChoice(action === "accept" ? CONSENT_ACCEPTED : CONSENT_REJECTED);
     });
     document.body.appendChild(banner);
-    getOrCreateSettingsButton().style.display = "none";
+    setSettingsButtonVisibility(false);
   }
 
   function initConsentManager() {
@@ -223,13 +233,13 @@
     if (choice === CONSENT_ACCEPTED) {
       removeConsentBanner();
       updateAnalyticsConsent(true);
-      getOrCreateSettingsButton().style.display = "inline-block";
+      setSettingsButtonVisibility(true);
       return;
     }
     if (choice === CONSENT_REJECTED) {
       removeConsentBanner();
       updateAnalyticsConsent(false);
-      getOrCreateSettingsButton().style.display = "inline-block";
+      setSettingsButtonVisibility(true);
       return;
     }
     showConsentBanner();
