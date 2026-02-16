@@ -1,6 +1,7 @@
 (() => {
   const GA_MEASUREMENT_ID = "G-3PEW6XG51V";
   const GA_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("ga_debug") === "1";
+  const CONSENT_DEBUG_ENABLED = new URLSearchParams(window.location.search).get("consent_debug") === "1";
   const CONSENT_STORAGE_KEY = "ramstuga_consent_v1";
   const CONSENT_UNKNOWN = "unknown";
   const CONSENT_ACCEPTED = "accepted";
@@ -15,10 +16,21 @@
 
   function getConsentChoice() {
     try {
-      return localStorage.getItem(CONSENT_STORAGE_KEY) || CONSENT_UNKNOWN;
+      const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
+      if (stored) return stored;
     } catch {
-      return CONSENT_UNKNOWN;
+      // Fall through to cookie fallback.
     }
+    const cookieMatch = document.cookie.match(new RegExp(`(?:^|; )${CONSENT_STORAGE_KEY}=([^;]*)`));
+    const cookieValue = cookieMatch ? decodeURIComponent(cookieMatch[1]) : "";
+    if (cookieValue === CONSENT_ACCEPTED || cookieValue === CONSENT_REJECTED) return cookieValue;
+    return CONSENT_UNKNOWN;
+  }
+
+  function logConsentDebug(message, data) {
+    if (!CONSENT_DEBUG_ENABLED) return;
+    if (typeof console === "undefined") return;
+    console.info("[ConsentDebug]", message, data || "");
   }
 
   function setConsentChoice(choice) {
@@ -27,6 +39,12 @@
     } catch {
       // Ignore storage failures in restricted browser modes.
     }
+    try {
+      document.cookie = `${CONSENT_STORAGE_KEY}=${encodeURIComponent(choice)}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    } catch {
+      // Ignore cookie failures.
+    }
+    logConsentDebug("setConsentChoice", { choice });
   }
 
   function updateAnalyticsConsent(granted) {
@@ -135,7 +153,21 @@
   }
 
   function removeConsentBanner() {
-    document.getElementById("ramstugaConsentBanner")?.remove();
+    const banner = document.getElementById("ramstugaConsentBanner");
+    if (!banner) return;
+    banner.style.display = "none";
+    banner.remove();
+    logConsentDebug("removeConsentBanner");
+  }
+
+  function applyConsentChoice(choice) {
+    const granted = choice === CONSENT_ACCEPTED;
+    logConsentDebug("applyConsentChoice", { choice, granted });
+    setConsentChoice(choice);
+    updateAnalyticsConsent(granted);
+    if (granted) sendManualPageView();
+    removeConsentBanner();
+    getOrCreateSettingsButton().style.display = "inline-block";
   }
 
   function getOrCreateSettingsButton() {
@@ -175,18 +207,11 @@
       </div>
     `;
     banner.addEventListener("click", (e) => {
-      const action = e.target?.getAttribute?.("data-consent-action");
+      const target = e.target instanceof Element ? e.target.closest("[data-consent-action]") : null;
+      const action = target?.getAttribute("data-consent-action");
+      logConsentDebug("bannerClick", { action, targetTag: target?.tagName || null });
       if (!action) return;
-      if (action === "accept") {
-        setConsentChoice(CONSENT_ACCEPTED);
-        updateAnalyticsConsent(true);
-        sendManualPageView();
-      } else {
-        setConsentChoice(CONSENT_REJECTED);
-        updateAnalyticsConsent(false);
-      }
-      removeConsentBanner();
-      getOrCreateSettingsButton().style.display = "inline-block";
+      applyConsentChoice(action === "accept" ? CONSENT_ACCEPTED : CONSENT_REJECTED);
     });
     document.body.appendChild(banner);
     getOrCreateSettingsButton().style.display = "none";
@@ -194,12 +219,15 @@
 
   function initConsentManager() {
     const choice = getConsentChoice();
+    logConsentDebug("initConsentManager", { choice });
     if (choice === CONSENT_ACCEPTED) {
+      removeConsentBanner();
       updateAnalyticsConsent(true);
       getOrCreateSettingsButton().style.display = "inline-block";
       return;
     }
     if (choice === CONSENT_REJECTED) {
+      removeConsentBanner();
       updateAnalyticsConsent(false);
       getOrCreateSettingsButton().style.display = "inline-block";
       return;
