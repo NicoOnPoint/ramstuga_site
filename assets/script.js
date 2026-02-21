@@ -780,6 +780,70 @@
     const ORIENTATION_LABEL = langKey === "en" ? "Orientation" : langKey === "nl" ? "Oriëntatie" : "Orientering";
     const ORIENTATION_VERTICAL = langKey === "en" ? "Vertical" : langKey === "nl" ? "Verticaal" : "Vertikal";
     const ORIENTATION_HORIZONTAL = langKey === "en" ? "Horizontal" : langKey === "nl" ? "Horizontaal" : "Horisontell";
+    const REMOVE_LABEL = langKey === "en" ? "Remove" : langKey === "nl" ? "Verwijder" : "Ta bort";
+    const SHOP_TEXT = {
+      nl: {
+        qty: "Aantal",
+        customQuote: "Maatwerk (offerte)",
+        copyRefCopied: "Bestelreferentie gekopieerd: ",
+        copyRefFallback: "Bestelreferentie: ",
+        emptyCartAlert: "Je winkelwagen is leeg (standaardproducten).",
+        orderTitle: "Bestelling – RAMSTUGA",
+        paidVia: "Betaald via: PayPal (kaart of PayPal)",
+        orderRef: "Bestelreferentie: ",
+        price: "Prijs",
+        subtotal: "Subtotaal",
+        shipping: "Verzending",
+        total: "Totaal",
+        name: "Naam:",
+        address: "Adres:",
+        phoneOptional: "Telefoon (optioneel):",
+        notes: "Opmerkingen:",
+        subjectPrefix: "Bestelling – RAMSTUGA (",
+        confirmClearCart: "Winkelwagen leegmaken?"
+      },
+      en: {
+        qty: "Quantity",
+        customQuote: "Custom (quote)",
+        copyRefCopied: "Order reference copied: ",
+        copyRefFallback: "Order reference: ",
+        emptyCartAlert: "Your cart is empty (standard products).",
+        orderTitle: "Order – RAMSTUGA",
+        paidVia: "Paid via: PayPal (card or PayPal)",
+        orderRef: "Order reference: ",
+        price: "Price",
+        subtotal: "Subtotal",
+        shipping: "Shipping",
+        total: "Total",
+        name: "Name:",
+        address: "Address:",
+        phoneOptional: "Phone (optional):",
+        notes: "Notes:",
+        subjectPrefix: "Order – RAMSTUGA (",
+        confirmClearCart: "Clear cart?"
+      },
+      sv: {
+        qty: "Antal",
+        customQuote: "Måttbeställt (offert)",
+        copyRefCopied: "Orderreferens kopierad: ",
+        copyRefFallback: "Orderreferens: ",
+        emptyCartAlert: "Din varukorg är tom (standardprodukter).",
+        orderTitle: "Beställning – RAMSTUGA",
+        paidVia: "Betald via: PayPal (kort eller PayPal)",
+        orderRef: "Orderreferens: ",
+        price: "Pris",
+        subtotal: "Delsumma",
+        shipping: "Frakt",
+        total: "Totalt",
+        name: "Namn:",
+        address: "Adress:",
+        phoneOptional: "Telefon (valfritt):",
+        notes: "Kommentarer:",
+        subjectPrefix: "Beställning – RAMSTUGA (",
+        confirmClearCart: "Töm varukorgen?"
+      }
+    };
+    const T = SHOP_TEXT[langKey] || SHOP_TEXT.sv;
     const PROJECT_PRODUCTS = {
       "project-hekjes": {
         nl: { id: "project-hekjes", title: "Rustieke projectlijst Donker", size: "30×40 cm", price: 119.00 },
@@ -1040,14 +1104,14 @@
           <div>
             <strong>${escapeHtml(it?.title || "Item")}</strong>
             <div class="subtle">
-              ${it?.type === "maatwerk" ? "Maatwerk (offerte)" : moneyEUR(itemUnitPrice(it))} •
-              Aantal:
+              ${it?.type === "maatwerk" ? T.customQuote : moneyEUR(itemUnitPrice(it))} •
+              ${T.qty}:
               <input class="cart-qty" type="number" min="1" value="${Number(it?.qty) || 1}" data-qty="${escapeHtml(it?.lineId || it?.id)}">
             </div>
           </div>
           <div class="cart-item-end">
             <strong>${moneyEUR(itemUnitPrice(it) * (Number(it?.qty) || 0))}</strong>
-            <button class="btn" type="button" data-remove="${escapeHtml(it?.lineId || it?.id)}">Verwijder</button>
+            <button class="btn" type="button" data-remove="${escapeHtml(it?.lineId || it?.id)}">${REMOVE_LABEL}</button>
           </div>
         </div>
       `).join("");
@@ -1204,16 +1268,16 @@
     document.getElementById("copyRefBtn")?.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(paymentRef);
-        alert("Bestelreferentie gekopieerd: " + paymentRef);
+        alert(T.copyRefCopied + paymentRef);
       } catch {
-        alert("Bestelreferentie: " + paymentRef);
+        alert(T.copyRefFallback + paymentRef);
       }
     });
 
     // Mail after payment (standard products only)
-    document.getElementById("paidMailBtn")?.addEventListener("click", () => {
+      document.getElementById("paidMailBtn")?.addEventListener("click", () => {
       const prodItems = getCart().filter(it => it?.type === "product");
-      if (!prodItems.length) return alert("Je winkelwagen is leeg (standaardproducten).");
+      if (!prodItems.length) return alert(T.emptyCartAlert);
 
       trackBeginCheckout("paid_mail_button");
       trackGaEvent("generate_lead", {
@@ -1227,36 +1291,36 @@
       const total = prodSubtotal + shipping;
 
       const lines = [];
-      lines.push("Bestelling – RAMSTUGA");
+      lines.push(T.orderTitle);
       lines.push("");
-      lines.push("Betaald via: PayPal (kaart of PayPal)");
-      lines.push("Bestelreferentie: " + paymentRef);
+      lines.push(T.paidVia);
+      lines.push(T.orderRef + paymentRef);
       lines.push("");
 
       prodItems.forEach((it, i) => {
         lines.push(`${i + 1}. ${it.title}`);
-        lines.push(`   Aantal: ${it.qty}`);
-        lines.push(`   Prijs: ${moneyEUR(itemUnitPrice(it))}`);
+        lines.push(`   ${T.qty}: ${it.qty}`);
+        lines.push(`   ${T.price}: ${moneyEUR(itemUnitPrice(it))}`);
         lines.push("");
       });
 
-      lines.push("Subtotaal: " + moneyEUR(prodSubtotal));
-      lines.push("Verzending: " + moneyEUR(shipping));
-      lines.push("Totaal: " + moneyEUR(total));
+      lines.push(`${T.subtotal}: ${moneyEUR(prodSubtotal)}`);
+      lines.push(`${T.shipping}: ${moneyEUR(shipping)}`);
+      lines.push(`${T.total}: ${moneyEUR(total)}`);
       lines.push("");
-      lines.push("Naam:");
-      lines.push("Adres:");
-      lines.push("Telefoon (optioneel):");
-      lines.push("Opmerkingen:");
+      lines.push(T.name);
+      lines.push(T.address);
+      lines.push(T.phoneOptional);
+      lines.push(T.notes);
 
-      const subject = encodeURIComponent("Bestelling – RAMSTUGA (" + paymentRef + ")");
+      const subject = encodeURIComponent(T.subjectPrefix + paymentRef + ")");
       const body = encodeURIComponent(lines.join("\n"));
       window.location.href = `mailto:info@ramstuga.se?subject=${subject}&body=${body}`;
     });
 
     // Clear cart
     document.getElementById("clearCartBtn")?.addEventListener("click", () => {
-      if (confirm("Winkelwagen leegmaken?")) {
+      if (confirm(T.confirmClearCart)) {
         setCart([]);
         clearPaymentRef();
         renderCart();
