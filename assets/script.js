@@ -684,7 +684,16 @@
           ],
           orientationOption: true
         },
-        { id: "project-hekjes",    title: "Rustieke projectlijst Donker", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgemaakt uit oud tuinhekje. Duurzaam hergebruik met karakter." }
+        {
+          id: "project-hekjes",
+          title: "Rustieke projectlijst Donker",
+          size: "30×40 cm",
+          price: 119.00,
+          img: "/images/portfolio/hekjes-lijst-donker.png",
+          note: "Handgemaakt uit oud tuinhekje. Duurzaam hergebruik met karakter.",
+          customColor: true,
+          colorOptions: ["Naturel", "Licht", "Donker", "Grijs verweerd", "Dark oak"]
+        }
       ],
       en: [
         { id: "std-30x40-licht",   title: "Standard Frame Light",   size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Scandinavian light.", orientationOption: true },
@@ -711,7 +720,16 @@
           ],
           orientationOption: true
         },
-        { id: "project-hekjes",    title: "Rustic Project Frame Dark", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handmade from an old garden fence. Sustainable reuse with character." }
+        {
+          id: "project-hekjes",
+          title: "Rustic Project Frame Dark",
+          size: "30×40 cm",
+          price: 119.00,
+          img: "/images/portfolio/hekjes-lijst-donker.png",
+          note: "Handmade from an old garden fence. Sustainable reuse with character.",
+          customColor: true,
+          colorOptions: ["Natural", "Light", "Dark", "Weathered grey", "Dark oak"]
+        }
       ],
       sv: [
         { id: "std-30x40-licht",   title: "Standardram Ljus",     size: "30×40 cm", price: 49.00, img: "/images/shop/lijst-licht.png",   note: "Skandinaviskt ljus.", orientationOption: true },
@@ -738,7 +756,16 @@
           ],
           orientationOption: true
         },
-        { id: "project-hekjes",    title: "Rustik projektram Mörk", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgjord av ett gammalt trädgårdsstaket. Hållbart återbruk med karaktär." }
+        {
+          id: "project-hekjes",
+          title: "Rustik projektram Mörk",
+          size: "30×40 cm",
+          price: 119.00,
+          img: "/images/portfolio/hekjes-lijst-donker.png",
+          note: "Handgjord av ett gammalt trädgårdsstaket. Hållbart återbruk med karaktär.",
+          customColor: true,
+          colorOptions: ["Naturell", "Ljus", "Mörk", "Väderbiten grå", "Mörk ek"]
+        }
       ]
     };
     const PRODUCTS = PRODUCT_CATALOG[langKey] || PRODUCT_CATALOG.sv;
@@ -944,7 +971,7 @@
       if (!grid) return;
 
       grid.innerHTML = PRODUCTS.map(p => `
-        <article class="card product-card">
+        <article class="card product-card" data-product-id="${escapeHtml(p.id)}">
           <div class="product-media" aria-hidden="true">
             <img src="${p.img}" alt="" loading="lazy">
           </div>
@@ -1345,9 +1372,33 @@
       window.history.replaceState({}, "", nextUrl);
     }
 
+    function focusProductFromQuery() {
+      const url = new URL(window.location.href);
+      const focusId = String(url.searchParams.get("focus") || "").trim();
+      if (!focusId) return;
+
+      const card = document.querySelector(`[data-product-id="${CSS.escape(focusId)}"]`);
+      if (!card) return;
+
+      const header = document.querySelector(".site-header");
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      const top = window.scrollY + card.getBoundingClientRect().top - headerHeight - 16;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      const previousBoxShadow = card.style.boxShadow;
+      card.style.boxShadow = "0 0 0 3px rgba(163, 94, 58, 0.45)";
+      setTimeout(() => {
+        card.style.boxShadow = previousBoxShadow;
+      }, 1800);
+      setTimeout(() => {
+        const correctedTop = window.scrollY + card.getBoundingClientRect().top - headerHeight - 16;
+        window.scrollTo({ top: Math.max(0, correctedTop), behavior: "smooth" });
+      }, 250);
+    }
+
     // Init
     renderProducts();
     initShippingRegion();
+    focusProductFromQuery();
     addProductFromQuery();
     renderCart();
     updateCartBadge();

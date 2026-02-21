@@ -341,7 +341,8 @@
       img: String(url.searchParams.get("from_shop_img") || "").trim(),
       size: String(url.searchParams.get("from_shop_size") || "").trim(),
       color: String(url.searchParams.get("from_shop_color") || "").trim(),
-      orientation: String(url.searchParams.get("from_shop_orientation") || "").trim()
+      orientation: String(url.searchParams.get("from_shop_orientation") || "").trim(),
+      notes: String(url.searchParams.get("from_shop_notes") || "").trim()
     };
 
     const nameInput = document.getElementById("shopProductName");
@@ -355,6 +356,8 @@
     if (sizeInput) sizeInput.value = data.size;
     if (colorInput) colorInput.value = data.color;
     if (orientationInput) orientationInput.value = data.orientation;
+    const notesInput = document.querySelector('textarea[name="notes"]');
+    if (notesInput && data.notes && !notesInput.value.trim()) notesInput.value = data.notes;
 
     if (!data.name) return;
 
