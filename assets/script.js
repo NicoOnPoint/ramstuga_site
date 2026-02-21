@@ -667,6 +667,23 @@
         { id: "std-30x40-grenen-custom", title: "Standaardlijst Grenen", size: "30×40 cm", price: 69.00, img: "/images/portfolio/standaard-grenen.png", note: "Kies zelf je kleur. Handgemaakt grenen met rustige nerf.", customColor: true, orientationOption: true },
         { id: "std-40x40-grenen-custom", title: "Standaardlijst Grenen", size: "40×40 cm", price: 79.00, img: "/images/portfolio/standaard-grenen.png", note: "Kies zelf je kleur. Handgemaakt grenen met rustige nerf.", customColor: true },
         { id: "std-40x50-grenen-custom", title: "Standaardlijst Grenen", size: "40×50 cm", price: 89.00, img: "/images/portfolio/standaard-grenen.png", note: "Kies zelf je kleur. Handgemaakt grenen met rustige nerf.", customColor: true, orientationOption: true },
+        {
+          id: "ring-lijst-custom",
+          title: "Ring lijst",
+          size: "40×40 cm",
+          price: 98.00,
+          img: "/images/portfolio/dark-oak-rings.png",
+          note: "Ring lijst met kleur opties. Maten: 30×30, 30×40 en 40×40 cm. Afwijkende maat? Gebruik maatwerk.",
+          customColor: true,
+          colorOptions: ["Naturel", "Licht", "Donker", "Grijs verweerd", "Dark oak"],
+          sizeOptions: [
+            { value: "30x30", label: "30×30 cm" },
+            { value: "30x40", label: "30×40 cm" },
+            { value: "40x40", label: "40×40 cm" },
+            { value: "__custom__", label: "Afwijkende maat (maatwerk)" }
+          ],
+          orientationOption: true
+        },
         { id: "project-hekjes",    title: "Rustieke projectlijst Donker", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgemaakt uit oud tuinhekje. Duurzaam hergebruik met karakter." }
       ],
       en: [
@@ -677,6 +694,23 @@
         { id: "std-30x40-grenen-custom", title: "Standard Pine Frame", size: "30×40 cm", price: 69.00, img: "/images/portfolio/standaard-grenen.png", note: "Choose your own color. Handmade pine with calm grain.", customColor: true, orientationOption: true },
         { id: "std-40x40-grenen-custom", title: "Standard Pine Frame", size: "40×40 cm", price: 79.00, img: "/images/portfolio/standaard-grenen.png", note: "Choose your own color. Handmade pine with calm grain.", customColor: true },
         { id: "std-40x50-grenen-custom", title: "Standard Pine Frame", size: "40×50 cm", price: 89.00, img: "/images/portfolio/standaard-grenen.png", note: "Choose your own color. Handmade pine with calm grain.", customColor: true, orientationOption: true },
+        {
+          id: "ring-lijst-custom",
+          title: "Ring lijst",
+          size: "40×40 cm",
+          price: 98.00,
+          img: "/images/portfolio/dark-oak-rings.png",
+          note: "Ring lijst with color options. Sizes: 30×30, 30×40 and 40×40 cm. Need a different size? Use custom.",
+          customColor: true,
+          colorOptions: ["Natural", "Light", "Dark", "Weathered grey", "Dark oak"],
+          sizeOptions: [
+            { value: "30x30", label: "30×30 cm" },
+            { value: "30x40", label: "30×40 cm" },
+            { value: "40x40", label: "40×40 cm" },
+            { value: "__custom__", label: "Different size (custom)" }
+          ],
+          orientationOption: true
+        },
         { id: "project-hekjes",    title: "Rustic Project Frame Dark", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handmade from an old garden fence. Sustainable reuse with character." }
       ],
       sv: [
@@ -687,14 +721,35 @@
         { id: "std-30x40-grenen-custom", title: "Standardram Furu", size: "30×40 cm", price: 69.00, img: "/images/portfolio/standaard-grenen.png", note: "Välj färg själv. Handgjord furu med lugn ådring.", customColor: true, orientationOption: true },
         { id: "std-40x40-grenen-custom", title: "Standardram Furu", size: "40×40 cm", price: 79.00, img: "/images/portfolio/standaard-grenen.png", note: "Välj färg själv. Handgjord furu med lugn ådring.", customColor: true },
         { id: "std-40x50-grenen-custom", title: "Standardram Furu", size: "40×50 cm", price: 89.00, img: "/images/portfolio/standaard-grenen.png", note: "Välj färg själv. Handgjord furu med lugn ådring.", customColor: true, orientationOption: true },
+        {
+          id: "ring-lijst-custom",
+          title: "Ring lijst",
+          size: "40×40 cm",
+          price: 98.00,
+          img: "/images/portfolio/dark-oak-rings.png",
+          note: "Ring lijst med färgalternativ. Storlekar: 30×30, 30×40 och 40×40 cm. Behöver du annan storlek? Använd måttbeställt.",
+          customColor: true,
+          colorOptions: ["Naturell", "Ljus", "Mörk", "Väderbiten grå", "Mörk ek"],
+          sizeOptions: [
+            { value: "30x30", label: "30×30 cm" },
+            { value: "30x40", label: "30×40 cm" },
+            { value: "40x40", label: "40×40 cm" },
+            { value: "__custom__", label: "Annan storlek (måttbeställt)" }
+          ],
+          orientationOption: true
+        },
         { id: "project-hekjes",    title: "Rustik projektram Mörk", size: "30×40 cm", price: 119.00, img: "/images/portfolio/hekjes-lijst-donker.png", note: "Handgjord av ett gammalt trädgårdsstaket. Hållbart återbruk med karaktär." }
       ]
     };
     const PRODUCTS = PRODUCT_CATALOG[langKey] || PRODUCT_CATALOG.sv;
     const ADD_LABEL = langKey === "en" ? "Add to cart" : langKey === "nl" ? "Voeg toe" : "Lägg till";
     const COLOR_LABEL = langKey === "en" ? "Color" : langKey === "nl" ? "Kleur" : "Färg";
+    const SIZE_LABEL = langKey === "en" ? "Size" : langKey === "nl" ? "Maat" : "Storlek";
     const COLOR_PLACEHOLDER = langKey === "en" ? "Enter preferred color" : langKey === "nl" ? "Vul gewenste kleur in" : "Ange önskad färg";
+    const COLOR_SELECT_PLACEHOLDER = langKey === "en" ? "Choose a color" : langKey === "nl" ? "Kies een kleur" : "Välj en färg";
     const COLOR_REQUIRED_MSG = langKey === "en" ? "Please enter a color first." : langKey === "nl" ? "Vul eerst een kleur in." : "Ange färg först.";
+    const SIZE_CUSTOM_VALUE = "__custom__";
+    const CUSTOM_PAGE_URL = langKey === "en" ? "/en/maatwerk.html" : langKey === "nl" ? "/nl/maatwerk.html" : "/sv/maatwerk.html";
     const ORIENTATION_LABEL = langKey === "en" ? "Orientation" : langKey === "nl" ? "Oriëntatie" : "Orientering";
     const ORIENTATION_VERTICAL = langKey === "en" ? "Vertical" : langKey === "nl" ? "Verticaal" : "Vertikal";
     const ORIENTATION_HORIZONTAL = langKey === "en" ? "Horizontal" : langKey === "nl" ? "Horizontaal" : "Horisontell";
@@ -751,16 +806,31 @@
       return Number((Number(n) || 0).toFixed(2));
     }
 
+    function buildCustomPageUrl(product, opts = {}) {
+      const url = new URL(CUSTOM_PAGE_URL, window.location.origin);
+      const name = String(product?.title || "").trim();
+      const image = String(product?.img || "").trim();
+      const size = String(opts?.sizeLabel || "").trim();
+      const color = String(opts?.color || "").trim();
+      const orientation = String(opts?.orientation || "").trim();
+      if (name) url.searchParams.set("from_shop_name", name);
+      if (image) url.searchParams.set("from_shop_img", image);
+      if (size) url.searchParams.set("from_shop_size", size);
+      if (color) url.searchParams.set("from_shop_color", color);
+      if (orientation) url.searchParams.set("from_shop_orientation", orientation);
+      return `${url.pathname}${url.search}`;
+    }
+
     function trackGaEvent(name, params = {}) {
       if (typeof window.gtag !== "function") return;
       window.gtag("event", name, params);
     }
 
-    function gaItemFromProduct(product, qty = 1) {
+    function gaItemFromProduct(product, qty = 1, variant = "") {
       return {
         item_id: product.id,
         item_name: product.title,
-        item_variant: product.size,
+        item_variant: variant || product.size,
         item_category: "frame",
         price: round2(convertAmount(product.price, "EUR", currentCurrency)),
         quantity: Math.max(1, Number(qty) || 1)
@@ -796,11 +866,15 @@
       const cart = getCart();
       const colorValue = String(opts?.color || "").trim();
       const colorKey = colorValue.toLowerCase();
+      const selectedSizeValue = String(opts?.size || "").trim();
+      const selectedSizeLabel = String(opts?.sizeLabel || "").trim() || product.size;
+      const sizeKey = selectedSizeValue.toLowerCase() || selectedSizeLabel.toLowerCase();
       const orientationValue = String(opts?.orientation || "").trim();
       const orientationKey = orientationValue.toLowerCase();
+      const sizeSuffix = selectedSizeLabel ? ` (${selectedSizeLabel})` : "";
       const colorSuffix = colorValue ? ` • ${COLOR_LABEL}: ${colorValue}` : "";
       const orientationSuffix = orientationValue ? ` • ${ORIENTATION_LABEL}: ${orientationValue}` : "";
-      const lineId = `${product.id}::${colorKey || "-"}::${orientationKey || "-"}`;
+      const lineId = `${product.id}::${sizeKey || "-"}::${colorKey || "-"}::${orientationKey || "-"}`;
       const idx = cart.findIndex(it => (it?.lineId || it?.id) === lineId);
       if (idx >= 0) {
         cart[idx].qty = (Number(cart[idx].qty) || 0) + 1;
@@ -809,7 +883,7 @@
           id: product.id,
           lineId,
           type: "product",
-          title: `${product.title} (${product.size})${colorSuffix}${orientationSuffix}`,
+          title: `${product.title}${sizeSuffix}${colorSuffix}${orientationSuffix}`,
           qty: 1,
           price: unitPrice,
           currency: currentCurrency
@@ -821,7 +895,7 @@
       trackGaEvent("add_to_cart", {
         currency: currentCurrency,
         value: round2(unitPrice),
-        items: [gaItemFromProduct(product, 1)]
+        items: [gaItemFromProduct(product, 1, selectedSizeLabel)]
       });
     }
 
@@ -878,6 +952,19 @@
             <h3>${escapeHtml(p.title)}</h3>
             <div class="subtle">${escapeHtml(p.size)}</div>
             <p style="margin-top:10px;">${escapeHtml(p.note)}</p>
+            ${Array.isArray(p.sizeOptions) && p.sizeOptions.length ? `
+              <label style="display:block;margin-top:8px;">
+                <span class="subtle">${escapeHtml(SIZE_LABEL)}</span>
+                <select data-size-for="${escapeHtml(p.id)}">
+                  ${p.sizeOptions.map((opt) => {
+                    const val = typeof opt === "string" ? opt : String(opt?.value || "");
+                    const lbl = typeof opt === "string" ? opt : String(opt?.label || opt?.value || "");
+                    const isSelected = lbl === p.size;
+                    return `<option value="${escapeHtml(val)}" ${isSelected ? "selected" : ""}>${escapeHtml(lbl)}</option>`;
+                  }).join("")}
+                </select>
+              </label>
+            ` : ""}
             ${p.orientationOption ? `
               <label style="display:block;margin-top:8px;">
                 <span class="subtle">${escapeHtml(ORIENTATION_LABEL)}</span>
@@ -890,7 +977,14 @@
             ${p.customColor ? `
               <label style="display:block;margin-top:8px;">
                 <span class="subtle">${escapeHtml(COLOR_LABEL)}</span>
-                <input type="text" data-color-for="${escapeHtml(p.id)}" placeholder="${escapeHtml(COLOR_PLACEHOLDER)}">
+                ${Array.isArray(p.colorOptions) && p.colorOptions.length ? `
+                  <select data-color-for="${escapeHtml(p.id)}">
+                    <option value="">${escapeHtml(COLOR_SELECT_PLACEHOLDER)}</option>
+                    ${p.colorOptions.map((opt) => `<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`).join("")}
+                  </select>
+                ` : `
+                  <input type="text" data-color-for="${escapeHtml(p.id)}" placeholder="${escapeHtml(COLOR_PLACEHOLDER)}">
+                `}
               </label>
             ` : ""}
             <div class="product-actions">
@@ -1149,9 +1243,22 @@
         const p = PRODUCTS.find(x => x.id === addId);
         if (p) {
           const card = e.target.closest(".product-card");
+          const sizeSelect = card ? card.querySelector(`[data-size-for="${addId}"]`) : null;
+          const selectedSizeValue = String(sizeSelect?.value || "").trim();
+          const selectedSizeLabel = String(sizeSelect?.selectedOptions?.[0]?.textContent || "").trim();
+          const colorField = card ? card.querySelector(`[data-color-for="${addId}"]`) : null;
+          const colorValue = String(colorField?.value || "").trim();
           const orientationSelect = card ? card.querySelector(`[data-orientation-for="${addId}"]`) : null;
           const orientationValue = String(orientationSelect?.value || "").trim();
-          addToCart(p, { orientation: orientationValue });
+          if (selectedSizeValue === SIZE_CUSTOM_VALUE) {
+            window.location.href = buildCustomPageUrl(p, {
+              sizeLabel: selectedSizeLabel,
+              color: colorValue,
+              orientation: orientationValue
+            });
+            return;
+          }
+          addToCart(p, { size: selectedSizeValue, sizeLabel: selectedSizeLabel, orientation: orientationValue });
         }
         return;
       }
@@ -1160,16 +1267,27 @@
         const p = PRODUCTS.find(x => x.id === addCustomId);
         if (!p) return;
         const card = e.target.closest(".product-card");
-        const colorInput = card ? card.querySelector(`[data-color-for="${addCustomId}"]`) : null;
+        const sizeSelect = card ? card.querySelector(`[data-size-for="${addCustomId}"]`) : null;
+        const selectedSizeValue = String(sizeSelect?.value || "").trim();
+        const selectedSizeLabel = String(sizeSelect?.selectedOptions?.[0]?.textContent || "").trim();
+        const colorField = card ? card.querySelector(`[data-color-for="${addCustomId}"]`) : null;
         const orientationSelect = card ? card.querySelector(`[data-orientation-for="${addCustomId}"]`) : null;
-        const colorValue = String(colorInput?.value || "").trim();
+        const colorValue = String(colorField?.value || "").trim();
         const orientationValue = String(orientationSelect?.value || "").trim();
-        if (!colorValue) {
-          alert(COLOR_REQUIRED_MSG);
-          colorInput?.focus();
+        if (selectedSizeValue === SIZE_CUSTOM_VALUE) {
+          window.location.href = buildCustomPageUrl(p, {
+            sizeLabel: selectedSizeLabel,
+            color: colorValue,
+            orientation: orientationValue
+          });
           return;
         }
-        addToCart(p, { color: colorValue, orientation: orientationValue });
+        if (!colorValue) {
+          alert(COLOR_REQUIRED_MSG);
+          colorField?.focus();
+          return;
+        }
+        addToCart(p, { size: selectedSizeValue, sizeLabel: selectedSizeLabel, color: colorValue, orientation: orientationValue });
         return;
       }
       const remId = e.target?.getAttribute?.("data-remove");
@@ -1179,6 +1297,29 @@
     document.addEventListener("input", (e) => {
       const id = e.target?.getAttribute?.("data-qty");
       if (id) updateQty(id, e.target.value);
+    });
+
+    document.addEventListener("change", (e) => {
+      const sizeFor = e.target?.getAttribute?.("data-size-for");
+      if (!sizeFor) return;
+      if (String(e.target?.value || "").trim() === SIZE_CUSTOM_VALUE) {
+        const p = PRODUCTS.find((x) => x.id === sizeFor);
+        const card = e.target.closest(".product-card");
+        const selectedSizeLabel = String(e.target?.selectedOptions?.[0]?.textContent || "").trim();
+        const colorField = card ? card.querySelector(`[data-color-for="${sizeFor}"]`) : null;
+        const orientationSelect = card ? card.querySelector(`[data-orientation-for="${sizeFor}"]`) : null;
+        const colorValue = String(colorField?.value || "").trim();
+        const orientationValue = String(orientationSelect?.value || "").trim();
+        if (p) {
+          window.location.href = buildCustomPageUrl(p, {
+            sizeLabel: selectedSizeLabel,
+            color: colorValue,
+            orientation: orientationValue
+          });
+        } else {
+          window.location.href = CUSTOM_PAGE_URL;
+        }
+      }
     });
 
     document.querySelectorAll('a[href="#pay"]').forEach((link) => {

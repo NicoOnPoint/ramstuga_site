@@ -107,8 +107,23 @@
         <div class="subtle" style="margin-top: 6px;">Vul zo veel mogelijk in — dan kunnen wij snel reageren.</div>
       </div>
 
+      <div id="shopPrefillCard" class="card pad" style="max-width:980px; margin:0 auto 14px; display:none;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img id="shopPrefillImg" src="" alt="" style="width:64px; height:64px; object-fit:cover; border-radius:8px; display:none;">
+          <div>
+            <strong>Geselecteerd vanuit de shop</strong>
+            <div id="shopPrefillText" class="subtle"></div>
+          </div>
+        </div>
+      </div>
+
       <div class="card pad" style="max-width: 980px; margin: 0 auto;">
         <form id="customOrderForm">
+          <input type="hidden" name="shop_product_name" id="shopProductName" />
+          <input type="hidden" name="shop_product_img" id="shopProductImg" />
+          <input type="hidden" name="shop_product_size" id="shopProductSize" />
+          <input type="hidden" name="shop_product_color" id="shopProductColor" />
+          <input type="hidden" name="shop_product_orientation" id="shopProductOrientation" />
 
           <!-- AFMETINGEN -->
           <div class="form-grid">
@@ -303,7 +318,7 @@
   </div>
 </footer>
 
-<script src="/assets/script.js?v=20260216e"></script>
+<script src="/assets/script.js?v=20260221b"></script>
 
 <script>
   // ---------- Helpers ----------
@@ -316,6 +331,15 @@
 
   function buildSummary(o) {
     const backPanel = o.back_panel === "anders" ? (o.back_panel_custom || "Anders (niet opgegeven)") : (o.back_panel || "-");
+    const shopSelection = o.shop_product_name ? [
+      "",
+      "Vanuit shop geselecteerd:",
+      `Product: ${o.shop_product_name}`,
+      o.shop_product_size ? `Voorkeursmaat: ${o.shop_product_size}` : null,
+      o.shop_product_color ? `Voorkeurskleur: ${o.shop_product_color}` : null,
+      o.shop_product_orientation ? `Voorkeursoriëntatie: ${o.shop_product_orientation}` : null,
+      o.shop_product_img ? `Afbeelding: ${o.shop_product_img}` : null
+    ].filter(Boolean) : [];
     return [
       `Maatwerk lijst`,
       ``,
@@ -329,6 +353,7 @@
       `Ophangsysteem: ${o.hanging}`,
       `Achterwand: ${backPanel}`,
       `Aantal: ${o.qty}`,
+      ...shopSelection,
       ``,
       `Wensen: ${o.notes || "-"}`,
       ``,
@@ -336,9 +361,53 @@
     ].filter(Boolean).join("\n");
   }
 
+  function initShopPrefill() {
+    const url = new URL(window.location.href);
+    const data = {
+      name: String(url.searchParams.get("from_shop_name") || "").trim(),
+      img: String(url.searchParams.get("from_shop_img") || "").trim(),
+      size: String(url.searchParams.get("from_shop_size") || "").trim(),
+      color: String(url.searchParams.get("from_shop_color") || "").trim(),
+      orientation: String(url.searchParams.get("from_shop_orientation") || "").trim()
+    };
+
+    const nameInput = document.getElementById("shopProductName");
+    const imgInput = document.getElementById("shopProductImg");
+    const sizeInput = document.getElementById("shopProductSize");
+    const colorInput = document.getElementById("shopProductColor");
+    const orientationInput = document.getElementById("shopProductOrientation");
+
+    if (nameInput) nameInput.value = data.name;
+    if (imgInput) imgInput.value = data.img;
+    if (sizeInput) sizeInput.value = data.size;
+    if (colorInput) colorInput.value = data.color;
+    if (orientationInput) orientationInput.value = data.orientation;
+
+    if (!data.name) return;
+
+    const card = document.getElementById("shopPrefillCard");
+    const text = document.getElementById("shopPrefillText");
+    const img = document.getElementById("shopPrefillImg");
+    const details = [
+      data.name,
+      data.size ? `Maat: ${data.size}` : null,
+      data.color ? `Kleur: ${data.color}` : null,
+      data.orientation ? `Oriëntatie: ${data.orientation}` : null
+    ].filter(Boolean).join(" • ");
+
+    if (text) text.textContent = details;
+    if (img && data.img) {
+      img.src = data.img;
+      img.alt = data.name || "Geselecteerde lijst";
+      img.style.display = "block";
+    }
+    if (card) card.style.display = "block";
+  }
+
   // ---------- Init ----------
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+  initShopPrefill();
 
   // ---------- Form handlers ----------
   const form = document.getElementById("customOrderForm");

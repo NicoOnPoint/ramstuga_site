@@ -96,8 +96,23 @@
         <div class="subtle" style="margin-top:6px;">Fill in as much as possible so we can respond quickly.</div>
       </div>
 
+      <div id="shopPrefillCard" class="card pad" style="max-width:980px; margin:0 auto 14px; display:none;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img id="shopPrefillImg" src="" alt="" style="width:64px; height:64px; object-fit:cover; border-radius:8px; display:none;">
+          <div>
+            <strong>Selected from shop</strong>
+            <div id="shopPrefillText" class="subtle"></div>
+          </div>
+        </div>
+      </div>
+
       <div class="card pad" style="max-width:980px; margin:0 auto;">
         <form id="customOrderForm">
+          <input type="hidden" name="shop_product_name" id="shopProductName" />
+          <input type="hidden" name="shop_product_img" id="shopProductImg" />
+          <input type="hidden" name="shop_product_size" id="shopProductSize" />
+          <input type="hidden" name="shop_product_color" id="shopProductColor" />
+          <input type="hidden" name="shop_product_orientation" id="shopProductOrientation" />
           <div class="form-grid">
             <label>
               Inner width (mm)
@@ -278,7 +293,7 @@
   <button class="lightbox-next" aria-label="Next">›</button>
 </div>
 
-<script src="/assets/script.js?v=20260216e" defer></script>
+<script src="/assets/script.js?v=20260221b" defer></script>
 <script>
   function formToObject(form) {
     const data = new FormData(form);
@@ -289,6 +304,15 @@
 
   function buildSummary(o) {
     const backPanel = o.back_panel === "other" ? (o.back_panel_custom || "Other (not specified)") : (o.back_panel || "-");
+    const shopSelection = o.shop_product_name ? [
+      "",
+      "Selected from shop:",
+      `Product: ${o.shop_product_name}`,
+      o.shop_product_size ? `Preferred size: ${o.shop_product_size}` : null,
+      o.shop_product_color ? `Preferred color: ${o.shop_product_color}` : null,
+      o.shop_product_orientation ? `Preferred orientation: ${o.shop_product_orientation}` : null,
+      o.shop_product_img ? `Image: ${o.shop_product_img}` : null
+    ].filter(Boolean) : [];
     return [
       "Custom frame",
       "",
@@ -302,6 +326,7 @@
       `Hanging system: ${o.hanging}`,
       `Back panel: ${backPanel}`,
       `Quantity: ${o.qty}`,
+      ...shopSelection,
       "",
       `Notes: ${o.notes || "-"}`,
       "",
@@ -309,8 +334,52 @@
     ].filter(Boolean).join("\n");
   }
 
+  function initShopPrefill() {
+    const url = new URL(window.location.href);
+    const data = {
+      name: String(url.searchParams.get("from_shop_name") || "").trim(),
+      img: String(url.searchParams.get("from_shop_img") || "").trim(),
+      size: String(url.searchParams.get("from_shop_size") || "").trim(),
+      color: String(url.searchParams.get("from_shop_color") || "").trim(),
+      orientation: String(url.searchParams.get("from_shop_orientation") || "").trim()
+    };
+
+    const nameInput = document.getElementById("shopProductName");
+    const imgInput = document.getElementById("shopProductImg");
+    const sizeInput = document.getElementById("shopProductSize");
+    const colorInput = document.getElementById("shopProductColor");
+    const orientationInput = document.getElementById("shopProductOrientation");
+
+    if (nameInput) nameInput.value = data.name;
+    if (imgInput) imgInput.value = data.img;
+    if (sizeInput) sizeInput.value = data.size;
+    if (colorInput) colorInput.value = data.color;
+    if (orientationInput) orientationInput.value = data.orientation;
+
+    if (!data.name) return;
+
+    const card = document.getElementById("shopPrefillCard");
+    const text = document.getElementById("shopPrefillText");
+    const img = document.getElementById("shopPrefillImg");
+    const details = [
+      data.name,
+      data.size ? `Size: ${data.size}` : null,
+      data.color ? `Color: ${data.color}` : null,
+      data.orientation ? `Orientation: ${data.orientation}` : null
+    ].filter(Boolean).join(" • ");
+
+    if (text) text.textContent = details;
+    if (img && data.img) {
+      img.src = data.img;
+      img.alt = data.name || "Selected frame";
+      img.style.display = "block";
+    }
+    if (card) card.style.display = "block";
+  }
+
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+  initShopPrefill();
 
   const form = document.getElementById("customOrderForm");
   const backPanelSelect = document.getElementById("backPanelSelect");
