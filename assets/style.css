@@ -328,7 +328,7 @@
   }
 }
 html {
-  background: url("../images/Wooden-wall.jpg?v=2") center center/cover no-repeat fixed !important;
+  background: url("../images/optimized/Wooden-wall-1920.jpg") center center/cover no-repeat fixed !important;
 }
 /* Forceer transparante footer zodat houten achtergrond altijd zichtbaar blijft */
 footer,
@@ -387,7 +387,7 @@ body{
 
   /* Doorlopende houten achtergrond (ENIGE plek waar het staat) */
   /* cache-bust toegevoegd zodat vervangingen in /images/ direct zichtbaar worden */
-  background-image: url("../images/Wooden-wall.jpg?v=2");
+  background-image: url("../images/optimized/Wooden-wall-1920.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -399,6 +399,15 @@ body{
 
 a{ color: inherit; }
 img{ max-width:100%; display:block; }
+
+@supports (content-visibility: auto) {
+  .story,
+  .about-story,
+  .site-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
+}
 
 /* Lightbox-enabled images: subtle hover effect */
 .gallery img,
@@ -705,7 +714,7 @@ nav a:hover{
 /* Responsive tweaks for hero on smaller screens */
 @media (max-width: 700px) {
   .hero-wood{
-    background-image: url("../images/Wooden-wall.jpg?v=2");
+    background-image: url("../images/optimized/Wooden-wall-1920.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -865,7 +874,7 @@ nav a:hover{
   background-color: rgba(244,241,236,.96);
   background-image:
     linear-gradient(rgba(244,241,236,.82), rgba(244,241,236,.82)),
-    url("../images/Wooden-wall.jpg");
+    url("../images/optimized/Wooden-wall-1920.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -1734,7 +1743,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   transform: translate(-50%, -50%);
   width: clamp(var(--hero-plaque-min), 86vw, var(--hero-plaque-max));
   aspect-ratio: 1152 / 418;
-  background: url("../images/header-plaque.png") center / contain no-repeat;
+  background: url("../images/optimized/header-plaque.webp") center / contain no-repeat;
   filter: brightness(0.78);
   z-index: 0;
   pointer-events: none;
@@ -1925,7 +1934,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   background-color: rgba(244,241,236,.96);
   background-image:
     linear-gradient(rgba(244,241,236,.82), rgba(244,241,236,.82)),
-    url("../images/Wooden-wall.jpg");
+    url("../images/optimized/Wooden-wall-1920.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -2330,7 +2339,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
     width: 1220px;
     aspect-ratio: 3.2 / 1;
     transform: translateX(-50%);
-    background: url("/images/dark-footer-plaque.png") center / contain no-repeat;
+    background: url("/images/optimized/dark-footer-plaque.webp") center / contain no-repeat;
     opacity: 1;
     pointer-events: none;
     z-index: 0;
@@ -2440,7 +2449,7 @@ footer{ padding: 30px 0 40px; opacity: .9; }
   width: min(2000px, 98vw);  /* ⬅️ fors breder */
   aspect-ratio: 4.5 / 1;     /* ⬅️ LANG naamplaatje */
 
-  background-image: url("../images/wood-plaque.png");
+  background-image: url("../images/optimized/wood-plaque.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
