@@ -94,6 +94,17 @@
   </section>
   <section class="about-story">
     <div class="container" style="width:min(1100px,92vw);">
+      <div class="card pad" style="margin:0 0 18px;">
+        <div class="section-title" style="margin-bottom:8px;">
+          <h3>Vårt sortiment växer</h3>
+        </div>
+        <p style="margin:0 0 12px;">
+          Vårt sortiment kommer att byggas ut vidare med tiden. Letar du redan nu efter en unik ram eller ett särskilt utförande kan du alltid beställa via <a href="/sv/maatwerk.html">Måttbeställt</a>.
+        </p>
+        <a class="shot js-lightbox shop-growth-shot" href="/images/portfolio/Hek-in-kamer.jpg" aria-label="Öppna interiörbild av rustik ram">
+          <img src="/images/portfolio/Hek-in-kamer.jpg" alt="Rustik ram i interiör med ljus och träbord" loading="lazy">
+        </a>
+      </div>
       <div class="shop-layout">
         <!-- LINKS: PRODUKTER -->
         <section>
@@ -119,55 +130,6 @@
             <p class="fineprint" style="margin-top:12px;">
               Tips: kombinera standardstorlekar med unika handgjorda projekt för ett levande sortiment.
             </p>
-          </div>
-          <div class="card pad" style="margin-top:16px;">
-            <div class="section-title" style="margin-bottom:14px;">
-              <h2>Hjälp att välja</h2>
-              <div class="subtle">Mätning & ytbehandling.</div>
-            </div>
-            <div class="shop-help-grid">
-              <article class="card">
-                <div class="shop-help-media">
-                  <img src="/images/optimized/measure-guide-cm.webp" alt="Mätguide: hur mäter du ditt foto eller öppning?" loading="lazy" decoding="async" width="1280" height="853">
-                </div>
-                <div class="pad">
-                  <div class="kicker">Steg 1</div>
-                  <h3>Mät din storlek</h3>
-                  <p>Mät ditt foto (eller önskad öppning). Osäker? Välj måttbeställt.</p>
-                  <div class="meta">
-                    <a class="btn" href="/sv/maatwerk.html">Måttbeställt (offert)</a>
-                  </div>
-                </div>
-              </article>
-              <article class="card">
-                <div class="shop-help-media">
-                  <img src="/images/optimized/finishes.webp" alt="Ytbehandlingar: ljus, mörk, vädergrå" loading="lazy" decoding="async" width="1280" height="853">
-                </div>
-                <div class="pad">
-                  <div class="kicker">Steg 2</div>
-                  <h3>Ytbehandling</h3>
-                  <p>Ljus för skandinaviskt, mörk för lyx, vädergrå för rustikt.</p>
-                  <div class="meta">
-                    <span class="tag">Ljus</span>
-                    <span class="tag">Mörk</span>
-                    <span class="tag">Grå</span>
-                  </div>
-                </div>
-              </article>
-              <article class="card">
-                <div class="shop-help-media">
-                  <img src="/images/optimized/wood-detail.webp" alt="Detalj av träådring och hörn på ramen" loading="lazy" decoding="async" width="1280" height="853">
-                </div>
-                <div class="pad">
-                  <div class="kicker">Steg 3</div>
-                  <h3>Trädetalj</h3>
-                  <p>Se riktiga bilder av träådring, hörn och finish.</p>
-                  <div class="meta">
-                    <a class="btn primary" href="/sv/portfolio.html">Portfolio</a>
-                  </div>
-                </div>
-              </article>
-            </div>
           </div>
         </section>
         <!-- RECHTS: VARUKORG + BETALNING -->
@@ -226,40 +188,40 @@
           <div class="card pad" id="pay" style="margin-top:16px;">
             <div class="section-title" style="margin-bottom:10px;">
               <h2>Betalning</h2>
-              <div class="subtle">PayPal (även med kort).</div>
+              <div class="subtle">Betala tryggt via PayPal eller kort.</div>
             </div>
-            <p class="fineprint" style="margin:6px 0 10px;">
-              Steg: 1) Lägg i varukorgen 2) Betala via PayPal och kontrollera/fyll i rätt belopp där 3) Klicka på “Jag har betalat → maila order”.
+            <p class="subtle" style="margin:6px 0 10px;">
+              Gör först betalningen och skicka sedan ordern med knappen längst ner. Då får vi både din betalning och dina beställningsuppgifter korrekt kopplade till samma referens.
             </p>
             <div class="pay-grid">
               <div class="pay-method">
-                <div class="kicker"></div>
                 <img
                 src="/images/payments-paypal-visa-mastercard.png"
                 alt="Betala med PayPal, Visa och Mastercard (inget PayPal-konto krävs)"
                 class="pay-badge"
 />
-<p class="subtle">
-  Inget PayPal-konto krävs — betala enkelt med kort.
-</p>
+                <p class="fineprint">
+                  Inget PayPal-konto krävs. Du kan betala med kort direkt i PayPal.
+                </p>
                 <p class="subtle" style="margin-top:6px;">
                   Att betala: <strong id="payAmount">€ 0,00</strong>
                 </p>
-                <p class="fineprint">Beloppet uppdateras automatiskt när du ändrar varukorgen.</p>
-                <p class="fineprint" style="margin-top:6px;">
-                  Obs: Kontrollera att beloppet i PayPal stämmer med totalsumman ovan (inklusive frakt) och ange din orderreferens.
+                <p class="fineprint">
+                  Beloppet uppdateras automatiskt från din varukorg. Kontrollera i PayPal att totalsumman stämmer inklusive frakt.
                 </p>
                 <div class="form-actions" style="margin-top:8px;">
                   <a class="btn primary" href="#" id="paypalLink" target="_blank" rel="noopener">PayPal-checkout (rekommenderas)</a>
-                  <a class="btn primary" href="#" id="paypalMeLink" target="_blank" rel="noopener">PayPal.me (alternativ)</a>
+                  <a class="btn" href="#" id="paypalMeLink" target="_blank" rel="noopener">PayPal.me (alternativ)</a>
                 </div>
-                <p class="fineprint">Du kan betala med PayPal-saldo, bank eller kort (även utan PayPal-konto).</p>
-                <p class="fineprint">PayPal.me öppnas med beloppet ifyllt från din varukorg.</p>
+                <p class="fineprint">PayPal.me öppnas med beloppet från din varukorg redan ifyllt.</p>
               </div>
             </div>
             <div class="shop-divider"></div>
             <p class="fineprint">
-              Använd som referens: <strong>RAMSTUGA + ditt namn, leveransadress och betalningsreferens</strong>
+              Så kommer ordern rätt till oss: klicka efter betalningen på <strong>“Jag har betalat → maila order”</strong>. Då öppnas ett färdigt mail med dina produkter, antal, totalsumma och orderreferens som du skickar direkt till oss.
+            </p>
+            <p class="fineprint">
+              Använd som referens i betalning och mail: <strong>RAMSTUGA + ditt namn, leveransadress och betalningsreferens</strong>
             </p>
             <div class="form-actions" style="justify-content: space-between; margin-top:12px;">
               <button class="btn" type="button" id="copyRefBtn">Kopiera orderreferens</button>
@@ -267,6 +229,55 @@
             </div>
           </div>
         </aside>
+      </div>
+      <div class="card pad" style="margin-top:16px;">
+        <div class="section-title" style="margin-bottom:14px;">
+          <h2>Hjälp att välja</h2>
+          <div class="subtle">Mätning & ytbehandling.</div>
+        </div>
+        <div class="shop-help-grid">
+          <article class="card">
+            <div class="shop-help-media">
+              <img src="/images/optimized/measure-guide-cm.webp" alt="Mätguide: hur mäter du ditt foto eller öppning?" loading="lazy" decoding="async" width="1280" height="853">
+            </div>
+            <div class="pad">
+              <div class="kicker">Steg 1</div>
+              <h3>Mät din storlek</h3>
+              <p>Mät ditt foto (eller önskad öppning). Osäker? Välj måttbeställt.</p>
+              <div class="meta">
+                <a class="btn" href="/sv/maatwerk.html">Måttbeställt (offert)</a>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="shop-help-media">
+              <img src="/images/optimized/finishes.webp" alt="Ytbehandlingar: ljus, mörk, vädergrå" loading="lazy" decoding="async" width="1280" height="853">
+            </div>
+            <div class="pad">
+              <div class="kicker">Steg 2</div>
+              <h3>Ytbehandling</h3>
+              <p>Ljus för skandinaviskt, mörk för lyx, vädergrå för rustikt.</p>
+              <div class="meta">
+                <span class="tag">Ljus</span>
+                <span class="tag">Mörk</span>
+                <span class="tag">Grå</span>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="shop-help-media">
+              <img src="/images/optimized/wood-detail.webp" alt="Detalj av träådring och hörn på ramen" loading="lazy" decoding="async" width="1280" height="853">
+            </div>
+            <div class="pad">
+              <div class="kicker">Steg 3</div>
+              <h3>Trädetalj</h3>
+              <p>Se riktiga bilder av träådring, hörn och finish.</p>
+              <div class="meta">
+                <a class="btn primary" href="/sv/portfolio.html">Portfolio</a>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>

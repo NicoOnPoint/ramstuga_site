@@ -1034,7 +1034,7 @@
       const grid = document.getElementById("productGrid");
       if (!grid) return;
 
-      grid.innerHTML = PRODUCTS.map(p => `
+      grid.innerHTML = PRODUCTS.slice().reverse().map(p => `
         <article class="card product-card" data-product-id="${escapeHtml(p.id)}">
           <div class="product-media" aria-hidden="true">
             <img src="${p.img}" alt="" loading="lazy">
@@ -1519,7 +1519,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Kies welke foto's mee doen (NIET logo, NIET decoratieve)
   const images = Array.from(
     document.querySelectorAll(
-      ".gallery img, .project-pair-gallery img, .shop-help-media img, .product-media img, .shop-hero-plaque img, .shop-hero-media img, .about-frame img"
+      ".gallery img, .project-pair-gallery img, .shop-help-media img, .product-media img, .shop-hero-plaque img, .shop-hero-media img, .about-frame img, .shop-growth-shot img"
     )
   ).filter(img => img.getAttribute("aria-hidden") !== "true");
 
@@ -1558,7 +1558,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Portfolio-tegels (<a.shot>): voorkom navigatie naar jpg en open in lightbox
-  document.querySelectorAll(".gallery a.shot, .project-pair-gallery a.shot").forEach((a) => {
+  document.querySelectorAll(".gallery a.shot, .project-pair-gallery a.shot, a.shop-growth-shot").forEach((a) => {
     const img = a.querySelector("img");
     if (!img) return;
 
